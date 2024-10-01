@@ -5,12 +5,9 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
-  sendEmailVerification,
-  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updatePassword,
   updateProfile,
 } from "firebase/auth";
 // import { clearCookie, setToken } from "../../Api/auth";
@@ -43,18 +40,6 @@ const AuthProviders = ({ children }) => {
       displayName: name,
       photoURL: image,
     });
-  };
-
-  const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email);
-  };
-
-  const changePassword = (newPass) => {
-    return updatePassword(auth.currentUser, newPass);
-  };
-
-  const verifyEmail = () => {
-    return sendEmailVerification(auth.currentUser);
   };
 
   const logOut = async () => {
@@ -91,10 +76,7 @@ const AuthProviders = ({ children }) => {
     logOut,
     loading,
     profileUpdate,
-    changePassword,
     googleLogin,
-    resetPassword,
-    verifyEmail,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

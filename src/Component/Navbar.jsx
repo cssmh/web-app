@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/blog.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,7 +13,9 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold text-gray-800">
-          <Link to="/">BlogApp</Link>
+          <Link to="/">
+            <img src={logo} className="w-32" alt="" />
+          </Link>
         </div>
         <div className="hidden md:flex space-x-4">
           <Link to="/" className="text-gray-600 hover:text-blue-600">
