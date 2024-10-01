@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-- [Blog Application on Netlify](https://yourblogapp.netlify.app)
+- [Blog Application on Netlify](https://ssbloga.netlify.app)
 
 ## Table of Contents
 
@@ -21,24 +21,29 @@ The Blog Application is a modern web platform that allows users to create, manag
 ## Features
 
 1. **User Authentication:**
+
    - Users can register and log in securely.
    - Email verification for new users.
    - Password reset functionality.
 
 2. **Blog Post Management:**
+
    - CRUD operations for blog posts (Create, Read, Update, Delete).
    - Dashboard for users to manage their own posts.
    - Admin capabilities to moderate content.
 
 3. **Responsive User Interface:**
+
    - Mobile-friendly design with Tailwind CSS for styling.
    - Smooth navigation with React Router.
 
 4. **User Roles:**
+
    - Different roles (admin, user) with varying permissions.
    - Admin dashboard for managing users and posts.
 
 5. **Additional Features:**
+
    - Commenting system for blog posts.
    - Search functionality to find specific posts.
    - Tagging system for organizing content.
@@ -65,12 +70,3 @@ The Blog Application is a modern web platform that allows users to create, manag
 - [@types/react](https://www.npmjs.com/package/@types/react)
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom)
 - [vite](https://www.npmjs.com/package/vite)
-
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-- Node.js
-- npm or yarn

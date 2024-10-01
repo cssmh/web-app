@@ -6,6 +6,8 @@ import Register from "../Component/Register";
 import AllPost from "../Pages/AllPost";
 import Error from "../Component/Error";
 import About from "../Pages/About";
+import CreateBlog from "../Pages/CreateBlog";
+import PrivateRoute from "./PrivateRoute";
 
 const Route = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const Route = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/posts", element: <AllPost /> },
       { path: "/register", element: <Register /> },
+      {
+        path: "/create-blog",
+        element: (
+          <PrivateRoute>
+            <CreateBlog />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
