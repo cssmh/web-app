@@ -2,7 +2,7 @@ import PopularBlogs from "../Pages/PopularBlogs";
 import Banner from "./Banner";
 import BlogHelmet from "./BlogHelmet";
 import StartBlogging from "./StartBlogging";
-import Features from "./Features";
+import OurFeatures from "./OurFeatures";
 import LatestNews from "./LatestNews";
 import Testimonials from "./Testimonial";
 
@@ -13,7 +13,7 @@ const Home = () => {
       <Banner />
       <PopularBlogs />
       <LatestNews />
-      <Features />
+      <OurFeatures />
       <Testimonials />
       <StartBlogging />
     </div>

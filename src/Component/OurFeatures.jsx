@@ -1,4 +1,4 @@
-const Features = () => {
+const OurFeatures = () => {
   return (
     <div className="max-w-6xl mx-auto my-8">
       <h2 className="text-xl md:text-3xl font-semibold text-center mb-12">
@@ -49,4 +49,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default OurFeatures;
