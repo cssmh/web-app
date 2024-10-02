@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Moment from "moment";
 
 const BlogCard = ({ blog }) => {
-  console.log(blog);
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col">
       <img

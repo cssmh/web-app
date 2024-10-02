@@ -35,11 +35,7 @@ const Route = createBrowserRouter([
       },
       {
         path: "/blog/:id",
-        element: (
-          <PrivateRoute>
-            <BlogDetails />
-          </PrivateRoute>
-        ),
+        element: <BlogDetails />,
         loader: async ({ params }) => await getBlog(params.id),
       },
       {

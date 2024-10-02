@@ -39,7 +39,7 @@ const Login = () => {
   return (
     <div className="my-8 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto">
       <BlogHelmet title={"Login"} />
-      <h1 className="text-2xl font-bold text-center">Login</h1>
+      <h1 className="text-2xl font-semibold text-center">Login</h1>
       <form onSubmit={handleLogin} className="space-y-5">
         <div className="space-y-1 text-sm">
           <label htmlFor="email" className="block dark:text-gray-600">

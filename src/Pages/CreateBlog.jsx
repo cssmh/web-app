@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import axios from "axios";
@@ -22,7 +23,10 @@ const CreateBlog = () => {
   };
 
   const handleImageChange = (e) => {
-    setFormData((prevState) => ({ ...prevState, image: e.target.files[0] }));
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prevState) => ({ ...prevState, image: file }));
+    }
   };
 
   const uploadImageToImgBB = async (imageFile) => {
@@ -35,38 +39,52 @@ const CreateBlog = () => {
     try {
       setImgLoading(true);
       const response = await axios.post(url, formData);
-      setImgLoading(false);
       return response.data.data.url;
     } catch (error) {
       console.error("Image upload failed:", error);
-      setImgLoading(false);
       return null;
+    } finally {
+      setImgLoading(false);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.image) {
+      swal("Error!", "Please upload an image.", "error");
+      return;
+    }
 
-    if (formData.image) {
-      const imageUrl = await uploadImageToImgBB(formData.image);
+    const imageUrl = await uploadImageToImgBB(formData.image);
+    if (imageUrl) {
+      const res = await postBlog({
+        ...formData,
+        email: user?.email,
+        image: imageUrl,
+        timestamp: new Date().toISOString(),
+      });
 
-      if (imageUrl) {
-        const res = await postBlog({
-          ...formData,
-          email: user?.email,
-          image: imageUrl,
-          timestamp: new Date().toISOString(),
+      if (res?.insertedId) {
+        swal("Thank You!", "Blog added", "success", { timer: 2000 });
+        setFormData({
+          title: "",
+          content: "",
+          category: "",
+          tags: "",
+          image: null,
         });
-        console.log(res);
+        document.getElementById("image").value = "";
       } else {
-        console.error("Image upload failed. Blog not submitted.");
+        swal("Error!", "Blog submission failed.", "error");
       }
+    } else {
+      swal("Error!", "Image upload failed. Blog not submitted.", "error");
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-4 px-6 py-4 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold text-center mb-6">
+    <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold text-center mb-3">
         Create a New Blog
       </h2>
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -82,7 +100,7 @@ const CreateBlog = () => {
             required
             placeholder="Enter blog title"
             className="w-full px-4 py-2 rounded-lg border"
-            style={{ outline: "none" }}
+            // style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -115,6 +133,7 @@ const CreateBlog = () => {
             <option value="Travel">Travel</option>
             <option value="Lifestyle">Lifestyle</option>
             <option value="Education">Education</option>
+            <option value="Business">Business</option>
           </select>
         </div>
         <div className="space-y-1 text-sm">
@@ -137,6 +156,7 @@ const CreateBlog = () => {
           <input
             type="file"
             name="image"
+            id="image"
             onChange={handleImageChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             accept="image/*"
@@ -149,7 +169,7 @@ const CreateBlog = () => {
         >
           {loading || imgLoading ? (
             <div className="flex justify-center">
-              <TbFidgetSpinner className="animate-spin text-xl" />
+              <TbFidgetSpinner className="animate-spin text-2xl" />
             </div>
           ) : (
             "Create Blog"

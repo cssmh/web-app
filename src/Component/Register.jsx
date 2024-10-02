@@ -35,9 +35,9 @@ const Register = () => {
   };
 
   return (
-    <div className="my-8 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto">
+    <div className="my-5 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto">
       <BlogHelmet title={"Register"} />
-      <h1 className="text-2xl font-bold text-center">Register</h1>
+      <h1 className="text-2xl font-semibold text-center">Register</h1>
       <form onSubmit={handleRegister} className="space-y-5">
         <div className="space-y-1 text-sm">
           <label htmlFor="Your Name" className="block dark:text-gray-600">

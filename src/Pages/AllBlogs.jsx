@@ -2,13 +2,19 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllBlogs } from "../Api/Blog";
 import BlogCard from "./BlogCard";
+import BlogCardSkeleton from "./BlogCardSkeleton";
 
 const AllBlogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
 
-  const { data = {} } = useQuery({
+  // Destructure isLoading and isError from useQuery
+  const {
+    data = {},
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["allBlogs", page, limit, searchTerm],
     queryFn: async () => {
       return await getAllBlogs(page, limit, searchTerm);
@@ -40,7 +46,17 @@ const AllBlogs = () => {
           style={{ outline: "none" }}
         />
       </div>
-      {data?.result?.length === 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, index) => (
+            <BlogCardSkeleton key={index} />
+          ))}
+        </div>
+      ) : isError ? (
+        <p className="text-center text-xl md:text-2xl font-semibold text-red-600 mt-6">
+          Error fetching blogs. Please try again later.
+        </p>
+      ) : data?.result?.length === 0 ? (
         <p className="text-center text-xl md:text-2xl font-semibold text-red-600 mt-6">
           No Blogs found!
         </p>
@@ -53,45 +69,49 @@ const AllBlogs = () => {
           </div>
           {data?.result?.length > 0 && (
             <div className="flex flex-col items-center mb-4 mt-8">
-              <div className="flex flex-col md:flex-row items-center">
+              <div className="flex justify-between items-center w-full md:w-auto mb-4">
                 <button
                   onClick={handlePrevious}
                   disabled={page === 1}
-                  className="btn border-emerald-400 bg-yellow-50 hover:bg-emerald-400 hover:text-white text-emerald-400 hover:border-emerald-400 disabled:opacity-50 mb-2 md:mb-0"
+                  className={`btn border-emerald-400 bg-yellow-50 hover:bg-emerald-400 hover:text-white text-emerald-400 hover:border-emerald-400 disabled:opacity-50 rounded-full px-4 py-2 transition duration-200`}
                 >
-                  Previous
+                  Prev
                 </button>
-                <div className="flex flex-wrap m-0 justify-center md:justify-start mx-[6px]">
-                  {Array.from({ length: data?.totalPages || 1 }, (_, idx) => (
-                    <button
-                      key={idx + 1}
-                      onClick={() => setPage(idx + 1)}
-                      className={`btn border-emerald-400 ${
-                        page === idx + 1
-                          ? "bg-emerald-400 text-white"
-                          : "bg-yellow-50 text-emerald-400 hover:bg-emerald-400 hover:text-white"
-                      } rounded-none mb-2 md:mb-0 mx-[2px]`}
-                    >
-                      {idx + 1}
-                    </button>
-                  ))}
-                </div>
+                <span className="text-lg font-semibold text-gray-700 mx-2">
+                  Page {page} of {data?.totalPages}
+                </span>
                 <button
                   onClick={handleNext}
                   disabled={page === data?.totalPages}
-                  className="btn border-emerald-400 bg-yellow-50 hover:bg-emerald-400 hover:text-white text-emerald-400 hover:border-emerald-400 disabled:opacity-50"
+                  className={`btn border-emerald-400 bg-yellow-50 hover:bg-emerald-400 hover:text-white text-emerald-400 hover:border-emerald-400 disabled:opacity-50 rounded-full px-4 py-2 transition duration-200`}
                 >
                   Next
                 </button>
               </div>
-              <div className="mt-2 text-center md:text-left">
+              <div className="flex flex-wrap justify-center mt-2">
+                {Array.from({ length: data?.totalPages || 1 }, (_, idx) => (
+                  <button
+                    key={idx + 1}
+                    onClick={() => setPage(idx + 1)}
+                    className={`btn border-emerald-400 ${
+                      page === idx + 1
+                        ? "bg-emerald-400 text-white"
+                        : "bg-yellow-50 text-emerald-400 hover:bg-emerald-400 hover:text-white"
+                    } rounded-full px-6 py-1 mx-[2px] transition duration-200`}
+                  >
+                    {idx + 1}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-4 text-center">
                 <select
                   onChange={(e) => {
                     setLimit(parseInt(e.target.value, 10));
-                    setPage(1); // Reset to the first page on limit change
+                    setPage(1);
                   }}
                   value={limit}
-                  className="input input-bordered border-emerald-400 text-emerald-500 outline-none"
+                  className="input input-bordered border-emerald-400 text-emerald-500 outline-none rounded-xl px-4 py-[2px]"
+                  style={{ outline: "none" }}
                 >
                   <option value="3">3</option>
                   <option value="6">6</option>
