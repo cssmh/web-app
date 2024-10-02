@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/blog.png";
+import logo from "../assets/logo.png";
 import defaultAvatar from "../assets/default.jpg";
 import useAuth from "../hooks/useAuth";
 import useAdmin from "../hooks/useAdmin";
@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
       <div className="border-b border-gray-300">
-        <div className="navbar max-w-7xl mx-auto py-0">
+        <div className="navbar min-h-[59px] max-w-7xl mx-auto py-0">
           <div className="navbar-start">
             <div className="dropdown lg:hidden">
               <label tabIndex={0} className="btn btn-sm btn-ghost">
@@ -96,8 +96,7 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="flex items-center">
-              <img src={logo} className="w-32" alt="Logo" />
-              {/* <span className="font-semibold text-lg">BlogApp</span> */}
+              <img src={logo} className="w-24 md:w-32" alt="Logo" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">

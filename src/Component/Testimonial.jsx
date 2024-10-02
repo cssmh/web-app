@@ -80,11 +80,11 @@ const Testimonials = () => {
                 <div className="flex items-center justify-center">
                   <img
                     src={testimonial.image}
-                    alt="user photo"
-                    className="w-12 rounded-full mr-2"
+                    alt="user"
+                    className="w-10 rounded-full mr-2"
                   />
                   <div>
-                    <h4 className="text-md font-semibold">
+                    <h4 className="text-base font-semibold">
                       {testimonial.name}
                     </h4>
                     <div className="text-sm font-medium text-stone-500 hover:text-redBlog">

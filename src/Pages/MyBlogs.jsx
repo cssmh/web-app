@@ -50,13 +50,13 @@ const MyBlogs = () => {
         <h1 className="text-2xl font-semibold text-center">My added Blogs</h1>
       )}
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[...Array(3)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
         </div>
       ) : data.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {data?.map((blog) => (
             <div
               key={blog._id}
@@ -73,7 +73,7 @@ const MyBlogs = () => {
                 {blog.content.length > 100 && "..."}
               </p>
               <span className="text-sm text-gray-500 mb-2">
-                {Moment(blog.timestamp).format("DD-MM-YYYY")}
+                Posted on: {Moment(blog.timestamp).format("DD-MM-YYYY")}
               </span>
               <div className="flex justify-between items-center mt-auto">
                 <span className="text-sm text-gray-500">{blog.category}</span>

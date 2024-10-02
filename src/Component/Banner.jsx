@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import blog from "../assets/blog.jpg"
+import blog from "../assets/banner.avif";
 
 const Banner = () => {
   return (

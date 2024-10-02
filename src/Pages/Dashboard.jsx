@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../Api/auth";
 import UserDataRow from "./UserDataRow";
 import SmallLoader from "../Component/SmallLoader";
+import BlogHelmet from "../Component/BlogHelmet";
 
 const Dashboard = () => {
   const {
@@ -17,7 +18,10 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg px-4 py-3">
-      <h1 className="text-xl font-semibold mb-2">All Users ({data?.result?.length})</h1>
+      <BlogHelmet title="Dashboard" />
+      <h1 className="text-xl font-semibold mb-2">
+        All Users ({data?.result?.length})
+      </h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white divide-y divide-gray-200">
           <thead className="bg-gray-800 text-white">
