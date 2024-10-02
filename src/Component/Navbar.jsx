@@ -92,13 +92,15 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">
               <Link
                 to="/"
-                className={`flex items-center p-1 ${getLinkClasses("/")}`}
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/"
+                )}`}
               >
                 Home
               </Link>
               <Link
                 to="/all-blogs"
-                className={`flex items-center p-1 ${getLinkClasses(
+                className={`flex items-center p-[7px] ${getLinkClasses(
                   "/all-blogs"
                 )}`}
               >
@@ -108,7 +110,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/create-blog"
-                    className={`flex items-center p-1 ${getLinkClasses(
+                    className={`flex items-center p-[7px] ${getLinkClasses(
                       "/create-blog"
                     )}`}
                   >
@@ -116,7 +118,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     to="/my-blogs"
-                    className={`flex items-center p-1 ${getLinkClasses(
+                    className={`flex items-center p-[7px] ${getLinkClasses(
                       "/my-blogs"
                     )}`}
                   >
