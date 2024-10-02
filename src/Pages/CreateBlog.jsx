@@ -109,8 +109,6 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
             accept="image/*"
           />
         </div>
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="block w-full py-3 text-center text-white rounded-lg bg-red-500 hover:bg-red-600"

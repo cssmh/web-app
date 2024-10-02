@@ -26,10 +26,6 @@ const Navbar = () => {
       <div className="border-b border-gray-300">
         <div className="navbar max-w-7xl mx-auto py-0">
           <div className="navbar-start">
-            <Link to="/" className="flex items-center">
-              <img src={logo} className="w-32" alt="Logo" />
-              {/* <span className="font-semibold text-lg">BlogApp</span> */}
-            </Link>
             <div className="dropdown lg:hidden">
               <label tabIndex={0} className="btn btn-sm btn-ghost">
                 <svg
@@ -51,69 +47,81 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
-                  <Link to="/" className={getLinkClasses("/")}>
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/blogs" className={getLinkClasses("/blogs")}>
-                    Blogs
-                  </Link>
-                </li>
+                <Link
+                  to="/"
+                  className={`flex items-center p-1 ${getLinkClasses("/")}`}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/all-blogs"
+                  className={`flex items-center p-1 ${getLinkClasses(
+                    "/all-blogs"
+                  )}`}
+                >
+                  All Blogs
+                </Link>
                 {user?.email && (
                   <>
-                    <li>
-                      <Link
-                        to="/my-blogs"
-                        className={getLinkClasses("/my-blogs")}
-                      >
-                        My Blogs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/create-blog"
-                        className={getLinkClasses("/create-blog")}
-                      >
-                        Create Blog
-                      </Link>
-                    </li>
+                    <Link
+                      to="/create-blog"
+                      className={`flex items-center p-1 ${getLinkClasses(
+                        "/create-blog"
+                      )}`}
+                    >
+                      Create Blog
+                    </Link>
+                    <Link
+                      to="/my-blogs"
+                      className={`flex items-center p-1 ${getLinkClasses(
+                        "/my-blogs"
+                      )}`}
+                    >
+                      My Blogs
+                    </Link>
                   </>
                 )}
               </ul>
             </div>
+            <Link to="/" className="flex items-center">
+              <img src={logo} className="w-32" alt="Logo" />
+              {/* <span className="font-semibold text-lg">BlogApp</span> */}
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <li>
-                <Link to="/" className={getLinkClasses("/")}>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/blogs" className={getLinkClasses("/blogs")}>
-                  Blogs
-                </Link>
-              </li>
+              <Link
+                to="/"
+                className={`flex items-center p-1 ${getLinkClasses("/")}`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/all-blogs"
+                className={`flex items-center p-1 ${getLinkClasses(
+                  "/all-blogs"
+                )}`}
+              >
+                All Blogs
+              </Link>
               {user?.email && (
                 <>
-                  <li>
-                    <Link
-                      to="/my-blogs"
-                      className={getLinkClasses("/my-blogs")}
-                    >
-                      My Blogs
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/create-blog"
-                      className={getLinkClasses("/create-blog")}
-                    >
-                      Create Blog
-                    </Link>
-                  </li>
+                  <Link
+                    to="/create-blog"
+                    className={`flex items-center p-1 ${getLinkClasses(
+                      "/create-blog"
+                    )}`}
+                  >
+                    Create Blog
+                  </Link>
+                  <Link
+                    to="/my-blogs"
+                    className={`flex items-center p-1 ${getLinkClasses(
+                      "/my-blogs"
+                    )}`}
+                  >
+                    My Blogs
+                  </Link>
                 </>
               )}
             </ul>

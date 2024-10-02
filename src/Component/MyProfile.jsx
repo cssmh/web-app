@@ -1,4 +1,5 @@
-const AllPost = () => {
+
+const MyProfile = () => {
     return (
         <div>
             
@@ -6,4 +7,4 @@ const AllPost = () => {
     );
 };
 
-export default AllPost;
+export default MyProfile;

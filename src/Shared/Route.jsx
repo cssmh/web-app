@@ -3,11 +3,13 @@ import MainLayout from "./MainLayout";
 import Home from "../Component/Home";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
-import AllPost from "../Pages/AllPost";
+import AllBlogs from "../Pages/AllBlogs";
 import Error from "../Component/Error";
 import About from "../Pages/About";
 import CreateBlog from "../Pages/CreateBlog";
 import PrivateRoute from "./PrivateRoute";
+import MyProfile from "../Component/MyProfile";
+import MyBlogs from "../Pages/MyBlogs";
 
 const Route = createBrowserRouter([
   {
@@ -19,13 +21,29 @@ const Route = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/about", element: <About /> },
-      { path: "/posts", element: <AllPost /> },
+      { path: "/all-blogs", element: <AllBlogs /> },
       { path: "/register", element: <Register /> },
       {
         path: "/create-blog",
         element: (
           <PrivateRoute>
             <CreateBlog />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-blogs",
+        element: (
+          <PrivateRoute>
+            <MyBlogs />
           </PrivateRoute>
         ),
       },
