@@ -2,8 +2,10 @@ import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import axios from "axios";
 import { postBlog } from "../Api/Blog";
+import useAuth from "../hooks/useAuth";
 
-const CreateBlog = ({ handleBlogSubmit, loading }) => {
+const CreateBlog = () => {
+  const { user, loading } = useAuth();
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -34,7 +36,7 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
       setImgLoading(true);
       const response = await axios.post(url, formData);
       setImgLoading(false);
-      return response.data.data.url; // Return the uploaded image URL
+      return response.data.data.url;
     } catch (error) {
       console.error("Image upload failed:", error);
       setImgLoading(false);
@@ -46,31 +48,27 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
     e.preventDefault();
 
     if (formData.image) {
-      // Upload the image to ImgBB
       const imageUrl = await uploadImageToImgBB(formData.image);
 
       if (imageUrl) {
-        // If image upload was successful, pass the image URL to the formData
         const res = await postBlog({
           ...formData,
-          image: imageUrl, // Replace file with the image URL
+          email: user?.email,
+          image: imageUrl,
         });
         console.log(res);
       } else {
         console.error("Image upload failed. Blog not submitted.");
       }
-    } else {
-      // If no image is selected, just submit the form data without an image
-      handleBlogSubmit(formData);
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Create a New Blog</h2>
-
+    <div className="max-w-3xl mx-auto my-4 px-6 py-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold text-center mb-6">
+        Create a New Blog
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Title */}
         <div className="space-y-1 text-sm">
           <label htmlFor="title" className="block font-medium text-gray-600">
             Blog Title
@@ -82,11 +80,10 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
             onChange={handleChange}
             required
             placeholder="Enter blog title"
-            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-red-200"
+            className="w-full px-4 py-2 rounded-lg border"
+            style={{ outline: "none" }}
           />
         </div>
-
-        {/* Content */}
         <div className="space-y-1 text-sm">
           <label htmlFor="content" className="block font-medium text-gray-600">
             Content
@@ -97,21 +94,19 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-2 rounded-lg border focus:ring focus:ring-red-200"
+            className="w-full h-40 px-4 py-2 rounded-lg border"
           />
         </div>
-
-        {/* Category */}
         <div className="space-y-1 text-sm">
           <label htmlFor="category" className="block font-medium text-gray-600">
             Category
           </label>
           <select
+            className="w-full px-4 py-2 rounded-lg border"
             name="category"
+            required
             value={formData.category}
             onChange={handleChange}
-            required
-            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-red-200"
           >
             <option value="">Select a category</option>
             <option value="Tech">Tech</option>
@@ -121,8 +116,6 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
             <option value="Education">Education</option>
           </select>
         </div>
-
-        {/* Tags */}
         <div className="space-y-1 text-sm">
           <label htmlFor="tags" className="block font-medium text-gray-600">
             Tags (comma-separated)
@@ -133,11 +126,9 @@ const CreateBlog = ({ handleBlogSubmit, loading }) => {
             value={formData.tags}
             onChange={handleChange}
             placeholder="e.g., javascript, react, tech"
-            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-red-200"
+            className="w-full px-4 py-2 rounded-lg border"
           />
         </div>
-
-        {/* Image Upload */}
         <div className="space-y-1 text-sm">
           <label htmlFor="image" className="block font-medium text-gray-600">
             Upload Blog Image

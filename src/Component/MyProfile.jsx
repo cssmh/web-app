@@ -55,7 +55,6 @@ const MyProfile = () => {
     <div className="my-8 space-y-3 lg:w-1/2 mx-auto px-4">
       <BlogHelmet title="My Profile" />
       <h1 className="text-3xl font-bold text-center">My Profile</h1>
-
       <div className="flex flex-col items-center space-y-4">
         <div className="relative">
           <img
@@ -77,7 +76,9 @@ const MyProfile = () => {
             onChange={handleImageChange}
           />
         </div>
-
+        <div className="text-sm font-medium text-gray-700">
+          {user?.email || "Not available"}
+        </div>
         <form onSubmit={handleProfileUpdate} className="w-full space-y-5">
           <div className="space-y-1 text-sm">
             <label htmlFor="name" className="block dark:text-gray-600">
@@ -93,7 +94,6 @@ const MyProfile = () => {
               style={{ outline: "none" }}
             />
           </div>
-
           <button
             type="submit"
             className="block w-full p-3 text-center rounded-xl bg-redBlog text-white"

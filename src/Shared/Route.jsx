@@ -10,6 +10,8 @@ import CreateBlog from "../Pages/CreateBlog";
 import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../Component/MyProfile";
 import MyBlogs from "../Pages/MyBlogs";
+import BlogDetails from "../Pages/BlogDetails";
+import { getBlog } from "../Api/Blog";
 
 const Route = createBrowserRouter([
   {
@@ -30,6 +32,15 @@ const Route = createBrowserRouter([
             <CreateBlog />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blog/:id",
+        element: (
+          <PrivateRoute>
+            <BlogDetails />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => await getBlog(params.id),
       },
       {
         path: "/my-profile",
