@@ -5,7 +5,6 @@ import Login from "../Component/Login";
 import Register from "../Component/Register";
 import AllBlogs from "../Pages/AllBlogs";
 import Error from "../Component/Error";
-import About from "../Pages/About";
 import CreateBlog from "../Pages/CreateBlog";
 import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../Component/MyProfile";
@@ -25,9 +24,7 @@ const Route = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
-      { path: "/about", element: <About /> },
       { path: "/all-blogs", element: <AllBlogs /> },
-      { path: "/register", element: <Register /> },
       {
         path: "/create-blog",
         element: (
