@@ -46,7 +46,7 @@ const MyBlogs = () => {
   return (
     <div className="my-4 px-4">
       <BlogHelmet title="My Blogs" />
-      <h1 className="text-2xl font-semibold text-center mb-3">
+      <h1 className="text-2xl font-semibold text-center">
         My added Blogs
       </h1>
       {isLoading ? (

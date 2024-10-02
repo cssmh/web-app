@@ -57,17 +57,42 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 ### Dependencies
 
-- [axios](https://www.npmjs.com/package/axios)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [mongoose](https://www.npmjs.com/package/mongoose)
-- [express](https://www.npmjs.com/package/express)
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [react-icons](https://www.npmjs.com/package/react-icons)
-- [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)
-- [tailwindcss](https://tailwindcss.com/docs/guides/vite)
+- [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client for the browser and Node.js.
+- [firebase](https://www.npmjs.com/package/firebase) - Google’s mobile platform that helps you quickly develop high-quality apps.
+- [moment](https://www.npmjs.com/package/moment) - A library for parsing, validating, manipulating, and displaying dates and times.
+- [react](https://www.npmjs.com/package/react) - A JavaScript library for building user interfaces.
+- [react-dom](https://www.npmjs.com/package/react-dom) - Serves as the entry point of the DOM-related rendering paths.
+- [react-helmet-async](https://www.npmjs.com/package/react-helmet-async) - A small library that manages changes to the document head in a React application.
+- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast) - A great toast notifications library for React.
+- [react-icons](https://www.npmjs.com/package/react-icons) - Include popular icons in your React app.
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom) - Declarative routing for React.js.
+- [react-spinners](https://www.npmjs.com/package/react-spinners) - Loading spinner components for React.
+- [sweetalert](https://www.npmjs.com/package/sweetalert) - A beautiful replacement for JavaScript's "alert".
+- [swiper](https://www.npmjs.com/package/swiper) - The most modern mobile touch slider and framework with hardware-accelerated transitions.
 
 ### Dev Dependencies
 
-- [@types/react](https://www.npmjs.com/package/@types/react)
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom)
-- [vite](https://www.npmjs.com/package/vite)
+- [@eslint/js](https://www.npmjs.com/package/@eslint/js) - The core ESLint library.
+- [@types/react](https://www.npmjs.com/package/@types/react) - TypeScript definitions for React.
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) - TypeScript definitions for ReactDOM.
+- [@vitejs/plugin-react](https://www.npmjs.com/package/@vitejs/plugin-react) - Official Vite plugin for React.
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer) - A PostCSS plugin to parse CSS and add vendor prefixes.
+- [daisyui](https://daisyui.com/) - A plugin for Tailwind CSS to create beautiful components.
+- [eslint](https://www.npmjs.com/package/eslint) - A static code analysis tool for identifying problematic patterns in JavaScript code.
+- [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) - React specific linting rules for ESLint.
+- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) - Linting rules for React Hooks.
+- [eslint-plugin-react-refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh) - React refresh linting rules for ESLint.
+- [globals](https://www.npmjs.com/package/globals) - A module that provides the global variables defined in the standard library.
+- [postcss](https://www.npmjs.com/package/postcss) - A tool for transforming CSS with JavaScript plugins.
+- [tailwindcss](https://tailwindcss.com/docs/guides/vite) - A utility-first CSS framework for creating custom designs.
+- [vite](https://www.npmjs.com/package/vite) - A build tool that aims to provide a faster and leaner development experience for modern web projects.
+
+## Getting Started
+
+To get started with the Blog Application, clone the repository and install the dependencies:
+
+```bash
+git clone <your-repo-url>
+cd blog
+npm install
+```

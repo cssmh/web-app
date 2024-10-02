@@ -18,7 +18,7 @@ const Banner = () => {
             Share your stories, engage with the community, and inspire others.
           </p>
           <Link
-            to="/register"
+            to="/login"
             className="inline-block px-6 py-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300"
           >
             Get Started

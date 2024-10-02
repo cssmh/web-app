@@ -13,6 +13,7 @@ import MyBlogs from "../Pages/MyBlogs";
 import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../Api/Blog";
 import EditBlog from "../Pages/EditBlog";
+import Dashboard from "../Pages/Dashboard";
 
 const Route = createBrowserRouter([
   {
@@ -63,6 +64,14 @@ const Route = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => await getBlog(params.id),
+      },
+      {
+        path: "/admin-dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
     ],
   },

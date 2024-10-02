@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/blog.png";
 import defaultAvatar from "../assets/default.jpg";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const location = useLocation();
+  const { isAdmin } = useAdmin();
 
   const handleProfileClick = () => {
     setShowProfileOptions(!showProfileOptions);
@@ -79,6 +81,16 @@ const Navbar = () => {
                     >
                       My Blogs
                     </Link>
+                    {isAdmin && (
+                      <Link
+                        to="/admin-dashboard"
+                        className={`flex items-center p-1 ${getLinkClasses(
+                          "/admin-dashboard"
+                        )}`}
+                      >
+                        Dashboard
+                      </Link>
+                    )}
                   </>
                 )}
               </ul>
@@ -122,6 +134,16 @@ const Navbar = () => {
                   >
                     My Blogs
                   </Link>
+                  {isAdmin && (
+                    <Link
+                      to="/admin-dashboard"
+                      className={`flex items-center p-[7px] ${getLinkClasses(
+                        "/admin-dashboard"
+                      )}`}
+                    >
+                      Dashboard
+                    </Link>
+                  )}
                 </>
               )}
             </ul>

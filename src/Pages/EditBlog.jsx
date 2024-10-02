@@ -1,7 +1,7 @@
+import axios from "axios";
 import swal from "sweetalert";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
-import axios from "axios";
 import { updateMyBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -72,7 +72,6 @@ const EditBlog = () => {
     const res = await updateMyBlog(blogData._id, {
       ...formData,
       image: imageUrl,
-      timestamp: new Date().toISOString(),
     });
 
     if (res?.modifiedCount) {

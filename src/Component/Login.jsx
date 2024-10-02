@@ -5,6 +5,7 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import { saveUser } from "../Api/auth";
 
 const Login = () => {
   const [view, setView] = useState(true);
@@ -18,8 +19,9 @@ const Login = () => {
     const password = e.target.password.value;
 
     try {
-      await login(email, password);
+      const res = await login(email, password);
       toast.success("Logged in successfully");
+      await saveUser(res?.user);
       navigateTo(location?.state || "/");
     } catch (err) {
       toast.error(err.message);
@@ -28,8 +30,9 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await googleLogin();
+      const res = await googleLogin();
       toast.success("User logged in successfully");
+      await saveUser(res?.user);
       navigateTo(location?.state || "/");
     } catch (err) {
       toast.error(err.message);
