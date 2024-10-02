@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg px-4 py-3">
-      <h1 className="text-xl font-semibold mb-2">All Users ({data?.length})</h1>
+      <h1 className="text-xl font-semibold mb-2">All Users ({data?.result?.length})</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white divide-y divide-gray-200">
           <thead className="bg-gray-800 text-white">
@@ -37,8 +37,13 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {data.map((user) => (
-              <UserDataRow key={user._id} user={user} refetch={refetch} />
+            {data?.result?.map((user) => (
+              <UserDataRow
+                key={user._id}
+                user={user}
+                totalAdmin={data?.totalAdmin}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>

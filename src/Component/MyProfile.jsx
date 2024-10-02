@@ -54,11 +54,11 @@ const MyProfile = () => {
   return (
     <div className="my-8 space-y-3 lg:w-1/2 mx-auto px-4">
       <BlogHelmet title="My Profile" />
-      <h1 className="text-3xl font-bold text-center">My Profile</h1>
+      <h1 className="text-2xl font-semibold text-center">My Profile</h1>
       <div className="flex flex-col items-center space-y-4">
         <div className="relative">
           <img
-            src={image || "https://via.placeholder.com/150"}
+            src={image}
             alt="Profile"
             className="w-32 h-32 rounded-full object-cover"
           />

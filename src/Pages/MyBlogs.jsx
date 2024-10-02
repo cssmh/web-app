@@ -46,9 +46,9 @@ const MyBlogs = () => {
   return (
     <div className="my-4 px-4">
       <BlogHelmet title="My Blogs" />
-      <h1 className="text-2xl font-semibold text-center">
-        My added Blogs
-      </h1>
+      {data?.length > 0 && (
+        <h1 className="text-2xl font-semibold text-center">My added Blogs</h1>
+      )}
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
@@ -114,8 +114,8 @@ const MyBlogs = () => {
           ))}
         </div>
       ) : (
-        <div className="text-center">
-          <p className="text-lg">No blogs found.</p>
+        <div className="flex justify-center items-center h-[72vh]">
+          <p className="text-lg text-redBlog">No blogs found.</p>
         </div>
       )}
     </div>

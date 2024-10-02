@@ -4,12 +4,19 @@ import toast from "react-hot-toast";
 import { FaTrashAlt } from "react-icons/fa";
 import { deleteUser, updateRole } from "../Api/auth";
 
-const UserDataRow = ({ user, refetch }) => {
+const UserDataRow = ({ user, totalAdmin, refetch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState(user?.role);
   const modalRef = useRef(null);
 
   const handleRoleUpdate = async () => {
+    if (selectedRole === "user" && totalAdmin <= 1) {
+      toast.error(
+        "You cannot downgrade role to 'user' as there is only one admin."
+      );
+      setIsModalOpen(false);
+      return;
+    }
     try {
       const res = await updateRole(user?.email, selectedRole);
       if (res?.modifiedCount > 0) {

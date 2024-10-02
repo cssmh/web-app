@@ -14,6 +14,7 @@ import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../Api/Blog";
 import EditBlog from "../Pages/EditBlog";
 import Dashboard from "../Pages/Dashboard";
+import AdminRoute from "./AdminRoute";
 
 const Route = createBrowserRouter([
   {
@@ -69,7 +70,9 @@ const Route = createBrowserRouter([
         path: "/admin-dashboard",
         element: (
           <PrivateRoute>
-            <Dashboard />
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
