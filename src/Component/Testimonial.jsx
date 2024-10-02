@@ -50,7 +50,7 @@ const Testimonials = () => {
   return (
     <div className="bg-gray-50 py-10">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-semibold mb-12">What Our Users Say</h2>
+        <h2 className="text-xl md:text-3xl font-semibold md:mb-12">What Our Users Say</h2>
         <Swiper
           speed={200}
           grabCursor={true}

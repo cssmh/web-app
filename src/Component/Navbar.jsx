@@ -63,35 +63,31 @@ const Navbar = () => {
                 >
                   All Blogs
                 </Link>
-                {user?.email && (
-                  <>
-                    <Link
-                      to="/create-blog"
-                      className={`flex items-center p-1 ${getLinkClasses(
-                        "/create-blog"
-                      )}`}
-                    >
-                      Create Blog
-                    </Link>
-                    <Link
-                      to="/my-blogs"
-                      className={`flex items-center p-1 ${getLinkClasses(
-                        "/my-blogs"
-                      )}`}
-                    >
-                      My Blogs
-                    </Link>
-                    {isAdmin && (
-                      <Link
-                        to="/admin-dashboard"
-                        className={`flex items-center p-1 ${getLinkClasses(
-                          "/admin-dashboard"
-                        )}`}
-                      >
-                        Dashboard
-                      </Link>
-                    )}
-                  </>
+                <Link
+                  to="/create-blog"
+                  className={`flex items-center p-1 ${getLinkClasses(
+                    "/create-blog"
+                  )}`}
+                >
+                  Create Blog
+                </Link>
+                <Link
+                  to="/my-blogs"
+                  className={`flex items-center p-1 ${getLinkClasses(
+                    "/my-blogs"
+                  )}`}
+                >
+                  My Blogs
+                </Link>
+                {isAdmin && (
+                  <Link
+                    to="/admin-dashboard"
+                    className={`flex items-center p-1 ${getLinkClasses(
+                      "/admin-dashboard"
+                    )}`}
+                  >
+                    Dashboard
+                  </Link>
                 )}
               </ul>
             </div>
@@ -115,35 +111,31 @@ const Navbar = () => {
               >
                 All Blogs
               </Link>
-              {user?.email && (
-                <>
-                  <Link
-                    to="/create-blog"
-                    className={`flex items-center p-[7px] ${getLinkClasses(
-                      "/create-blog"
-                    )}`}
-                  >
-                    Create Blog
-                  </Link>
-                  <Link
-                    to="/my-blogs"
-                    className={`flex items-center p-[7px] ${getLinkClasses(
-                      "/my-blogs"
-                    )}`}
-                  >
-                    My Blogs
-                  </Link>
-                  {isAdmin && (
-                    <Link
-                      to="/admin-dashboard"
-                      className={`flex items-center p-[7px] ${getLinkClasses(
-                        "/admin-dashboard"
-                      )}`}
-                    >
-                      Dashboard
-                    </Link>
-                  )}
-                </>
+              <Link
+                to="/create-blog"
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/create-blog"
+                )}`}
+              >
+                Create Blog
+              </Link>
+              <Link
+                to="/my-blogs"
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/my-blogs"
+                )}`}
+              >
+                My Blogs
+              </Link>
+              {isAdmin && (
+                <Link
+                  to="/admin-dashboard"
+                  className={`flex items-center p-[7px] ${getLinkClasses(
+                    "/admin-dashboard"
+                  )}`}
+                >
+                  Dashboard
+                </Link>
               )}
             </ul>
           </div>

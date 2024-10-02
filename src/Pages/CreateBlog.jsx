@@ -86,7 +86,7 @@ const CreateBlog = () => {
   return (
     <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
       <BlogHelmet title="Create Blog" />
-      <h2 className="text-2xl font-semibold text-center mb-3">
+      <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Create a New Blog
       </h2>
       <form onSubmit={handleSubmit} className="space-y-5">

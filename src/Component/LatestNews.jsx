@@ -28,8 +28,8 @@ const LatestNews = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto my-10 p-6 bg-white rounded-lg shadow-md overflow-hidden">
-      <h2 className="text-3xl font-semibold mb-4">Latest News</h2>
+    <div className="max-w-6xl mx-auto my-5 md:my-10 p-6 bg-white rounded-lg shadow-md overflow-hidden">
+      <h2 className="text-xl md:text-3xl font-semibold mb-4">Latest News</h2>
       <div className="flex flex-col md:flex-row">
         <img
           // Conditionally apply AOS if not on mobile
@@ -50,7 +50,7 @@ const LatestNews = () => {
           className="md:ml-4 flex flex-col justify-between"
         >
           <div>
-            <h3 className="text-2xl font-semibold">{news.title}</h3>
+            <h3 className="text-xl md:text-2xl font-semibold">{news.title}</h3>
             <span className="text-sm text-gray-500 mb-2">{news.date}</span>
           </div>
           <ul className="list-disc pl-5 text-gray-700">

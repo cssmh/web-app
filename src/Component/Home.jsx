@@ -1,7 +1,7 @@
 import PopularBlogs from "../Pages/PopularBlogs";
 import Banner from "./Banner";
 import BlogHelmet from "./BlogHelmet";
-import CallToAction from "./CallToAction";
+import StartBlogging from "./StartBlogging";
 import Features from "./Features";
 import LatestNews from "./LatestNews";
 import Testimonials from "./Testimonial";
@@ -15,7 +15,7 @@ const Home = () => {
       <LatestNews />
       <Features />
       <Testimonials />
-      <CallToAction />
+      <StartBlogging />
     </div>
   );
 };
