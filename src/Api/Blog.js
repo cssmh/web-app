@@ -5,8 +5,15 @@ export const postBlog = async (BlogInfo) => {
   return data;
 };
 
-export const getAllBlogs = async () => {
-  const { data } = await axiosSecure("/all-blog");
+export const getAllBlogs = async (page, limit, searchTerm) => {
+  const { data } = await axiosSecure(
+    `/all-blogs?page=${page}&limit=${limit}&search=${searchTerm}`
+  );
+  return data;
+};
+
+export const getPopularBlogs = async () => {
+  const { data } = await axiosSecure("/popular-blog");
   return data;
 };
 

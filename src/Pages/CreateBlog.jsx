@@ -55,6 +55,7 @@ const CreateBlog = () => {
           ...formData,
           email: user?.email,
           image: imageUrl,
+          timestamp: new Date().toISOString(),
         });
         console.log(res);
       } else {

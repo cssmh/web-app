@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import blog from "../assets/blog.jpg"
 
 const Banner = () => {
   return (
     <div
       className="relative bg-cover bg-center h-[80vh]"
       style={{
-        backgroundImage: `url('https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/yellow-and-gray-industrial-office-PFDQ5CR-1.jpg')`,
+        backgroundImage: `url('${blog}')`,
       }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
-  console.log(Object.keys(blog).join(",")); // This line is useful for debugging but can be removed in production
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-col">

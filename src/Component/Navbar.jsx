@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white transition-all duration-300 shadow-md">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
       <div className="border-b border-gray-300">
         <div className="navbar max-w-7xl mx-auto py-0">
           <div className="navbar-start">
@@ -92,9 +92,7 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">
               <Link
                 to="/"
-                className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/"
-                )}`}
+                className={`flex items-center p-[7px] ${getLinkClasses("/")}`}
               >
                 Home
               </Link>

@@ -1,4 +1,4 @@
-import HomeBlogs from "../Pages/HomeBlogs";
+import PopularBlogs from "../Pages/PopularBlogs";
 import Banner from "./Banner";
 import CallToAction from "./CallToAction";
 import Features from "./Features";
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <HomeBlogs />
+      <PopularBlogs />
       <Features />
       <Testimonials />
       <CallToAction />
