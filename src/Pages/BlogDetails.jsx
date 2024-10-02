@@ -1,11 +1,13 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Moment from "moment";
+import BlogHelmet from "../Component/BlogHelmet";
 
 const BlogDetails = () => {
   const blogData = useLoaderData();
 
   return (
     <div className="max-w-3xl mx-auto my-5 p-6 bg-white rounded-lg shadow-md">
+      <BlogHelmet title={blogData.title} />
       <img
         src={blogData.image}
         alt={blogData.title}

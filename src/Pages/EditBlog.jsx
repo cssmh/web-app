@@ -2,18 +2,23 @@ import swal from "sweetalert";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import axios from "axios";
-import { postBlog } from "../Api/Blog";
+import { updateMyBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
 
-const CreateBlog = () => {
-  const { user, loading } = useAuth();
+const EditBlog = () => {
+  const blogData = useLoaderData();
+  const { loading } = useAuth();
+  const navigateTo = useNavigate();
+
   const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    category: "",
-    tags: "",
+    title: blogData.title,
+    content: blogData.content,
+    category: blogData.category,
+    tags: blogData.tags,
     image: null,
+    previousImage: blogData.image,
   });
 
   const [imgLoading, setImgLoading] = useState(false);
@@ -27,6 +32,8 @@ const CreateBlog = () => {
     const file = e.target.files[0];
     if (file) {
       setFormData((prevState) => ({ ...prevState, image: file }));
+    } else {
+      setFormData((prevState) => ({ ...prevState, image: null }));
     }
   };
 
@@ -51,44 +58,35 @@ const CreateBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.image) {
-      swal("Error!", "Please upload an image.", "error");
-      return;
+
+    let imageUrl = formData.previousImage;
+
+    if (formData.image) {
+      imageUrl = await uploadImageToImgBB(formData.image);
+      if (!imageUrl) {
+        swal("Error!", "Image upload failed. Blog not updated.", "error");
+        return;
+      }
     }
 
-    const imageUrl = await uploadImageToImgBB(formData.image);
-    if (imageUrl) {
-      const res = await postBlog({
-        ...formData,
-        email: user?.email,
-        image: imageUrl,
-        timestamp: new Date().toISOString(),
-      });
+    const res = await updateMyBlog(blogData._id, {
+      ...formData,
+      image: imageUrl,
+      timestamp: new Date().toISOString(),
+    });
 
-      if (res?.insertedId) {
-        swal("Thank You!", "Blog added", "success", { timer: 2000 });
-        setFormData({
-          title: "",
-          content: "",
-          category: "",
-          tags: "",
-          image: null,
-        });
-        document.getElementById("image").value = "";
-      } else {
-        swal("Error!", "Blog submission failed.", "error");
-      }
+    if (res?.modifiedCount) {
+      navigateTo(-1);
+      swal("Good job!", "Blog updated", "success", { timer: 2000 });
     } else {
-      swal("Error!", "Image upload failed. Blog not submitted.", "error");
+      swal("Error!", "Blog update failed.", "error");
     }
   };
 
   return (
     <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
-      <BlogHelmet title="Create Blog" />
-      <h2 className="text-2xl font-semibold text-center mb-3">
-        Create a New Blog
-      </h2>
+      <BlogHelmet title={blogData?.title} />
+      <h2 className="text-2xl font-semibold text-center mb-3">Edit Blog</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-1 text-sm">
           <label htmlFor="title" className="block font-medium text-gray-600">
@@ -102,7 +100,6 @@ const CreateBlog = () => {
             required
             placeholder="Enter blog title"
             className="w-full px-4 py-2 rounded-lg border"
-            // style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -153,7 +150,7 @@ const CreateBlog = () => {
         </div>
         <div className="space-y-1 text-sm">
           <label htmlFor="image" className="block font-medium text-gray-600">
-            Upload Blog Image
+            Upload New Blog Image (optional)
           </label>
           <input
             type="file"
@@ -163,6 +160,15 @@ const CreateBlog = () => {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             accept="image/*"
           />
+        </div>
+        <div className="space-y-1">
+          {formData.previousImage && !formData.image && (
+            <img
+              src={formData.previousImage}
+              alt="Current Blog"
+              className="w-full h-48 object-cover rounded-lg mb-2"
+            />
+          )}
         </div>
         <button
           type="submit"
@@ -174,7 +180,7 @@ const CreateBlog = () => {
               <TbFidgetSpinner className="animate-spin text-2xl" />
             </div>
           ) : (
-            "Create Blog"
+            "Update Blog"
           )}
         </button>
       </form>
@@ -182,4 +188,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default EditBlog;

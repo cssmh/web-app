@@ -3,13 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllBlogs } from "../Api/Blog";
 import BlogCard from "./BlogCard";
 import BlogCardSkeleton from "./BlogCardSkeleton";
+import BlogHelmet from "../Component/BlogHelmet";
 
 const AllBlogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
 
-  // Destructure isLoading and isError from useQuery
   const {
     data = {},
     isLoading,
@@ -36,6 +36,7 @@ const AllBlogs = () => {
 
   return (
     <div className="max-w-7xl mx-auto py-3">
+      <BlogHelmet title="Blogs" />
       <div className="text-center my-2">
         <input
           id="search"

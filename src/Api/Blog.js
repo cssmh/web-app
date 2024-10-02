@@ -26,3 +26,13 @@ export const getMyBlogs = async (email) => {
   const { data } = await axiosSecure(`/my-blogs?email=${email}`);
   return data;
 };
+
+export const updateMyBlog = async (id, updatedData) => {
+  const { data } = await axiosSecure.put(`/update-blog/${id}`, updatedData);
+  return data;
+};
+
+export const deleteMyBlog = async (id) => {
+  const { data } = await axiosSecure.delete(`/blog/${id}`);
+  return data;
+};

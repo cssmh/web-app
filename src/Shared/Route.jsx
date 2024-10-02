@@ -12,6 +12,7 @@ import MyProfile from "../Component/MyProfile";
 import MyBlogs from "../Pages/MyBlogs";
 import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../Api/Blog";
+import EditBlog from "../Pages/EditBlog";
 
 const Route = createBrowserRouter([
   {
@@ -53,6 +54,15 @@ const Route = createBrowserRouter([
             <MyBlogs />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/edit-blog/:id",
+        element: (
+          <PrivateRoute>
+            <EditBlog />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => await getBlog(params.id),
       },
     ],
   },
