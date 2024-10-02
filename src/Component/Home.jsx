@@ -2,6 +2,7 @@ import PopularBlogs from "../Pages/PopularBlogs";
 import Banner from "./Banner";
 import CallToAction from "./CallToAction";
 import Features from "./Features";
+import LatestNews from "./LatestNews";
 import Testimonials from "./Testimonial";
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
     <div>
       <Banner />
       <PopularBlogs />
+      <LatestNews />
       <Features />
       <Testimonials />
       <CallToAction />

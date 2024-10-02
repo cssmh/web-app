@@ -6,7 +6,7 @@ import BlogCard from "./BlogCard";
 const AllBlogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
 
   const { data = {} } = useQuery({
     queryKey: ["allBlogs", page, limit, searchTerm],
@@ -17,7 +17,7 @@ const AllBlogs = () => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setPage(1); // Reset to the first page on search
+    setPage(1);
   };
 
   const handlePrevious = () => {

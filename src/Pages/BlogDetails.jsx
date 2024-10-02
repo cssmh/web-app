@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
+import Moment from "moment";
 
 const BlogDetails = () => {
   const blogData = useLoaderData();
@@ -14,11 +15,20 @@ const BlogDetails = () => {
       <span className="text-sm text-gray-500 mb-4 block">
         Category: {blogData.category}
       </span>
+      <span className="text-sm text-gray-500 mb-4 block">
+        Posted on: {Moment(blogData.timestamp).format("DD-MM-YYYY")}
+      </span>
       <p className="text-gray-700 mb-4">{blogData.content}</p>
-      {blogData.tags && (
+      {blogData?.tags && (
         <div className="mt-4">
           <h3 className="text-lg font-semibold">Tags:</h3>
-          <span className="text-sm text-gray-400">{blogData.tags}</span>
+          <span className="text-sm text-gray-400">
+            {blogData.tags.split(",").map((tag) => (
+              <span key={tag.trim()} className="mr-1">
+                {tag.trim()},
+              </span>
+            ))}
+          </span>
         </div>
       )}
       <div className="mt-6">

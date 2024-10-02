@@ -14,8 +14,8 @@ const MyBlogs = () => {
   });
 
   return (
-    <div className="my-8 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">My Blogs</h1>
+    <div className="my-4 px-4">
+      <h1 className="text-2xl font-semibold text-center mb-3">My added Blogs</h1>
       {isLoading ? (
         <div className="flex justify-center">
           <p className="text-xl">Loading...</p>
