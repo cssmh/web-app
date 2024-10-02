@@ -24,14 +24,11 @@ The Blog Application is a modern web platform that allows users to create, manag
 1. **User Authentication:**
 
    - Users can register and log in securely.
-   - Email verification for new users.
-   - Password reset functionality.
 
 2. **Blog Post Management:**
 
    - CRUD operations for blog posts (Create, Read, Update, Delete).
    - Dashboard for users to manage their own posts.
-   - Admin capabilities to moderate content.
 
 3. **Responsive User Interface:**
 
@@ -41,13 +38,11 @@ The Blog Application is a modern web platform that allows users to create, manag
 4. **User Roles:**
 
    - Different roles (admin, user) with varying permissions.
-   - Admin dashboard for managing users and posts.
+   - Admin dashboard for managing users.
 
 5. **Additional Features:**
 
-   - Commenting system for blog posts.
    - Search functionality to find specific posts.
-   - Tagging system for organizing content.
 
 6. **Optimizations:**
    - Performance enhancements through code optimization.
