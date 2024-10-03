@@ -1,9 +1,10 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Moment from "moment";
 import BlogHelmet from "../Component/BlogHelmet";
 
 const BlogDetails = () => {
   const blogData = useLoaderData();
+  const navigate = useNavigate();
 
   return (
     <div className="max-w-3xl mx-auto my-5 p-6 bg-white rounded-lg shadow-md">
@@ -34,9 +35,12 @@ const BlogDetails = () => {
         </div>
       )}
       <div className="mt-6">
-        <Link to="/all-blogs" className="text-red-500 hover:underline">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-red-500 hover:underline"
+        >
           Back to Blogs
-        </Link>
+        </button>
       </div>
     </div>
   );

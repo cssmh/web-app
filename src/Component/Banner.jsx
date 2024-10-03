@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import blog from "../assets/banner.avif";
+import useAuth from "../hooks/useAuth";
 
 const Banner = () => {
+  const { user } = useAuth();
   return (
     <div
       className="relative bg-cover bg-center h-72 md:h-[80vh]"
@@ -18,7 +20,7 @@ const Banner = () => {
             Share your stories, engage with the community, and inspire others.
           </p>
           <Link
-            to="/login"
+            to={user ? "/create-blog" : "/login"}
             className="inline-block px-6 py-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300"
           >
             Get Started

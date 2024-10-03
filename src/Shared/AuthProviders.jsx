@@ -10,7 +10,6 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-// import { clearCookie, setToken } from "../../Api/auth";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -20,54 +19,67 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const googleLogin = () => {
+  const googleLogin = async () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      return result;
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const createUser = (email, password) => {
+  const createUser = async (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const login = (email, password) => {
+  const login = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const profileUpdate = (name, image) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: image,
-    });
+  const profileUpdate = async (name, image) => {
+    if (auth.currentUser) {
+      return updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: image,
+      });
+    }
   };
 
   const logOut = async () => {
-    // await clearCookie();
     return signOut(auth);
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // const userEmail = currentUser?.email || user?.email;
-      // try {
-      //   if (userEmail) {
-      //     await setToken(userEmail);
-      //   } else {
-      //     await clearCookie();
-      //   }
-      // } catch (error) {
-      //   console.log("Error during state change", error);
-      // } finally {
-      // }
       setLoading(false);
     });
 
     return () => {
       unSubscribe();
     };
-  }, [user?.email]);
+  }, []);
 
   const authInfo = {
     user,
@@ -78,6 +90,7 @@ const AuthProviders = ({ children }) => {
     profileUpdate,
     googleLogin,
   };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
