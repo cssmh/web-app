@@ -35,7 +35,7 @@ const MyBlogs = () => {
       const res = await deleteMyBlog(id);
       if (res.deletedCount > 0) {
         refetch();
-        swal(`${name} Deleted!`, {
+        swal("Blog Deleted!", {
           icon: "success",
           timer: 2000,
         });
@@ -50,13 +50,13 @@ const MyBlogs = () => {
         <h1 className="text-2xl font-semibold text-center">My added Blogs</h1>
       )}
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
           {[...Array(3)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
         </div>
       ) : data.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
           {data?.map((blog) => (
             <div
               key={blog._id}

@@ -48,7 +48,7 @@ const AllBlogs = () => {
         />
       </div>
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {[...Array(3)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
@@ -63,7 +63,7 @@ const AllBlogs = () => {
         </p>
       ) : (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
             {data?.result?.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}
