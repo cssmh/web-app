@@ -37,10 +37,10 @@ const Register = () => {
   };
 
   return (
-    <div className="my-5 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto">
+    <div className="my-5 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto pb-6">
       <BlogHelmet title="Register" />
       <h1 className="text-2xl font-semibold text-center">Register</h1>
-      <form onSubmit={handleRegister} className="space-y-5">
+      <form onSubmit={handleRegister} className="space-y-5 mx-5 md:mx-0">
         <div className="space-y-1 text-sm">
           <label htmlFor="Your Name" className="block dark:text-gray-600">
             Name
@@ -100,7 +100,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="block w-full p-3 text-center rounded-xl dark:text-gray-50 dark:bg-redBlog"
+          className="block w-full p-3 text-center text-white rounded-xl bg-red-600"
         >
           {loading ? (
             <div className="flex justify-center">
@@ -117,7 +117,7 @@ const Register = () => {
           state={location.state}
           to={"/login"}
           rel="noopener noreferrer"
-          className="underline dark:text-redBlog"
+          className="underline text-red-600"
         >
           Login
         </Link>

@@ -87,7 +87,7 @@ const Testimonials = () => {
                     <h4 className="text-base font-semibold">
                       {testimonial.name}
                     </h4>
-                    <div className="text-sm font-medium text-stone-500 hover:text-redBlog">
+                    <div className="text-sm font-medium text-stone-500 hover:text-red-600">
                       {testimonial.role}
                     </div>
                   </div>

@@ -64,7 +64,7 @@ const MyProfile = () => {
           />
           <label
             htmlFor="imageUpload"
-            className="absolute bottom-0 right-0 bg-redBlog p-2 rounded-full cursor-pointer"
+            className="absolute bottom-0 right-0 bg-red-600 p-2 rounded-full cursor-pointer"
           >
             <FaRegEdit className="text-white" />
           </label>
@@ -96,7 +96,7 @@ const MyProfile = () => {
           </div>
           <button
             type="submit"
-            className="block w-full p-3 text-center rounded-xl bg-redBlog text-white"
+            className="block w-full p-3 text-center rounded-xl bg-red-600 text-white"
           >
             {updating || loading ? (
               <div className="flex justify-center">

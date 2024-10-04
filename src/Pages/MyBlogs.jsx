@@ -115,7 +115,7 @@ const MyBlogs = () => {
         </div>
       ) : (
         <div className="flex justify-center items-center h-[72vh]">
-          <p className="text-lg text-redBlog">No blogs found.</p>
+          <p className="text-lg text-red-600">No blogs found.</p>
         </div>
       )}
     </div>
