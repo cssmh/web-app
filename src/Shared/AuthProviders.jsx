@@ -21,49 +21,24 @@ const AuthProviders = ({ children }) => {
 
   const googleLogin = async () => {
     setLoading(true);
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      return result;
-    } finally {
-      setLoading(false);
-    }
+    return signInWithPopup(auth, googleProvider);
   };
 
   const createUser = async (email, password) => {
     setLoading(true);
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      return userCredential;
-    } finally {
-      setLoading(false);
-    }
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = async (email, password) => {
     setLoading(true);
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      return userCredential;
-    } finally {
-      setLoading(false);
-    }
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const profileUpdate = async (name, image) => {
-    if (auth.currentUser) {
-      return updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: image,
-      });
-    }
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: image,
+    });
   };
 
   const logOut = async () => {

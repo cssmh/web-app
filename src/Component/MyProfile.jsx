@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const MyProfile = () => {
-  const { user, profileUpdate, loading } = useAuth();
+  const { user, profileUpdate, loading, logOut } = useAuth();
   const [name, setName] = useState(user?.displayName || "");
   const [image, setImage] = useState(user?.photoURL || "");
   const [newImage, setNewImage] = useState(null);
@@ -51,61 +51,80 @@ const MyProfile = () => {
     }
   };
 
+  const handleLogout = () => {
+    logOut();
+    toast.success("Logged out successfully");
+  };
+
   return (
-    <div className="my-8 space-y-3 lg:w-1/2 mx-auto px-4">
-      <BlogHelmet title="My Profile" />
-      <h1 className="text-2xl font-semibold text-center">My Profile</h1>
-      <div className="flex flex-col items-center space-y-4">
-        <div className="relative">
-          <img
-            src={image}
-            alt="Profile"
-            className="w-32 h-32 rounded-full object-cover"
-          />
-          <label
-            htmlFor="imageUpload"
-            className="absolute bottom-0 right-0 bg-red-600 p-2 rounded-full cursor-pointer"
-          >
-            <FaRegEdit className="text-white" />
-          </label>
-          <input
-            id="imageUpload"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageChange}
-          />
+    <div className="flex justify-center items-center min-h-[85vh] px-4 py-8">
+      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+        <BlogHelmet title="My Profile" />
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="relative">
+            <img
+              src={image}
+              alt="Profile"
+              className="w-20 h-20 rounded-full object-cover shadow-md"
+            />
+            <label
+              htmlFor="imageUpload"
+              className="absolute bottom-0 right-0 bg-gray-200 p-2 rounded-full cursor-pointer border-2 border-gray-300 hover:bg-gray-300 transition"
+            >
+              <FaRegEdit className="text-gray-700 text-lg" />
+            </label>
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageChange}
+            />
+          </div>
+          <div className="space-y-1">
+            <div className="text-sm font-medium text-gray-600">
+              {user?.email || "Email not available"}
+            </div>
+            <div className="text-lg font-semibold text-gray-800">
+              {name || "Name not available"}
+            </div>
+          </div>
         </div>
-        <div className="text-sm font-medium text-gray-700">
-          {user?.email || "Not available"}
-        </div>
-        <form onSubmit={handleProfileUpdate} className="w-full space-y-5">
-          <div className="space-y-1 text-sm">
-            <label htmlFor="name" className="block dark:text-gray-600">
+        <form onSubmit={handleProfileUpdate} className="space-y-4">
+          <div className="space-y-1">
+            <label htmlFor="name" className="text-sm font-medium text-gray-700">
               Name
             </label>
             <input
               type="text"
               name="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-xl border"
-              style={{ outline: "none" }}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300"
             />
           </div>
-          <button
-            type="submit"
-            className="block w-full p-3 text-center rounded-xl bg-red-600 text-white"
-          >
-            {updating || loading ? (
-              <div className="flex justify-center">
-                <TbFidgetSpinner className="animate-spin text-2xl" />
-              </div>
-            ) : (
-              "Update Profile"
-            )}
-          </button>
+          <div className="flex items-center justify-between gap-2">
+            <button
+              type="submit"
+              className="w-1/2 bg-red-600 hover:bg-red-700 text-white py-[5px] rounded-lg font-semibold transition duration-300"
+            >
+              {updating || loading ? (
+                <div className="flex justify-center">
+                  <TbFidgetSpinner className="animate-spin text-[24px]" />
+                </div>
+              ) : (
+                "Update Profile"
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-700 py-[5px] rounded-lg font-semibold transition duration-300"
+            >
+              Logout
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -87,12 +87,12 @@ const Navbar = () => {
                 All Blogs
               </Link>
               <Link
-                to="/write-blog"
+                to="/my-profile"
                 className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/write-blog"
+                  "/my-profile"
                 )}`}
               >
-                Write a Blog
+                Profile
               </Link>
               <Link
                 to="/my-blogs"
@@ -105,7 +105,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link to="/get-started">
+            <Link to="/write-blog">
               <button className="py-1 md:py-2 border border-gray-400 px-2 md:px-4 rounded-md transition-all duration-200">
                 Get Started
               </button>

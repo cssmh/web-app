@@ -5,16 +5,14 @@ export const postBlog = async (BlogInfo) => {
   return data;
 };
 
-export const getAllBlogs = async (page, limit, searchTerm) => {
-  const { data } = await axiosSecure(
-    `/all-blogs?page=${page}&limit=${limit}&search=${searchTerm}`
-  );
+export const homeBlog = async (searchTerm, category) => {
+  const api = `/home-blog?search=${searchTerm}&category=${category}`;
+  const { data } = await axiosSecure(api);
   return data;
 };
 
-export const homeBlog = async (searchTerm, category) => {
-  const api = `/popular-blog?search=${searchTerm}&category=${category}`;
-  const { data } = await axiosSecure(api);
+export const getAllBlogs = async () => {
+  const { data } = await axiosSecure("/all-blogs");
   return data;
 };
 
