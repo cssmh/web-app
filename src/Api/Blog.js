@@ -26,8 +26,8 @@ export const getMyBlogs = async (email) => {
   return data;
 };
 
-export const updateMyBlog = async (id, updatedData) => {
-  const { data } = await axiosSecure.put(`/update-blog/${id}`, updatedData);
+export const editMyBlog = async (id, editedData) => {
+  const { data } = await axiosSecure.put(`/update-blog/${id}`, editedData);
   return data;
 };
 

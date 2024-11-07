@@ -20,7 +20,7 @@ const HomeBlogs = ({ searchTerm }) => {
 
   return (
     <div className="mt-5 md:mt-8">
-      <div className="flex justify-center mx-1 md:mx-0 gap-[6px] md:gap-4 mb-1 md:mb-5 flex-wrap">
+      <div className="flex justify-center mx-1 md:mx-0 gap-[6px] md:gap-2 mb-1 md:mb-5 flex-wrap">
         <button
           onClick={() => handleCategoryChange("")}
           className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${

@@ -25,7 +25,7 @@ const BlogDetails = () => {
       <h1 className="text-lg md:text-3xl font-bold">{blogData.title}</h1>
       <div className="flex flex-col md:flex-row justify-between md:items-center my-2">
         <span className="text-sm text-gray-500 block">
-          Writer: {blogData?.writerName}
+          Writer: {blogData?.writerName || "Anonymous"}
         </span>
         <span className="text-sm text-gray-500 block">
           Posted on: {Moment(blogData.timestamp).format("DD-MM-YYYY")}
@@ -37,7 +37,7 @@ const BlogDetails = () => {
           <h3 className="text-lg font-semibold">Tags:</h3>
           <span className="text-sm text-gray-400">
             {blogData.tags.split(",").map((tag, index) => (
-              <span key={index} className="mr-1">
+              <span key={index} className="mr-1 underline">
                 {tag.trim()}
                 {index < blogData.tags.split(",").length - 1 && ", "}
               </span>

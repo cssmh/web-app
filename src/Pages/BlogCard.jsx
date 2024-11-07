@@ -28,7 +28,10 @@ const BlogCard = ({ blog }) => {
           <span className="text-sm text-gray-400">
             Tags:{" "}
             {blog.tags.split(",").map((tag) => (
-              <span key={tag} className="mr-1">
+              <span
+                key={tag}
+                className="underline mr-1"
+              >
                 {tag.trim()},
               </span>
             ))}

@@ -17,7 +17,7 @@
 
 ## Description
 
-The Blog Application is a modern web platform that allows users to create, manage, and interact with blog posts. Built using the MERN stack, it offers a seamless user experience for both readers and contributors.
+The Blog Application is a modern web platform that allows users to create, manage, and interact with blog posts. Built using the React, it offers a seamless user experience for both readers and writers.
 
 ## Features
 
@@ -35,11 +35,6 @@ The Blog Application is a modern web platform that allows users to create, manag
    - Mobile-friendly design with Tailwind CSS for styling.
    - Smooth navigation with React Router.
 
-4. **User Roles:**
-
-   - Different roles (admin, user) with varying permissions.
-   - Admin dashboard for managing users.
-
 5. **Additional Features:**
 
    - Search functionality to find specific posts.
@@ -52,7 +47,6 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 ### Dependencies
 
-- [aos](https://www.npmjs.com/package/aos)
 - [axios](https://www.npmjs.com/package/axios)
 - [firebase](https://www.npmjs.com/package/firebase)
 - [moment](https://www.npmjs.com/package/moment)
@@ -62,9 +56,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast)
 - [react-icons](https://www.npmjs.com/package/react-icons)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [react-spinners](https://www.npmjs.com/package/react-spinners)
 - [sweetalert](https://www.npmjs.com/package/sweetalert)
-- [swiper](https://www.npmjs.com/package/swiper)
 
 ### Dev Dependencies
 

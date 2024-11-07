@@ -5,7 +5,6 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
-import { saveUser } from "../Api/auth";
 
 const Register = () => {
   const [view, setView] = useState(true);
@@ -26,9 +25,8 @@ const Register = () => {
     }
 
     try {
-      const res = await createUser(email, password);
+      await createUser(email, password);
       await profileUpdate(name, "");
-      await saveUser(res?.user);
       toast.success("Registered successfully");
       navigateTo(location?.state || "/");
     } catch (err) {

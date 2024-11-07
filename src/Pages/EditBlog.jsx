@@ -2,14 +2,14 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { updateMyBlog } from "../Api/Blog";
+import { editMyBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
 
 const EditBlog = () => {
   const blogData = useLoaderData();
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
   const navigateTo = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -18,6 +18,7 @@ const EditBlog = () => {
     category: blogData.category,
     tags: blogData.tags,
     image: null,
+    writerName: user?.displayName || "Anonymous",
     previousImage: blogData.image,
   });
 
@@ -69,7 +70,7 @@ const EditBlog = () => {
       }
     }
 
-    const res = await updateMyBlog(blogData._id, {
+    const res = await editMyBlog(blogData._id, {
       ...formData,
       image: imageUrl,
     });
@@ -78,7 +79,7 @@ const EditBlog = () => {
       navigateTo(-1);
       swal("Good job!", "Blog updated", "success", { timer: 2000 });
     } else {
-      swal("Error!", "Blog update failed.", "error");
+      swal("Error!", "Blog update failed.", "error", { timer: 2000 });
     }
   };
 

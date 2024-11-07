@@ -87,20 +87,20 @@ const Navbar = () => {
                 All Blogs
               </Link>
               <Link
-                to="/my-profile"
-                className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/my-profile"
-                )}`}
-              >
-                Profile
-              </Link>
-              <Link
                 to="/my-blogs"
                 className={`flex items-center p-[7px] ${getLinkClasses(
                   "/my-blogs"
                 )}`}
               >
                 My Blogs
+              </Link>
+              <Link
+                to="/my-profile"
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/my-profile"
+                )}`}
+              >
+                Profile
               </Link>
             </ul>
           </div>
