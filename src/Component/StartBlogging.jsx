@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const StartBlogging = () => {
   return (
-    <div className="bg-red-500 mt-5 py-16">
+    <div className="bg-red-500 mt-5 py-7 md:py-16">
       <div className="text-center text-white">
         <h2 className="text-xl md:text-3xl font-bold mb-4">Ready to Start Blogging?</h2>
         <p className="text-sm md:text-lg mb-6">

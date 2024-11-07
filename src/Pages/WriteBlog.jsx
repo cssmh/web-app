@@ -14,6 +14,7 @@ const WriteBlog = () => {
     category: "",
     tags: "",
     image: null,
+    writerName: user?.displayName || "Anonymous",
   });
 
   const [imgLoading, setImgLoading] = useState(false);
@@ -65,7 +66,7 @@ const WriteBlog = () => {
         timestamp: new Date().toISOString(),
       });
 
-      if (res?.insertedId) {
+      if (res.insertedId) {
         swal("Thank You!", "Blog added", "success", { timer: 2000 });
         setFormData({
           title: "",
@@ -73,6 +74,7 @@ const WriteBlog = () => {
           category: "",
           tags: "",
           image: null,
+          writerName: user?.displayName || "Anonymous",
         });
         document.getElementById("image").value = "";
       } else {
@@ -84,12 +86,12 @@ const WriteBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-2 md:px-6 py-4 bg-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
-        Create a New Blog
+        Write a New Blog
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-2 md:space-y-5">
         <div className="space-y-1 text-sm">
           <label htmlFor="title" className="block font-medium text-gray-600">
             Blog Title
@@ -102,7 +104,7 @@ const WriteBlog = () => {
             required
             placeholder="Enter blog title"
             className="w-full px-4 py-2 rounded-lg border"
-            // style={{ outline: "none" }}
+            style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -116,6 +118,7 @@ const WriteBlog = () => {
             required
             placeholder="Write your blog content..."
             className="w-full h-40 px-4 py-2 rounded-lg border"
+            style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -128,6 +131,7 @@ const WriteBlog = () => {
             required
             value={formData.category}
             onChange={handleChange}
+            style={{ outline: "none" }}
           >
             <option value="">Select a category</option>
             <option value="Tech">Tech</option>
@@ -149,6 +153,7 @@ const WriteBlog = () => {
             onChange={handleChange}
             placeholder="e.g., javascript, react, tech"
             className="w-full px-4 py-2 rounded-lg border"
+            style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -162,6 +167,7 @@ const WriteBlog = () => {
             onChange={handleImageChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             accept="image/*"
+            style={{ outline: "none" }}
           />
         </div>
         <button

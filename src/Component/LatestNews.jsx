@@ -13,16 +13,16 @@ const LatestNews = () => {
   };
 
   return (
-    <div className="my-5 md:my-10 p-6 bg-white rounded-lg shadow-md overflow-hidden">
-      <h2 className="text-xl md:text-3xl font-semibold mb-4">Latest News</h2>
+    <div className="my-3 md:my-10 md:p-6 bg-white rounded-lg shadow-md overflow-hidden">
+      <h2 className="text-xl md:text-3xl font-semibold mb-4 mx-2 md:mx-0">Latest News</h2>
       <div className="flex flex-col md:flex-row">
         <img
           src={news.image}
           alt={news.title}
-          className="w-full md:w-1/2 h-[300px] object-cover rounded-lg mb-4 md:mb-0"
+          className="w-full md:w-1/2 md:h-[300px] object-cover md:rounded-lg mb-4 md:mb-0"
         />
         <div
-          className="md:ml-4 flex flex-col justify-between"
+          className="md:ml-4 flex flex-col justify-between p-3 md:p-1"
         >
           <div>
             <h3 className="text-xl md:text-2xl font-semibold">{news.title}</h3>

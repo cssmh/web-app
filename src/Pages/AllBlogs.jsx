@@ -35,7 +35,7 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-3">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto py-3">
       <BlogHelmet title="Blogs" />
       <div className="text-center my-2">
         <input
@@ -63,7 +63,7 @@ const AllBlogs = () => {
         </p>
       ) : (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-4">
             {data?.result?.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}

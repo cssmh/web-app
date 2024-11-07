@@ -12,8 +12,9 @@ export const getAllBlogs = async (page, limit, searchTerm) => {
   return data;
 };
 
-export const homeBlog = async (searchTerm) => {
-  const { data } = await axiosSecure(`/popular-blog?search=${searchTerm}`);
+export const homeBlog = async (searchTerm, category) => {
+  const api = `/popular-blog?search=${searchTerm}&category=${category}`;
+  const { data } = await axiosSecure(api);
   return data;
 };
 
