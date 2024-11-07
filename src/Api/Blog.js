@@ -36,7 +36,7 @@ export const deleteMyBlog = async (id) => {
   return data;
 };
 
-export const addComment = async (id, newComment) => {
-  const { data } = await axiosSecure.patch(`/add-comment/${id}`, newComment);
+export const addComment = async (id, comment) => {
+  const { data } = await axiosSecure.patch(`/add-comment/${id}`, comment);
   return data;
 };

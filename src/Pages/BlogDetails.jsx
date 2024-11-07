@@ -32,22 +32,24 @@ const BlogDetails = () => {
   };
 
   const handleCommentSubmit = async () => {
-    if (comment.length < 1) {
+    if (comment.trim().length < 1) {
       return toast.error("Write something first");
     }
     setIsSubmitting(true);
+    const comment = {
+      user: user?.displayName || user?.email || "Anonymous",
+      content: comment,
+      timestamp: new Date(),
+    };
+
     try {
-      const newComment = {
-        user: user?.displayName || user?.email || "Anonymous",
-        content: comment,
-        timestamp: new Date(),
-      };
-      const res = await addComment(id, newComment);
-      console.log(res);
-      refetch();
+      await addComment(id, comment);
+      toast.success("Comment added!");
       setComment("");
+      refetch();
     } catch (error) {
-      console.error("Error adding comment:", error);
+      console.log("Error adding comment:", error);
+      toast.error("Error adding comment. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -64,7 +66,7 @@ const BlogDetails = () => {
   if (isLoading) return <Spinner size="87" />;
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[80%] mx-auto my-2 md:my-5 p-2 md:p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-4xl 2xl:max-w-[80%] mx-auto my-2 md:my-5 p-2 md:p-6 bg-white rounded-lg shadow-md">
       <BlogHelmet title={blogData.title} />
       <img
         src={blogData?.image}
@@ -97,8 +99,6 @@ const BlogDetails = () => {
         >
           {isSubmitting ? "Submitting..." : "Submit Comment"}
         </button>
-
-        {/* Show Comments */}
         <div className="mt-6">
           {blogData.comments && blogData.comments.length === 0 ? (
             <p>No comments yet. Be the first to comment!</p>
@@ -118,7 +118,6 @@ const BlogDetails = () => {
           )}
         </div>
       </div>
-
       <div className="mt-6">
         <button
           onClick={() => navigate(-1)}
