@@ -41,14 +41,6 @@ const Navbar = () => {
                   Home
                 </Link>
                 <Link
-                  to="/all-blogs"
-                  className={`flex items-center p-1 ${getLinkClasses(
-                    "/all-blogs"
-                  )}`}
-                >
-                  All Blogs
-                </Link>
-                <Link
                   to="/write-blog"
                   className={`flex items-center p-1 ${getLinkClasses(
                     "/write-blog"
@@ -77,14 +69,6 @@ const Navbar = () => {
                 className={`flex items-center p-[7px] ${getLinkClasses("/")}`}
               >
                 Home
-              </Link>
-              <Link
-                to="/all-blogs"
-                className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/all-blogs"
-                )}`}
-              >
-                All Blogs
               </Link>
               <Link
                 to="/my-blogs"
