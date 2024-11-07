@@ -1,8 +1,8 @@
 import "./styles.css";
 
-const LoadingSpinner = () => {
+const Spinner = ({ size }) => {
   return (
-    <div className="loading-wrapper">
+    <div style={{ height: `${size}vh` }} className="loading-wrapper">
       <div className="spinner"></div>
       <div className="flex items-center">
         <div className="loading-wave">
@@ -20,4 +20,4 @@ const LoadingSpinner = () => {
   );
 };
 
-export default LoadingSpinner;
+export default Spinner;

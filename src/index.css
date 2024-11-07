@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
-/* @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap'); */
+
+body {
+  font-family: "Poppins", sans-serif;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  font-family: "Sour Gummy", sans-serif;
-  /* font-family: "Itim", cursive; */
-}

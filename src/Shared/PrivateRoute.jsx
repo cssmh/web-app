@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  if (loading) return <Spinner />
+  if (loading) return <Spinner size="88" />
   if (user?.email) return children;
 
   return <Navigate state={location?.pathname} to="/login"></Navigate>;

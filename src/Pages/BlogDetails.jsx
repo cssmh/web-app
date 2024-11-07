@@ -1,10 +1,57 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Moment from "moment";
 import BlogHelmet from "../Component/BlogHelmet";
+import { useState } from "react";
+import { addComment, getBlog } from "../Api/Blog";
+import useAuth from "../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../Component/Spinner/Spinner";
+import toast from "react-hot-toast";
 
 const BlogDetails = () => {
-  const blogData = useLoaderData();
+  const { user } = useAuth();
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {
+    data: blogData = {},
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["blogs", id],
+    queryFn: async () => {
+      return await getBlog(id);
+    },
+  });
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = async () => {
+    if (comment.length < 1) {
+      return toast.error("Write something first");
+    }
+    setIsSubmitting(true);
+    try {
+      const newComment = {
+        user: user?.displayName || user?.email || "Anonymous",
+        content: comment,
+        timestamp: new Date(),
+      };
+      const res = await addComment(id, newComment);
+      console.log(res);
+      refetch();
+      setComment("");
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const formattedContent = blogData.content
     ? blogData.content.split("\n").map((line, index) => (
@@ -13,6 +60,8 @@ const BlogDetails = () => {
         </p>
       ))
     : null;
+
+  if (isLoading) return <Spinner size="87" />;
 
   return (
     <div className="max-w-3xl 2xl:max-w-[80%] mx-auto my-2 md:my-5 p-2 md:p-6 bg-white rounded-lg shadow-md">
@@ -32,19 +81,44 @@ const BlogDetails = () => {
         </span>
       </div>
       {formattedContent}
-      {blogData?.tags && (
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">Tags:</h3>
-          <span className="text-sm text-gray-400">
-            {blogData.tags.split(",").map((tag, index) => (
-              <span key={index} className="mr-1 underline">
-                {tag.trim()}
-                {index < blogData.tags.split(",").length - 1 && ", "}
-              </span>
-            ))}
-          </span>
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold">Comments</h3>
+        <textarea
+          className="w-full p-2 border border-gray-300 rounded-md mt-4"
+          value={comment}
+          onChange={handleCommentChange}
+          placeholder="Add a comment..."
+          style={{ outline: "none" }}
+        />
+        <button
+          onClick={handleCommentSubmit}
+          className="bg-blue-500 text-white p-2 rounded-md mt-2"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Submitting..." : "Submit Comment"}
+        </button>
+
+        {/* Show Comments */}
+        <div className="mt-6">
+          {blogData.comments && blogData.comments.length === 0 ? (
+            <p>No comments yet. Be the first to comment!</p>
+          ) : (
+            blogData.comments?.map((comment, index) => (
+              <div
+                key={index}
+                className="mt-4 p-4 bg-gray-100 rounded-lg shadow-sm"
+              >
+                <p className="font-semibold">{comment.user}</p>
+                <p>{comment.content}</p>
+                <p className="text-sm text-gray-500">
+                  {Moment(comment.timestamp).format("DD-MM-YYYY HH:mm")}
+                </p>
+              </div>
+            ))
+          )}
         </div>
-      )}
+      </div>
+
       <div className="mt-6">
         <button
           onClick={() => navigate(-1)}
