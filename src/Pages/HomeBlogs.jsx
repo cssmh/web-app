@@ -20,10 +20,10 @@ const HomeBlogs = ({ searchTerm }) => {
 
   return (
     <div className="mt-5 md:mt-8">
-      <div className="flex justify-center mx-1 md:mx-0 gap-[5px] md:gap-4 mb-1 md:mb-5 flex-wrap">
+      <div className="flex justify-center mx-1 md:mx-0 gap-[6px] md:gap-4 mb-1 md:mb-5 flex-wrap">
         <button
           onClick={() => handleCategoryChange("")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === ""
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -33,7 +33,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Tech")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Tech"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -43,7 +43,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Food")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Food"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -53,7 +53,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Travel")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Travel"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -63,7 +63,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Lifestyle")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Lifestyle"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -73,7 +73,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Education")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Education"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -83,7 +83,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
         <button
           onClick={() => handleCategoryChange("Business")}
-          className={`py-2 px-4 rounded-md ${
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Business"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -93,7 +93,7 @@ const HomeBlogs = ({ searchTerm }) => {
         </button>
       </div>
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
@@ -103,7 +103,7 @@ const HomeBlogs = ({ searchTerm }) => {
           No blogs found for {searchTerm} in the {category} category!
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {data?.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}

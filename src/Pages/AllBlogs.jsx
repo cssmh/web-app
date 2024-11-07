@@ -35,7 +35,7 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto py-3">
+    <div className="max-w-7xl 2xl:max-w-[86%] mx-auto py-3">
       <BlogHelmet title="Blogs" />
       <div className="text-center my-2">
         <input
@@ -48,7 +48,7 @@ const AllBlogs = () => {
         />
       </div>
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
@@ -63,7 +63,7 @@ const AllBlogs = () => {
         </p>
       ) : (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
             {data?.result?.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}

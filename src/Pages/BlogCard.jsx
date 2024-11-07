@@ -7,7 +7,7 @@ const BlogCard = ({ blog }) => {
       <img
         src={blog.image}
         alt={blog.title}
-        className="w-full md:h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105"
+        className="w-full md:h-48 2xl:h-56 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105"
       />
       <h3 className="text-xl font-semibold">{blog.title}</h3>
       <p className="text-gray-600 mb-2">
