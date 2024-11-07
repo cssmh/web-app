@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
-import defaultAvatar from "../assets/default.jpg";
 import useAuth from "../hooks/useAuth";
-import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const location = useLocation();
-  const { isAdmin } = useAdmin();
 
   const handleProfileClick = () => {
     setShowProfileOptions(!showProfileOptions);
@@ -24,9 +21,9 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
-      <div className="border-b border-gray-300">
-        <div className="navbar min-h-[59px] max-w-7xl mx-auto py-0">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-sm">
+      <div className="border-gray-300">
+        <div className="navbar min-h-[59px] md:px-10 py-0">
           <div className="navbar-start">
             <div className="dropdown lg:hidden">
               <label tabIndex={0} className="btn btn-sm btn-ghost">
@@ -64,12 +61,12 @@ const Navbar = () => {
                   All Blogs
                 </Link>
                 <Link
-                  to="/create-blog"
+                  to="/write-blog"
                   className={`flex items-center p-1 ${getLinkClasses(
-                    "/create-blog"
+                    "/write-blog"
                   )}`}
                 >
-                  Create Blog
+                  Write a Blog
                 </Link>
                 <Link
                   to="/my-blogs"
@@ -79,16 +76,6 @@ const Navbar = () => {
                 >
                   My Blogs
                 </Link>
-                {isAdmin && (
-                  <Link
-                    to="/admin-dashboard"
-                    className={`flex items-center p-1 ${getLinkClasses(
-                      "/admin-dashboard"
-                    )}`}
-                  >
-                    Dashboard
-                  </Link>
-                )}
               </ul>
             </div>
             <Link to="/" className="flex items-center">
@@ -112,12 +99,12 @@ const Navbar = () => {
                 All Blogs
               </Link>
               <Link
-                to="/create-blog"
+                to="/write-blog"
                 className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/create-blog"
+                  "/write-blog"
                 )}`}
               >
-                Create Blog
+                Write a Blog
               </Link>
               <Link
                 to="/my-blogs"
@@ -127,16 +114,6 @@ const Navbar = () => {
               >
                 My Blogs
               </Link>
-              {isAdmin && (
-                <Link
-                  to="/admin-dashboard"
-                  className={`flex items-center p-[7px] ${getLinkClasses(
-                    "/admin-dashboard"
-                  )}`}
-                >
-                  Dashboard
-                </Link>
-              )}
             </ul>
           </div>
           <div className="navbar-end flex items-center">
@@ -152,7 +129,7 @@ const Navbar = () => {
                     className="cursor-pointer"
                   >
                     <img
-                      src={user?.photoURL || defaultAvatar}
+                      src={user?.photoURL}
                       className="w-9 rounded-full"
                       alt="avatar"
                     />

@@ -1,22 +1,27 @@
-import PopularBlogs from "../Pages/PopularBlogs";
-import Banner from "./Banner";
+import { useState } from "react";
+import HomeBlogs from "../Pages/HomeBlogs";
 import BlogHelmet from "./BlogHelmet";
 import StartBlogging from "./StartBlogging";
-import OurFeatures from "./OurFeatures";
 import LatestNews from "./LatestNews";
-import Testimonials from "./Testimonial";
+import SearchBlog from "./SearchBlog";
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <div>
-      <BlogHelmet title="Home" />
-      <Banner />
-      <PopularBlogs />
-      <LatestNews />
-      <OurFeatures />
-      <Testimonials />
+    <>
+      <div className="max-w-[1200px] mx-auto">
+        <BlogHelmet title="Home" />
+        <SearchBlog onSearch={handleSearch} />
+        <HomeBlogs searchTerm={searchQuery} />
+        <LatestNews />
+      </div>
       <StartBlogging />
-    </div>
+    </>
   );
 };
 

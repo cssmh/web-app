@@ -6,7 +6,7 @@ import { postBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
 
-const CreateBlog = () => {
+const WriteBlog = () => {
   const { user, loading } = useAuth();
   const [formData, setFormData] = useState({
     title: "",
@@ -85,7 +85,7 @@ const CreateBlog = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
-      <BlogHelmet title="Create Blog" />
+      <BlogHelmet title="Write a Blog" />
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Create a New Blog
       </h2>
@@ -182,4 +182,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default WriteBlog;

@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";
-
 const LatestNews = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
   const news = {
     title: "iPhone 16: The Future is Here",
     image:
@@ -16,37 +12,16 @@ const LatestNews = () => {
     date: "October 2, 2024",
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <div className="max-w-6xl mx-auto my-5 md:my-10 p-6 bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="my-5 md:my-10 p-6 bg-white rounded-lg shadow-md overflow-hidden">
       <h2 className="text-xl md:text-3xl font-semibold mb-4">Latest News</h2>
       <div className="flex flex-col md:flex-row">
         <img
-          // Conditionally apply AOS if not on mobile
-          // because of responsive problem
-          {...(!isMobile && {
-            "data-aos": "zoom-in-right",
-            "data-aos-duration": "800",
-          })}
           src={news.image}
           alt={news.title}
           className="w-full md:w-1/2 h-[300px] object-cover rounded-lg mb-4 md:mb-0"
         />
         <div
-          {...(!isMobile && {
-            "data-aos": "zoom-in-left",
-            "data-aos-duration": "1000",
-          })}
           className="md:ml-4 flex flex-col justify-between"
         >
           <div>
