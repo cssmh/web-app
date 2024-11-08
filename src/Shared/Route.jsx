@@ -11,6 +11,7 @@ import MyBlogs from "../Pages/MyBlogs";
 import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../Api/Blog";
 import EditBlog from "../Pages/EditBlog";
+import AllBlogs from "../Pages/AllBlogs";
 
 const Route = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const Route = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/all", element: <AllBlogs /> },
       {
         path: "/write-blog",
         element: (

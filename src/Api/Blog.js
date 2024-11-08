@@ -11,8 +11,8 @@ export const homeBlog = async (searchTerm, category) => {
   return data;
 };
 
-export const getAllBlogs = async () => {
-  const { data } = await axiosSecure("/all-blogs");
+export const getAllBlogs = async (page, limit) => {
+  const { data } = await axiosSecure(`/all-blogs?page=${page}&limit=${limit}`);
   return data;
 };
 
