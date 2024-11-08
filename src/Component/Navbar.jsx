@@ -49,6 +49,22 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
+                to="/all-blogs"
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/all-blogs"
+                )}`}
+              >
+                All Blogs
+              </Link>
+              <Link
+                to="/write-blog"
+                className={`flex items-center p-[7px] ${getLinkClasses(
+                  "/write-blog"
+                )}`}
+              >
+                Write Blog
+              </Link>
+              <Link
                 to="/my-blogs"
                 className={`flex items-center p-[7px] ${getLinkClasses(
                   "/my-blogs"
@@ -94,6 +110,13 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             Home
+          </Link>
+          <Link
+            to="/all-blogs"
+            className={`flex items-center p-1 ${getLinkClasses("/all-blogs")}`}
+            onClick={toggleMenu}
+          >
+            All Blogs
           </Link>
           <Link
             to="/write-blog"

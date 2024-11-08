@@ -3,7 +3,7 @@ import Moment from "moment";
 
 const BlogCard = ({ blog }) => {
   return (
-    <div className="group bg-white rounded-lg shadow-lg p-3 flex flex-col">
+    <div className="group bg-white rounded-lg shadow-xl p-3 flex flex-col">
       <img
         src={blog.image}
         alt={blog.title}

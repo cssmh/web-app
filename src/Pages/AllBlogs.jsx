@@ -9,7 +9,7 @@ const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const limit = 3; // Number of items per page
+  const limit = 3;
 
   useEffect(() => {
     fetchBlogs();
@@ -29,15 +29,17 @@ const AllBlogs = () => {
         dataLength={blogs.length}
         next={fetchBlogs}
         hasMore={hasMore}
-        loader={<BlogCardSkeleton />}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
+        loader={
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+            {[...Array(3)].map((_, index) => (
+              <BlogCardSkeleton key={index} />
+            ))}
+          </div>
         }
+        endMessage={<p className="text-center">..</p>}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
-          {blogs.map((blog) => (
+          {blogs?.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
