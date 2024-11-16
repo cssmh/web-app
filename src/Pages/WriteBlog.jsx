@@ -1,4 +1,4 @@
-import swal from "sweetalert";
+import { toast } from "sonner";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import axios from "axios";
@@ -53,7 +53,7 @@ const WriteBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.image) {
-      swal("Error!", "Please upload an image.", "error");
+      toast.info("Please upload an image");
       return;
     }
 
@@ -67,7 +67,7 @@ const WriteBlog = () => {
       });
 
       if (res.insertedId) {
-        swal("Thank You!", "Blog added", "success", { timer: 2000 });
+        toast.success("Thank You!, Blog added");
         setFormData({
           title: "",
           content: "",
@@ -78,15 +78,15 @@ const WriteBlog = () => {
         });
         document.getElementById("image").value = "";
       } else {
-        swal("Error!", "Blog submission failed.", "error");
+        toast.warning("Error!, Blog submission failed");
       }
     } else {
-      swal("Error!", "Image upload failed. Blog not submitted.", "error");
+      toast.error("Image upload failed. Blog not submitted.");
     }
   };
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-2 md:px-6 py-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Write a New Blog
@@ -136,6 +136,7 @@ const WriteBlog = () => {
             <option value="">Select a category</option>
             <option value="Tech">Tech</option>
             <option value="Food">Food</option>
+            <option value="Fashion">Fashion</option>
             <option value="Travel">Travel</option>
             <option value="Lifestyle">Lifestyle</option>
             <option value="Education">Education</option>

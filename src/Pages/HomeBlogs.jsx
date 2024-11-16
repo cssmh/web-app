@@ -52,6 +52,16 @@ const HomeBlogs = ({ searchTerm }) => {
           Food
         </button>
         <button
+          onClick={() => handleCategoryChange("Fashion")}
+          className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
+            category === "Fashion"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-700"
+          } hover:bg-blue-500 hover:text-white transition duration-300`}
+        >
+          Fashion
+        </button>
+        <button
           onClick={() => handleCategoryChange("Travel")}
           className={`py-1 md:py-2 px-3 md:px-4 rounded-md ${
             category === "Travel"

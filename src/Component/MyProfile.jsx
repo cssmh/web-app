@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { TbFidgetSpinner } from "react-icons/tb";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import axios from "axios";
 
 const MyProfile = () => {
@@ -57,8 +57,8 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[85vh] px-4 py-8">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center md:min-h-[68vh]">
+      <div className="w-full max-w-md bg-white p-4 md:p-6 rounded-lg shadow-lg">
         <BlogHelmet title="My Profile" />
         <div className="flex items-center justify-center gap-4 mb-6">
           <div className="relative">

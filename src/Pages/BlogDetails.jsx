@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Moment from "moment";
+import { toast } from "sonner";
 import BlogHelmet from "../Component/BlogHelmet";
 import { useState } from "react";
 import { addComment, getBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
-import toast from "react-hot-toast";
 
 const BlogDetails = () => {
   const { user } = useAuth();
@@ -33,7 +33,7 @@ const BlogDetails = () => {
 
   const handleCommentSubmit = async () => {
     if (comment.trim().length < 1) {
-      return toast.error("Write something first");
+      return toast.warning("Write something first");
     }
     setIsSubmitting(true);
     const commentData = {

@@ -1,4 +1,4 @@
-import swal from "sweetalert";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { deleteMyBlog, getMyBlogs } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
@@ -24,22 +24,10 @@ const MyBlogs = () => {
   });
 
   const handleDelete = async (id) => {
-    const willDelete = await swal({
-      title: "Are you sure?",
-      text: "Once deleted, it can't be recovered!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    });
-    if (willDelete) {
-      const res = await deleteMyBlog(id);
-      if (res.deletedCount > 0) {
-        refetch();
-        swal("Blog Deleted!", {
-          icon: "success",
-          timer: 2000,
-        });
-      }
+    const res = await deleteMyBlog(id);
+    if (res.deletedCount > 0) {
+      refetch();
+      toast.success("Blog Deleted!");
     }
   };
 

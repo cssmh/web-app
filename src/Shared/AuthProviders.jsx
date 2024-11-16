@@ -10,6 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { clearCookie, setToken } from "../Api/auth";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -46,15 +47,26 @@ const AuthProviders = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      const userEmail = currentUser?.email || user?.email;
+      try {
+        if (userEmail) {
+          await setToken(userEmail);
+        } else {
+          await clearCookie();
+        }
+      } catch (error) {
+        console.log("Error during on auth token", error);
+      } finally {
+        setLoading(false);
+      }
     });
 
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user]);
 
   const authInfo = {
     user,

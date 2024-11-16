@@ -1,19 +1,21 @@
+import { toast } from "sonner";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { TbFidgetSpinner } from "react-icons/tb";
+import { PiSpinnerGapLight } from "react-icons/pi";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
 
 const Register = () => {
   const [view, setView] = useState(true);
-  const { createUser, profileUpdate, loading } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const { createUser, profileUpdate } = useAuth();
   const navigateTo = useNavigate();
   const location = useLocation();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const name = form.name.value || "anonymous";
     const email = form.email.value;
@@ -21,7 +23,7 @@ const Register = () => {
     const confirmPassword = form.confirmPassword.value;
 
     if (password !== confirmPassword) {
-      return toast.error("Passwords do not match!");
+      return toast.info("Passwords do not match!");
     }
 
     try {
@@ -31,41 +33,45 @@ const Register = () => {
       navigateTo(location?.state || "/");
     } catch (err) {
       toast.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="my-5 space-y-3 rounded-xl lg:w-1/2 mx-2 md:mx-auto pb-6">
+    <div className="my-5 space-y-3 rounded-xl max-w-lg mx-2 md:mx-auto pb-6">
       <BlogHelmet title="Register" />
-      <h1 className="text-2xl font-semibold text-center">Register</h1>
+      <h1 className="text-2xl font-semibold text-center text-gray-800">
+        Create Account
+      </h1>
       <form onSubmit={handleRegister} className="space-y-5 mx-5 md:mx-0">
         <div className="space-y-1 text-sm">
-          <label htmlFor="Your Name" className="block dark:text-gray-600">
-            Name
+          <label htmlFor="name" className="block text-gray-700">
+            Full Name
           </label>
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
-            className="w-full px-4 py-3 rounded-xl border"
+            placeholder="Your Full Name"
+            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="email" className="block dark:text-gray-600">
-            Your Email
+          <label htmlFor="email" className="block text-gray-700">
+            Email Address
           </label>
           <input
             type="email"
             name="email"
             required
             placeholder="Your Email"
-            className="w-full px-4 py-3 rounded-xl border"
+            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block dark:text-gray-600">
+          <label htmlFor="password" className="block text-gray-700">
             Password
           </label>
           <input
@@ -73,12 +79,12 @@ const Register = () => {
             name="password"
             required
             placeholder="Password"
-            className="w-full px-4 py-3 rounded-xl border"
+            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm relative">
-          <label htmlFor="confirmPassword" className="block dark:text-gray-600">
+          <label htmlFor="confirmPassword" className="block text-gray-700">
             Confirm Password
           </label>
           <input
@@ -86,11 +92,11 @@ const Register = () => {
             name="confirmPassword"
             required
             placeholder="Confirm Password"
-            className="w-full px-4 py-3 rounded-xl border"
+            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
             style={{ outline: "none" }}
           />
           <span
-            className="absolute top-[36px] right-3 cursor-pointer"
+            className="absolute top-[34px] right-[10px] cursor-pointer"
             onClick={() => setView(!view)}
           >
             {view ? <FaRegEyeSlash /> : <FaRegEye />}
@@ -98,24 +104,23 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="block w-full p-3 text-center text-white rounded-xl bg-red-600"
+          className="w-full p-3 text-center text-white rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
         >
           {loading ? (
             <div className="flex justify-center">
-              <TbFidgetSpinner className="animate-spin text-xl my-[2px]" />
+              <PiSpinnerGapLight className="animate-spin text-xl my-[2px]" />
             </div>
           ) : (
             "Register"
           )}
         </button>
       </form>
-      <p className="text-xs text-center sm:px-6 dark:text-gray-600">
+      <p className="text-xs text-center text-gray-600">
         Already have an account?{" "}
         <Link
           state={location.state}
           to={"/login"}
-          rel="noopener noreferrer"
-          className="underline text-red-600"
+          className="underline text-blue-600"
         >
           Login
         </Link>

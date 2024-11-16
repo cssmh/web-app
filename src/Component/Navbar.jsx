@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/blog.png";
+import useAuth from "../hooks/useAuth";
 // import logo from "../assets/logo.png";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -72,14 +74,16 @@ const Navbar = () => {
               >
                 My Blogs
               </Link>
-              <Link
-                to="/my-profile"
-                className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/my-profile"
-                )}`}
-              >
-                Profile
-              </Link>
+              {user && (
+                <Link
+                  to="/my-profile"
+                  className={`flex items-center p-[7px] ${getLinkClasses(
+                    "/my-profile"
+                  )}`}
+                >
+                  Profile
+                </Link>
+              )}
             </ul>
           </div>
           <div className="navbar-end">
@@ -132,13 +136,17 @@ const Navbar = () => {
           >
             My Blogs
           </Link>
-          <Link
-            to="/my-profile"
-            className={`flex items-center p-1 ${getLinkClasses("/my-profile")}`}
-            onClick={toggleMenu}
-          >
-            Profile
-          </Link>
+          {user && (
+            <Link
+              to="/my-profile"
+              className={`flex items-center p-1 ${getLinkClasses(
+                "/my-profile"
+              )}`}
+              onClick={toggleMenu}
+            >
+              Profile
+            </Link>
+          )}
         </ul>
       </div>
     </header>

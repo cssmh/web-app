@@ -1,11 +1,11 @@
 import axios from "axios";
-import swal from "sweetalert";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { editMyBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
+import { toast } from "sonner";
 
 const EditBlog = () => {
   const blogData = useLoaderData();
@@ -65,7 +65,7 @@ const EditBlog = () => {
     if (formData.image) {
       imageUrl = await uploadImageToImgBB(formData.image);
       if (!imageUrl) {
-        swal("Error!", "Image upload failed. Blog not updated.", "error");
+        toast.error("Image upload failed. Blog not updated.");
         return;
       }
     }
@@ -77,9 +77,9 @@ const EditBlog = () => {
 
     if (res?.modifiedCount) {
       navigateTo(-1);
-      swal("Good job!", "Blog updated", "success", { timer: 2000 });
+      toast.success("Good job!, Blog updated");
     } else {
-      swal("Error!", "Blog update failed.", "error", { timer: 2000 });
+      toast.error("Blog update failed.");
     }
   };
 
@@ -129,6 +129,7 @@ const EditBlog = () => {
             <option value="">Select a category</option>
             <option value="Tech">Tech</option>
             <option value="Food">Food</option>
+            <option value="Fashion">Fashion</option>
             <option value="Travel">Travel</option>
             <option value="Lifestyle">Lifestyle</option>
             <option value="Education">Education</option>

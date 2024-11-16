@@ -17,8 +17,8 @@ const AllBlogs = () => {
 
   const fetchBlogs = async () => {
     const { result, totalBlogs } = await getAllBlogs(page, limit);
-    setBlogs((prevBlogs) => [...prevBlogs, ...result]);
-    setHasMore(blogs.length + result.length < totalBlogs);
+    setBlogs([...blogs, ...result]);
+    setHasMore(blogs.length < totalBlogs);
     setPage(page + 1);
   };
 
