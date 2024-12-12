@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from "../assets/blog.png";
+import logo from "../assets/fav.png";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
@@ -10,8 +10,8 @@ const Navbar = () => {
 
   const getLinkClasses = (path) => {
     return location.pathname === path
-      ? "text-blue-400" // Active link color in dark mode
-      : "hover:text-blue-400 text-gray-300"; // Default link color
+      ? "text-blue-400"
+      : "hover:text-blue-400 text-gray-300";
   };
 
   const toggleMenu = () => {
@@ -42,8 +42,9 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-            <Link to="/" className="flex items-center">
-              <img src={logo} className="w-24 md:w-32" alt="Logo" />
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logo} className="w-8 md:w-10" alt="Logo" />
+              <h1 className="text-lg md:text-2xl">Blogger</h1>
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">

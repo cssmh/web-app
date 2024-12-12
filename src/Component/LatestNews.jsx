@@ -13,7 +13,7 @@ const LatestNews = () => {
   };
 
   return (
-    <div className="my-6 md:my-12 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+    <div className="my-6 md:my-12 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
       <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center md:text-left text-white">
         Latest News
       </h2>

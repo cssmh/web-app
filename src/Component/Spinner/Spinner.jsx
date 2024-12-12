@@ -2,7 +2,10 @@ import "./styles.css";
 
 const Spinner = ({ size }) => {
   return (
-    <div style={{ height: `${size}vh` }} className="loading-wrapper">
+    <div
+      style={{ height: `${size}vh` }}
+      className="loading-wrapper bg-gray-800 bg-opacity-70"
+    >
       <div className="spinner"></div>
       <div className="flex items-center">
         <div className="loading-wave">

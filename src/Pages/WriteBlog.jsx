@@ -1,10 +1,10 @@
 import { toast } from "sonner";
 import { useState } from "react";
-import { TbFidgetSpinner } from "react-icons/tb";
 import axios from "axios";
 import { postBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 const WriteBlog = () => {
   const { user, loading } = useAuth();
@@ -86,14 +86,14 @@ const WriteBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-gray-800 text-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Write a New Blog
       </h2>
       <form onSubmit={handleSubmit} className="space-y-2 md:space-y-5">
         <div className="space-y-1 text-sm">
-          <label htmlFor="title" className="block font-medium text-gray-600">
+          <label htmlFor="title" className="block font-medium text-gray-300">
             Blog Title
           </label>
           <input
@@ -103,12 +103,12 @@ const WriteBlog = () => {
             onChange={handleChange}
             required
             placeholder="Enter blog title"
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="content" className="block font-medium text-gray-600">
+          <label htmlFor="content" className="block font-medium text-gray-300">
             Content
           </label>
           <textarea
@@ -117,16 +117,16 @@ const WriteBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-2 rounded-lg border"
+            className="w-full h-40 px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="category" className="block font-medium text-gray-600">
+          <label htmlFor="category" className="block font-medium text-gray-300">
             Category
           </label>
           <select
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
             name="category"
             required
             value={formData.category}
@@ -144,7 +144,7 @@ const WriteBlog = () => {
           </select>
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="tags" className="block font-medium text-gray-600">
+          <label htmlFor="tags" className="block font-medium text-gray-300">
             Tags (comma-separated)
           </label>
           <input
@@ -153,12 +153,12 @@ const WriteBlog = () => {
             value={formData.tags}
             onChange={handleChange}
             placeholder="e.g., javascript, react, tech"
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
             style={{ outline: "none" }}
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="image" className="block font-medium text-gray-600">
+          <label htmlFor="image" className="block font-medium text-gray-300">
             Upload Blog Image
           </label>
           <input
@@ -166,19 +166,20 @@ const WriteBlog = () => {
             name="image"
             id="image"
             onChange={handleImageChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-white rounded-lg"
             accept="image/*"
             style={{ outline: "none" }}
           />
         </div>
         <button
           type="submit"
-          className="block w-full py-3 text-center text-white rounded-lg bg-red-500 hover:bg-red-600"
+          className="block w-full py-[10px] text-center text-white rounded-lg bg-red-600 hover:bg-red-700"
           disabled={loading || imgLoading}
         >
           {loading || imgLoading ? (
-            <div className="flex justify-center">
-              <TbFidgetSpinner className="animate-spin text-2xl" />
+            <div className="flex justify-center gap-3">
+              <PiSpinnerGapLight className="animate-spin text-2xl" />
+              <p className="animate-pulse">Creating...</p>
             </div>
           ) : (
             "Create Blog"

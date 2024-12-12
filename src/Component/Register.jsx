@@ -39,92 +39,94 @@ const Register = () => {
   };
 
   return (
-    <div className="my-5 space-y-3 rounded-xl max-w-lg mx-2 md:mx-auto pb-6">
+    <div className="flex items-center justify-center py-4 bg-gray-900">
       <BlogHelmet title="Register" />
-      <h1 className="text-2xl font-semibold text-center text-gray-800">
-        Create Account
-      </h1>
-      <form onSubmit={handleRegister} className="space-y-5 mx-5 md:mx-0">
-        <div className="space-y-1 text-sm">
-          <label htmlFor="name" className="block text-gray-700">
-            Full Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Full Name"
-            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
-            style={{ outline: "none" }}
-          />
-        </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="email" className="block text-gray-700">
-            Email Address
-          </label>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Your Email"
-            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
-            style={{ outline: "none" }}
-          />
-        </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block text-gray-700">
-            Password
-          </label>
-          <input
-            type={view ? "password" : "text"}
-            name="password"
-            required
-            placeholder="Password"
-            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
-            style={{ outline: "none" }}
-          />
-        </div>
-        <div className="space-y-1 text-sm relative">
-          <label htmlFor="confirmPassword" className="block text-gray-700">
-            Confirm Password
-          </label>
-          <input
-            type={view ? "password" : "text"}
-            name="confirmPassword"
-            required
-            placeholder="Confirm Password"
-            className="w-full px-3 py-[10px] rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500"
-            style={{ outline: "none" }}
-          />
-          <span
-            className="absolute top-[34px] right-[10px] cursor-pointer"
-            onClick={() => setView(!view)}
+      <div className="w-full sm:max-w-lg bg-gray-800 p-8 rounded-2xl shadow-lg space-y-6">
+        <h1 className="text-2xl font-semibold text-center text-white">
+          Create Account
+        </h1>
+        <form onSubmit={handleRegister} className="space-y-5 mx-5 md:mx-0">
+          <div className="space-y-1 text-sm">
+            <label htmlFor="name" className="block text-gray-300">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Full Name"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-600 bg-gray-800 text-white focus:ring-1 focus:ring-blue-500"
+              style={{ outline: "none" }}
+            />
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="email" className="block text-gray-300">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Your Email"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-600 bg-gray-800 text-white focus:ring-1 focus:ring-blue-500"
+              style={{ outline: "none" }}
+            />
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="password" className="block text-gray-300">
+              Password
+            </label>
+            <input
+              type={view ? "password" : "text"}
+              name="password"
+              required
+              placeholder="Password"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-600 bg-gray-800 text-white focus:ring-1 focus:ring-blue-500"
+              style={{ outline: "none" }}
+            />
+          </div>
+          <div className="space-y-1 text-sm relative">
+            <label htmlFor="confirmPassword" className="block text-gray-300">
+              Confirm Password
+            </label>
+            <input
+              type={view ? "password" : "text"}
+              name="confirmPassword"
+              required
+              placeholder="Confirm Password"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-600 bg-gray-800 text-white focus:ring-1 focus:ring-blue-500"
+              style={{ outline: "none" }}
+            />
+            <span
+              className="absolute top-[34px] right-[10px] cursor-pointer"
+              onClick={() => setView(!view)}
+            >
+              {view ? <FaRegEyeSlash /> : <FaRegEye />}
+            </span>
+          </div>
+          <button
+            type="submit"
+            className="w-full p-3 text-center text-white rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
           >
-            {view ? <FaRegEyeSlash /> : <FaRegEye />}
-          </span>
-        </div>
-        <button
-          type="submit"
-          className="w-full p-3 text-center text-white rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
-        >
-          {loading ? (
-            <div className="flex justify-center">
-              <PiSpinnerGapLight className="animate-spin text-xl my-[2px]" />
-            </div>
-          ) : (
-            "Register"
-          )}
-        </button>
-      </form>
-      <p className="text-xs text-center text-gray-600">
-        Already have an account?{" "}
-        <Link
-          state={location.state}
-          to={"/login"}
-          className="underline text-blue-600"
-        >
-          Login
-        </Link>
-      </p>
+            {loading ? (
+              <div className="flex justify-center">
+                <PiSpinnerGapLight className="animate-spin text-xl my-[2px]" />
+              </div>
+            ) : (
+              "Register"
+            )}
+          </button>
+        </form>
+        <p className="text-xs text-center text-gray-400">
+          Already have an account?{" "}
+          <Link
+            state={location.state}
+            to={"/login"}
+            className="underline text-blue-400"
+          >
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

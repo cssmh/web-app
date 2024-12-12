@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { TbFidgetSpinner } from "react-icons/tb";
 import { editMyBlog } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
 import { toast } from "sonner";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 const EditBlog = () => {
   const blogData = useLoaderData();
@@ -84,12 +84,17 @@ const EditBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
       <BlogHelmet title={blogData?.title} />
-      <h2 className="text-2xl font-semibold text-center mb-3">Edit Blog</h2>
+      <h2 className="text-2xl font-semibold text-center mb-3 text-gray-900 dark:text-white">
+        Edit Blog
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-1 text-sm">
-          <label htmlFor="title" className="block font-medium text-gray-600">
+          <label
+            htmlFor="title"
+            className="block font-medium text-gray-600 dark:text-gray-200"
+          >
             Blog Title
           </label>
           <input
@@ -99,11 +104,14 @@ const EditBlog = () => {
             onChange={handleChange}
             required
             placeholder="Enter blog title"
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="content" className="block font-medium text-gray-600">
+          <label
+            htmlFor="content"
+            className="block font-medium text-gray-600 dark:text-gray-200"
+          >
             Content
           </label>
           <textarea
@@ -112,15 +120,18 @@ const EditBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-2 rounded-lg border"
+            className="w-full h-40 px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="category" className="block font-medium text-gray-600">
+          <label
+            htmlFor="category"
+            className="block font-medium text-gray-600 dark:text-gray-200"
+          >
             Category
           </label>
           <select
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
             name="category"
             required
             value={formData.category}
@@ -137,7 +148,10 @@ const EditBlog = () => {
           </select>
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="tags" className="block font-medium text-gray-600">
+          <label
+            htmlFor="tags"
+            className="block font-medium text-gray-600 dark:text-gray-200"
+          >
             Tags (comma-separated)
           </label>
           <input
@@ -146,11 +160,14 @@ const EditBlog = () => {
             value={formData.tags}
             onChange={handleChange}
             placeholder="e.g., javascript, react, tech"
-            className="w-full px-4 py-2 rounded-lg border"
+            className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="image" className="block font-medium text-gray-600">
+          <label
+            htmlFor="image"
+            className="block font-medium text-gray-600 dark:text-gray-200"
+          >
             Upload New Blog Image (optional)
           </label>
           <input
@@ -158,7 +175,7 @@ const EditBlog = () => {
             name="image"
             id="image"
             onChange={handleImageChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white"
             accept="image/*"
           />
         </div>
@@ -173,12 +190,13 @@ const EditBlog = () => {
         </div>
         <button
           type="submit"
-          className="block w-full py-3 text-center text-white rounded-lg bg-red-500 hover:bg-red-600"
+          className="block w-full py-[10px] text-center text-white rounded-lg bg-red-500 hover:bg-red-600"
           disabled={loading || imgLoading}
         >
           {loading || imgLoading ? (
-            <div className="flex justify-center">
-              <TbFidgetSpinner className="animate-spin text-2xl" />
+            <div className="flex justify-center gap-3">
+              <PiSpinnerGapLight className="animate-spin text-2xl" />
+              <p className="animate-pulse">Updating...</p>
             </div>
           ) : (
             "Update Blog"
