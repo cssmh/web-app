@@ -66,12 +66,12 @@ const BlogDetails = () => {
   if (isLoading) return <Spinner size="87" />;
 
   return (
-    <div className="max-w-4xl 2xl:max-w-[80%] mx-auto my-2 md:mb-5 p-2 md:p-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-4xl 2xl:max-w-[80%] mx-auto md:mb-5 p-2 md:p-4 bg-white shadow-lg">
       <BlogHelmet title={blogData.title} />
       <img
         src={blogData?.image}
         alt={blogData.title}
-        className="w-full md:h-72 object-cover rounded-lg mb-2 md:mb-4"
+        className="w-full md:h-72 object-cover rounded-md mb-2 md:mb-4"
       />
       <h1 className="text-xl md:text-3xl font-bold mb-2 px-1 md:px-0">
         {blogData.title}

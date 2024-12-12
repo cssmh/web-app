@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/blog.png";
 import useAuth from "../hooks/useAuth";
-// import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -10,7 +9,9 @@ const Navbar = () => {
   const location = useLocation();
 
   const getLinkClasses = (path) => {
-    return location.pathname === path ? "text-blue-500" : "hover:text-blue-500";
+    return location.pathname === path
+      ? "text-blue-400" // Active link color in dark mode
+      : "hover:text-blue-400 text-gray-300"; // Default link color
   };
 
   const toggleMenu = () => {
@@ -18,11 +19,14 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-sm md:px-12">
-      <div className="border-gray-300">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-gray-900 text-gray-200 shadow-md md:px-12">
+      <div className="border-b border-gray-700">
         <div className="navbar min-h-[59px] py-0">
           <div className="navbar-start">
-            <button onClick={toggleMenu} className="lg:hidden p-2">
+            <button
+              onClick={toggleMenu}
+              className="lg:hidden p-2 text-gray-200"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -88,7 +92,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             <Link to="/write-blog">
-              <button className="py-1 md:py-2 border border-gray-400 px-2 md:px-4 rounded-md transition-all duration-200">
+              <button className="py-1 md:py-2 border border-gray-500 text-gray-200 hover:bg-gray-700 hover:border-gray-400 px-2 md:px-4 rounded-md transition-all duration-200">
                 Get Started
               </button>
             </Link>
@@ -96,14 +100,14 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`lg:hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-40 transition-all duration-300 ${
+        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
           isOpen ? "block" : "hidden"
         }`}
         onClick={toggleMenu}
       ></div>
 
       <div
-        className={`lg:hidden fixed top-0 left-0 w-64 h-full bg-white z-50 transform transition-transform duration-300 ${
+        className={`lg:hidden fixed top-0 left-0 w-64 h-full bg-gray-900 text-gray-200 z-50 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

@@ -13,27 +13,25 @@ const LatestNews = () => {
   };
 
   return (
-    <div className="my-6 md:my-12 p-6 bg-white rounded-lg shadow-md transition-all duration-300">
-      <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center md:text-left text-gray-800">
+    <div className="my-6 md:my-12 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+      <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center md:text-left text-white">
         Latest News
       </h2>
-      <div className="flex flex-col md:flex-row items-center md:items-start">
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 mb-6 md:mb-0">
+      <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0">
+        <div className="w-full md:w-1/2">
           <img
             src={news.image}
             alt={news.title}
             className="w-full h-auto object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+            style={{ aspectRatio: "16/9" }}
           />
         </div>
-
-        {/* Content Section */}
         <div className="md:ml-8 flex flex-col justify-between text-center md:text-left">
-          <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
+          <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
             {news.title}
           </h3>
-          <span className="text-sm text-gray-500 mb-4">{news.date}</span>
-          <ul className="list-disc pl-5 text-gray-700 space-y-2">
+          <span className="text-sm text-gray-400 mb-4">{news.date}</span>
+          <ul className="list-disc pl-5 text-gray-300 space-y-2">
             {news.features.map((feature, index) => (
               <li key={index} className="text-sm md:text-base">
                 {feature}
