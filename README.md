@@ -7,7 +7,7 @@
 ## Live Demo
 
 - [Blog Application on Firebase](https://blogapp-eaa3d.web.app)
-- [Blog Application on Netlify](https://mblogapp.netlify.app)
+- [Blog Application on vercel](https://bloggerverse.vercel.app)
 
 ## Table of Contents
 

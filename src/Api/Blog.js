@@ -40,3 +40,11 @@ export const addComment = async (id, comment) => {
   const { data } = await axiosSecure.patch(`/add-comment/${id}`, comment);
   return data;
 };
+
+export const updateComment = async (id, comment, updatedContent) => {
+  const { data } = await axiosSecure.patch(`/update-comment/${id}`, {
+    comment,
+    updatedContent,
+  });
+  return data;
+};
