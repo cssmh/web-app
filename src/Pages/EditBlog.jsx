@@ -104,7 +104,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Enter blog title"
-//             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -120,7 +120,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Write your blog content..."
-//             className="w-full h-40 px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full h-40 px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -131,7 +131,7 @@
 //             Category
 //           </label>
 //           <select
-//             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //             name="category"
 //             required
 //             value={formData.category}
@@ -164,7 +164,7 @@
 //             value={formData.tags}
 //             onChange={handleChange}
 //             placeholder="e.g., javascript, react, tech"
-//             className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -179,7 +179,7 @@
 //             name="image"
 //             id="image"
 //             onChange={handleImageChange}
-//             className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white"
+//             className="w-full px-4 py-[10px] border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white"
 //             accept="image/*"
 //           />
 //         </div>
@@ -212,7 +212,6 @@
 // };
 
 // export default EditBlog;
-
 
 import { useState } from "react";
 import { editMyBlog } from "../Api/Blog";
@@ -260,7 +259,6 @@ const EditBlog = () => {
     <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 rounded-lg shadow-md">
       <BlogHelmet title={blogData?.title} />
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Blog Title and Category (Flex on larger screens, Stacked on smaller screens) */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 space-y-1 text-sm">
             <label htmlFor="title" className="block font-medium text-gray-200">
@@ -273,7 +271,8 @@ const EditBlog = () => {
               onChange={handleChange}
               required
               placeholder="Enter blog title"
-              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
             />
           </div>
           <div className="flex-1 space-y-1 text-sm">
@@ -284,7 +283,8 @@ const EditBlog = () => {
               Category
             </label>
             <select
-              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
               name="category"
               required
               value={formData.category}
@@ -305,8 +305,6 @@ const EditBlog = () => {
             </select>
           </div>
         </div>
-
-        {/* Tags and Image URL (Flex on larger screens, Stacked on smaller screens) */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 space-y-1 text-sm">
             <label htmlFor="tags" className="block font-medium text-gray-200">
@@ -318,7 +316,8 @@ const EditBlog = () => {
               value={formData.tags}
               onChange={handleChange}
               placeholder="e.g., javascript, react, tech"
-              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
             />
           </div>
           <div className="flex-1 space-y-1 text-sm">
@@ -331,12 +330,11 @@ const EditBlog = () => {
               value={formData.image}
               onChange={handleChange}
               placeholder="Enter image URL"
-              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
             />
           </div>
         </div>
-
-        {/* Content */}
         <div className="space-y-1 text-sm">
           <label htmlFor="content" className="block font-medium text-gray-200">
             Content
@@ -347,11 +345,10 @@ const EditBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+            className="w-full h-40 px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+            style={{ outline: "none" }}
           />
         </div>
-
-        {/* Image Preview */}
         <div className="space-y-1">
           {formData.image && (
             <img
@@ -361,8 +358,6 @@ const EditBlog = () => {
             />
           )}
         </div>
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="block w-full py-[10px] text-center text-white rounded-lg bg-[#2f342a]"

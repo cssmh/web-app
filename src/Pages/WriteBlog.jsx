@@ -105,7 +105,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Enter blog title"
-//             className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -119,7 +119,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Write your blog content..."
-//             className="w-full h-40 px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full h-40 px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -128,7 +128,7 @@
 //             Category
 //           </label>
 //           <select
-//             className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             name="category"
 //             required
 //             value={formData.category}
@@ -159,7 +159,7 @@
 //             value={formData.tags}
 //             onChange={handleChange}
 //             placeholder="e.g., javascript, react, tech"
-//             className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -172,7 +172,7 @@
 //             name="image"
 //             id="image"
 //             onChange={handleImageChange}
-//             className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-white rounded-lg"
+//             className="w-full px-4 py-[10px] border border-gray-700 bg-gray-800 text-white rounded-lg"
 //             accept="image/*"
 //             style={{ outline: "none" }}
 //           />
@@ -198,12 +198,12 @@
 
 // export default WriteBlog;
 
-import { toast } from "sonner";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
-import { PiSpinnerGapLight } from "react-icons/pi";
+import { toast } from "sonner";
 import defaultUser from "../assets/user.png";
+import { PiSpinnerGapLight } from "react-icons/pi";
 import { postBlog } from "../api/Blog";
 
 const WriteBlog = () => {
@@ -213,7 +213,7 @@ const WriteBlog = () => {
     content: "",
     category: "",
     tags: "",
-    image: "", // Changed to a string for image URL
+    image: "",
     writerName: user?.displayName || "Anonymous",
     writerImage: user?.photoURL || defaultUser,
   });
@@ -225,6 +225,7 @@ const WriteBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.image) {
       toast.info("Please provide an image URL");
       return;
@@ -254,24 +255,86 @@ const WriteBlog = () => {
   return (
     <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
-      <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
+      {/* <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Write a New Blog
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-2 md:space-y-5">
-        <div className="space-y-1 text-sm">
-          <label htmlFor="title" className="block font-medium text-gray-300">
-            Blog Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            placeholder="Enter blog title"
-            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
-            style={{ outline: "none" }}
-          />
+      </h2> */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 space-y-1 text-sm">
+            <label htmlFor="title" className="block font-medium text-gray-300">
+              Blog Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              placeholder="Enter blog title"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
+            />
+          </div>
+          <div className="flex-1 space-y-1 text-sm">
+            <label
+              htmlFor="category"
+              className="block font-medium text-gray-300"
+            >
+              Category
+            </label>
+            <select
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
+              name="category"
+              required
+              value={formData.category}
+              onChange={handleChange}
+            >
+              <option value="">Select a category</option>
+              <option value="Web-Dev">Web Development</option>
+              <option value="Game-Dev">Game Development</option>
+              <option value="Machine-Learning">Machine Learning</option>
+              <option value="Travel">Travel</option>
+              <option value="Artificial-Int">Artificial Intelligence</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Graphic-Design">Graphic Design</option>
+              <option value="Animation">Animation</option>
+              <option value="Food">Food</option>
+              <option value="Cyber-Security">Cybersecurity</option>
+              <option value="Data-Science">Data Science</option>
+            </select>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 space-y-1 text-sm">
+            <label htmlFor="tags" className="block font-medium text-gray-300">
+              Tags (comma-separated)
+            </label>
+            <input
+              type="text"
+              name="tags"
+              value={formData.tags}
+              onChange={handleChange}
+              placeholder="e.g., javascript, react, tech"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
+            />
+          </div>
+          <div className="flex-1 space-y-1 text-sm">
+            <label htmlFor="image" className="block font-medium text-gray-300">
+              Image URL
+            </label>
+            <input
+              type="url"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              required
+              placeholder="Enter image URL"
+              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              style={{ outline: "none" }}
+            />
+          </div>
         </div>
         <div className="space-y-1 text-sm">
           <label htmlFor="content" className="block font-medium text-gray-300">
@@ -283,77 +346,22 @@ const WriteBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
-            style={{ outline: "none" }}
-          />
-        </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="category" className="block font-medium text-gray-300">
-            Category
-          </label>
-          <select
-            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
-            name="category"
-            required
-            value={formData.category}
-            onChange={handleChange}
-            style={{ outline: "none" }}
-          >
-            <option value="">Select a category</option>
-            <option value="Web-Dev">Web Development</option>
-            <option value="Game-Dev">Game Development</option>
-            <option value="Machine-Learning">Machine Learning</option>
-            <option value="Travel">Travel</option>
-            <option value="Artificial-Int">Artificial Intelligence</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Graphic-Design">Graphic Design</option>
-            <option value="Animation">Animation</option>
-            <option value="Food">Food</option>
-            <option value="Cyber-Security">Cybersecurity</option>
-            <option value="Data-Science">Data Science</option>
-          </select>
-        </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="tags" className="block font-medium text-gray-300">
-            Tags (comma-separated)
-          </label>
-          <input
-            type="text"
-            name="tags"
-            value={formData.tags}
-            onChange={handleChange}
-            placeholder="e.g., javascript, react, tech"
-            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
-            style={{ outline: "none" }}
-          />
-        </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="image" className="block font-medium text-gray-300">
-            Image URL
-          </label>
-          <input
-            type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            required
-            placeholder="Enter image URL"
-            className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white"
+            className="w-full h-40 px-4 py-[10px] rounded-md border border-gray-700 bg-[#27272a] text-white"
             style={{ outline: "none" }}
           />
         </div>
         <button
           type="submit"
-          className="block w-full py-[10px] text-center text-white rounded-lg bg-red-600 hover:bg-red-700"
+          className="block w-full py-3 text-center text-white rounded-lg bg-[#2f342a]"
           disabled={loading}
         >
           {loading ? (
             <div className="flex justify-center gap-3">
               <PiSpinnerGapLight className="animate-spin text-2xl" />
-              <p className="animate-pulse">Creating...</p>
+              <p className="animate-pulse">Posting...</p>
             </div>
           ) : (
-            "Create Blog"
+            "Post Blog"
           )}
         </button>
       </form>
