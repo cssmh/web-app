@@ -49,9 +49,10 @@ const Navbar = () => {
           </Link>
           <div className="hidden lg:block relative ml-4">
             <input
-              className="h-10 pl-10 pr-4  rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500 sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
+              className="h-10 pl-10 pr-4  rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
               placeholder="Search blog..."
               type="search"
+              style={{ outline: "none" }}
             />
             <FaSearch className="absolute left-3 top-3 text-gray-400" />
           </div>
@@ -158,9 +159,10 @@ const Navbar = () => {
             {/* Search Box */}
             <div className="relative mt-4">
               <input
-                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
+                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none"
                 placeholder="Search blog..."
                 type="search"
+                style={{ outline: "none" }}
               />
               <FaSearch className="absolute left-3 top-3 text-gray-400" />
             </div>

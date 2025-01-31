@@ -12,6 +12,7 @@ import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../Api/Blog";
 import EditBlog from "../Pages/EditBlog";
 import AllBlogs from "../Pages/AllBlogs";
+import Guide from "../Component/Guide";
 
 const Route = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const Route = createBrowserRouter([
       {
         path: "/blog/:id",
         element: <BlogDetails />,
+      },
+      {
+        path: "/guide",
+        element: <Guide />,
       },
       {
         path: "/my-profile",
