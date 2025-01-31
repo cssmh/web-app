@@ -1,4 +1,5 @@
 import { FaComment, FaShare, FaFlag } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const BlogCard = ({ blog }) => {
   return (
     <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200">
@@ -27,7 +28,9 @@ const BlogCard = ({ blog }) => {
       </div>
       <div className="flex gap-4">
         <div className="flex-1">
-          <h3 className="text-2xl font-semibold mb-2">{blog.title}</h3>
+          <Link to={`/blog/${blog._id}`}>
+            <h3 className="text-2xl font-semibold hover:underline mb-2">{blog.title}</h3>
+          </Link>
           <p className="text-sm text-gray-400 line-clamp-3">{blog.content}</p>
         </div>
         <div className="w-24 h-24 flex-shrink-0">

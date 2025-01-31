@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        redBlog: "#f01543",
+        subBlog: "#18181b",
       },
     },
   },

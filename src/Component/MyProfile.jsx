@@ -57,8 +57,8 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center md:min-h-[68vh] bg-gray-900 text-white">
-      <div className="w-full max-w-md bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center md:min-h-[68vh] text-white">
+      <div className="w-full max-w-md bg-[#18181b] p-4 md:p-6 rounded-lg shadow-lg">
         <BlogHelmet title="My Profile" />
         <div className="flex items-center justify-center gap-4 mb-6">
           <div className="relative">

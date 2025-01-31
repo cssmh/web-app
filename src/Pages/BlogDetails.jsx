@@ -27,7 +27,7 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
-
+  
   const handleCommentChange = (e) => setComment(e.target.value);
 
   const handleCommentSubmit = async () => {
@@ -84,7 +84,7 @@ const BlogDetails = () => {
   if (isLoading) return <Spinner size="87" />;
 
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-gray-800 shadow-lg rounded-lg mb-7">
+    <div className="max-w-4xl mx-auto p-4 bg-[#18181b] shadow-lg rounded-lg mb-7">
       <BlogHelmet title={blogData?.title} />
       <img
         src={blogData?.image}
