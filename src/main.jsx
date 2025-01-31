@@ -18,6 +18,6 @@ createRoot(document.getElementById("root")).render(
         </AuthProviders>
       </HelmetProvider>
     </QueryClientProvider>
-    <Toaster richColors position="bottom-center" />
+    <Toaster position="bottom-center" />
   </StrictMode>
 );

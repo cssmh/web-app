@@ -4,7 +4,7 @@ const Spinner = ({ size }) => {
   return (
     <div
       style={{ height: `${size}vh` }}
-      className="loading-wrapper bg-gray-800 bg-opacity-70"
+      className="loading-wrapper bg-[#111111] bg-opacity-70"
     >
       <div className="spinner"></div>
       <div className="flex items-center">
