@@ -5,8 +5,8 @@ export const postBlog = async (BlogInfo) => {
   return data;
 };
 
-export const homeBlog = async (searchTerm, category) => {
-  const api = `/home-blog?search=${searchTerm}&category=${category}`;
+export const homeBlog = async (searchTerm, category, sortOption = "latest") => {
+  const api = `/home-blog?search=${searchTerm}&category=${category}&sort=${sortOption}`;
   const { data } = await axiosSecure(api);
   return data;
 };

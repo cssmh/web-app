@@ -34,7 +34,7 @@ const BlogCard = ({ blog }) => {
               {blog?.title}
             </h3>
           </Link>
-          <p className="text-sm text-gray-400 line-clamp-3">{blog?.content}</p>
+          <p className="text-sm text-gray-400 line-clamp-4">{blog?.content}</p>
         </div>
         <div className="w-24 h-24 flex-shrink-0">
           <img

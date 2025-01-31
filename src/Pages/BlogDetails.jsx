@@ -105,7 +105,6 @@ const BlogDetails = () => {
           ))}
         </div>
       </div>
-      {/* Writer Section */}
       <div className="flex items-center gap-4 mb-6">
         <img
           src={blogData?.writerImage}
@@ -121,32 +120,23 @@ const BlogDetails = () => {
           </p>
         </div>
       </div>
-      {/* Middle Section */}
       <div className="flex justify-between items-center mb-6">
-        {/* Comment Count */}
         <div className="flex items-center gap-2 text-gray-400">
           <FaComment className="text-sm" />
           <span className="text-sm">{blogData?.comments?.length} Comments</span>
         </div>
-        {/* Bookmark Button */}
         <button className="text-gray-400 hover:text-blue-400">
           <FaBookmark className="text-xl" />
         </button>
       </div>
-
-      {/* Blog Image */}
       <img
         src={blogData?.image}
         alt={blogData?.title}
         className="w-full h-72 object-cover rounded-md mb-6"
       />
-
-      {/* Blog Content */}
-      <p className="text-gray-400 whitespace-pre-line mb-6">
+      <p className="text-gray-100 whitespace-pre-line mb-6">
         {blogData?.content}
       </p>
-
-      {/* Comments Section */}
       <h3 className="text-xl font-semibold text-white mb-4">Comments</h3>
       {user && (
         <>

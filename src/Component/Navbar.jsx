@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[2px]">
       <div className="navbar min-h-[59px] py-0 flex justify-between items-center">
         <div className="lg:hidden">
           <button
@@ -42,7 +42,6 @@ const Navbar = () => {
             <FaBars className="text-2xl" />
           </button>
         </div>
-
         {/* Center: Logo & Title (Mobile and Large Devices) */}
         <div className="flex items-center justify-center lg:justify-start">
           <Link to="/" className="flex items-center gap-2">
@@ -78,64 +77,62 @@ const Navbar = () => {
               Guide
             </button>
           </Link>
-          <div>
-            {user && (
-              <div className="relative">
-                <button
-                  onClick={toggleUserMenu}
-                  className="text-gray-200 hover:text-blue-400 transition-all"
-                >
-                  <img
-                    src={user?.photoURL}
-                    alt="user"
-                    className="w-8 h-8 rounded-full"
-                  />
-                </button>
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-[10px] w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
-                    <div className="text-white">
-                      <h1 className="p-3 font-semibold">
-                        Signed in as <br /> {user?.displayName}
-                      </h1>
-                      <Link
-                        to="/my-profile"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-profile"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Profile
-                      </Link>
-                      <Link
-                        to="/my-blogs"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-blogs"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Blogs
-                      </Link>
-                      <Link
-                        to="/my-bookmarks"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-bookmarks"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Bookmarks
-                      </Link>
-                      <button
-                        className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
-                        onClick={handleLogout}
-                      >
-                        Log Out
-                      </button>
-                    </div>
+          {user && (
+            <div className="relative pt-2">
+              <button
+                onClick={toggleUserMenu}
+                className="text-gray-200 hover:text-blue-400 transition-all"
+              >
+                <img
+                  src={user?.photoURL}
+                  alt="user"
+                  className="w-9 h-9 rounded-full"
+                />
+              </button>
+              {isUserMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
+                  <div className="text-white">
+                    <h1 className="p-3 font-semibold">
+                      Signed in as <br /> {user?.displayName}
+                    </h1>
+                    <Link
+                      to="/my-profile"
+                      className={`block px-3 py-1 ${getLinkClasses(
+                        "/my-profile"
+                      )}`}
+                      onClick={toggleUserMenu}
+                    >
+                      My Profile
+                    </Link>
+                    <Link
+                      to="/my-blogs"
+                      className={`block px-3 py-1 ${getLinkClasses(
+                        "/my-blogs"
+                      )}`}
+                      onClick={toggleUserMenu}
+                    >
+                      My Blogs
+                    </Link>
+                    <Link
+                      to="/my-bookmarks"
+                      className={`block px-3 py-1 ${getLinkClasses(
+                        "/my-bookmarks"
+                      )}`}
+                      onClick={toggleUserMenu}
+                    >
+                      My Bookmarks
+                    </Link>
+                    <button
+                      className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
+                      onClick={handleLogout}
+                    >
+                      Log Out
+                    </button>
                   </div>
-                )}
-              </div>
-            )}
-          </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
