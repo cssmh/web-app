@@ -1,34 +1,19 @@
 import { useState } from "react";
 import { RightSidebar } from "./RightSidebar/RightSidebar";
 import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
+import { homeBlog } from "../api/Blog";
+import { useQuery } from "@tanstack/react-query";
+import BlogCard from "./BlogCard";
 
 const Home = () => {
-  const [sortOption, setSortOption] = useState("latest"); // "latest", "random", "all"
+  const [sortOption, setSortOption] = useState("latest");
+  const [category, setCategory] = useState("");
 
-  // Dummy blogs data
-  const blogs = [
-    {
-      id: 1,
-      title: "Introduction to React",
-      category: "Web Development",
-      description:
-        "Learn the basics of React and how to build modern web applications.",
-    },
-    {
-      id: 2,
-      title: "Getting Started with Flutter",
-      category: "Mobile Development",
-      description:
-        "A beginner's guide to building cross-platform mobile apps with Flutter.",
-    },
-    {
-      id: 3,
-      title: "Understanding Machine Learning",
-      category: "AI & ML",
-      description: "An overview of machine learning concepts and algorithms.",
-    },
-  ];
-
+  const { data = [], isLoading } = useQuery({
+    queryKey: ["homeBlogs", category],
+    queryFn: async () => await homeBlog("", category),
+  });
+  console.log(data);
   // Handle sort option change
   const handleSortChange = (option) => {
     setSortOption(option);
@@ -37,9 +22,10 @@ const Home = () => {
   return (
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 md:px-4 py-4 lg:py-6">
       {/* Left Sidebar */}
-    <aside className="hidden md:block md:col-span-1 lg:col-span-3 lg:p-4">
-      <LeftSidebar />
-    </aside>
+      <aside className="hidden md:block md:col-span-1 lg:col-span-3">
+        <LeftSidebar category={category} setCategory={setCategory} />
+      </aside>
+
       {/* Main Content */}
       <main className="col-span-1 md:col-span-2 lg:col-span-6 lg:p-4">
         {/* Toggle Buttons */}
@@ -78,17 +64,8 @@ const Home = () => {
 
         {/* Blog Cards */}
         <div className="grid grid-cols-1 gap-4">
-          {blogs.map((blog) => (
-            <div
-              key={blog.id}
-              className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200"
-            >
-              <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-              <p className="text-gray-400">{blog.description}</p>
-              <span className="inline-block mt-2 px-3 py-1 bg-blue-500 text-white text-sm rounded-full">
-                {blog.category}
-              </span>
-            </div>
+          {data?.map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
       </main>

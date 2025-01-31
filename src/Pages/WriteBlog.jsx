@@ -1,10 +1,10 @@
 import { toast } from "sonner";
 import { useState } from "react";
-import axios from "axios";
-import { postBlog } from "../Api/Blog";
+import axios from "axios";;
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
 import { PiSpinnerGapLight } from "react-icons/pi";
+import { postBlog } from "../api/Blog";
 
 const WriteBlog = () => {
   const { user, loading } = useAuth();
@@ -15,6 +15,9 @@ const WriteBlog = () => {
     tags: "",
     image: null,
     writerName: user?.displayName || "Anonymous",
+    writerImage:
+      user?.photoURL ||
+      "https://raw.githubusercontent.com/cssmh/book-sharing-client/refs/heads/main/src/assets/default.jpg",
   });
 
   const [imgLoading, setImgLoading] = useState(false);
