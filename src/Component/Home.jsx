@@ -18,7 +18,7 @@ const Home = () => {
     queryKey: ["homeBlogs", category],
     queryFn: async () => await homeBlog("", category),
   });
-  console.log(data);
+  
   // Handle sort option change
   const handleSortChange = (option) => {
     setSortOption(option);
@@ -28,7 +28,7 @@ const Home = () => {
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 md:px-4 py-4 lg:py-6">
       {/* Left Sidebar */}
       <aside className="hidden md:block md:col-span-1 lg:col-span-3">
-        <LeftSidebar category={category} setCategory={setCategory} />
+        <LeftSidebar setCategory={setCategory} />
       </aside>
 
       {/* Main Content */}
@@ -56,7 +56,7 @@ const Home = () => {
             Random
           </button>
           <button
-            onClick={() => handleSortChange("all")}
+            onClick={() => setCategory("")}
             className={`px-4 py-2 rounded-md ${
               sortOption === "all"
                 ? "bg-blue-500 text-white"
@@ -79,10 +79,10 @@ const Home = () => {
             Oops! Something went wrong. Please try again later.
           </p>
         ) : data.length === 0 ? (
-          <p className="text-red-600 text-center py-6">No blogs found!</p>
+          <p className="text-white text-center py-6">No blogs found!</p>
         ) : (
           <div className="grid grid-cols-1 gap-4">
-            {data.map((blog) => (
+            {data?.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}
           </div>

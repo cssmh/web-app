@@ -88,7 +88,7 @@ const BlogDetails = () => {
     <div className="max-w-4xl mx-auto p-4 bg-[#18181b] shadow-lg rounded-lg mb-7">
       <BlogHelmet title={blogData?.title} />
       <div className="mb-6">
-        <span className="text-sm text-blue-400 font-semibold">
+        <span className="text-sm uppercase text-blue-400 font-semibold">
           {blogData?.category}
         </span>
         <h1 className="text-3xl font-bold text-white mt-2">

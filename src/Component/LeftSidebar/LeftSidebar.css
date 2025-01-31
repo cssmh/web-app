@@ -1,0 +1,17 @@
+.leftsidebar-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.leftsidebar-scrollbar::-webkit-scrollbar-track {
+  background: #18181b;
+  border-radius: 10px;
+}
+
+.leftsidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.leftsidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
