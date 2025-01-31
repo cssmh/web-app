@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center py-4 md:py-8 bg-[#111111]">
       <BlogHelmet title="Login" />
-      <div className="w-full sm:w-96 p-8 rounded-2xl shadow-lg space-y-6">
+      <div className="w-full sm:w-96 bg-[#18181b] p-8 rounded-2xl shadow-lg space-y-6">
         <h1 className="text-2xl font-semibold text-center text-white">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">
@@ -92,7 +92,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-200"
+            className="w-full py-3 bg-[#3f3f46] text-white rounded-xl transition duration-200"
           >
             {loading ? (
               <div className="flex justify-center">
@@ -108,7 +108,7 @@ const Login = () => {
           <button
             onClick={handleGoogleLogin}
             aria-label="Log in with Google"
-            className="flex items-center justify-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg mx-auto mt-4 hover:bg-red-800 transition duration-200"
+            className="flex items-center justify-center gap-2 bg-[#3f3f46] text-white px-4 py-2 rounded-lg mx-auto mt-4 transition duration-200"
           >
             <FcGoogle className="text-2xl" />
             <span>Continue with Google</span>

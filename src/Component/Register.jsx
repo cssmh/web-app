@@ -39,9 +39,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-4 bg-gray-900">
+    <div className="flex items-center justify-center py-4 bg-[#111111]">
       <BlogHelmet title="Register" />
-      <div className="w-full sm:max-w-lg bg-gray-800 p-8 rounded-2xl shadow-lg space-y-6">
+      <div className="w-full sm:max-w-lg bg-[#18181b] p-8 rounded-2xl shadow-lg space-y-6">
         <h1 className="text-2xl font-semibold text-center text-white">
           Create Account
         </h1>
@@ -105,7 +105,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="w-full p-3 text-center text-white rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
+            className="w-full p-3 text-center text-white rounded-xl bg-[#3f3f46] transition-colors duration-200"
           >
             {loading ? (
               <div className="flex justify-center">
