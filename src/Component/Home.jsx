@@ -4,12 +4,17 @@ import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
 import { homeBlog } from "../api/Blog";
 import { useQuery } from "@tanstack/react-query";
 import BlogCard from "./BlogCard";
+import BlogCardSkeleton from "../Pages/BlogCardSkeleton";
 
 const Home = () => {
   const [sortOption, setSortOption] = useState("latest");
   const [category, setCategory] = useState("");
 
-  const { data = [], isLoading } = useQuery({
+  const {
+    data = [],
+    isError,
+    isLoading,
+  } = useQuery({
     queryKey: ["homeBlogs", category],
     queryFn: async () => await homeBlog("", category),
   });
@@ -63,13 +68,26 @@ const Home = () => {
         </div>
 
         {/* Blog Cards */}
-        <div className="grid grid-cols-1 gap-4">
-          {data?.map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 gap-4">
+            {[...Array(3)].map((_, index) => (
+              <BlogCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : isError ? (
+          <p className="text-red-600 text-center py-6">
+            Oops! Something went wrong. Please try again later.
+          </p>
+        ) : data.length === 0 ? (
+          <p className="text-red-600 text-center py-6">No blogs found!</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {data.map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))}
+          </div>
+        )}
       </main>
-
       {/* Right Sidebar */}
       <aside className="col-span-1 lg:col-span-3 lg:p-4">
         <RightSidebar />

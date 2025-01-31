@@ -1,9 +1,10 @@
 import { toast } from "sonner";
 import { useState } from "react";
-import axios from "axios";;
+import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
 import { PiSpinnerGapLight } from "react-icons/pi";
+import defaultUser from "../assets/user.png";
 import { postBlog } from "../api/Blog";
 
 const WriteBlog = () => {
@@ -15,9 +16,7 @@ const WriteBlog = () => {
     tags: "",
     image: null,
     writerName: user?.displayName || "Anonymous",
-    writerImage:
-      user?.photoURL ||
-      "https://raw.githubusercontent.com/cssmh/book-sharing-client/refs/heads/main/src/assets/default.jpg",
+    writerImage: user?.photoURL || defaultUser,
   });
 
   const [imgLoading, setImgLoading] = useState(false);
@@ -89,7 +88,7 @@ const WriteBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-gray-800 text-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Write a New Blog

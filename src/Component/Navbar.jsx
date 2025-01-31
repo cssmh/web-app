@@ -34,7 +34,6 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700">
       <div className="navbar min-h-[59px] py-0 flex justify-between items-center">
-        {/* Left Side: Menu Button (Mobile Only) */}
         <div className="lg:hidden">
           <button
             onClick={toggleMobileMenu}
@@ -93,14 +92,14 @@ const Navbar = () => {
                   />
                 </button>
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-4 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
+                  <div className="absolute right-0 mt-[10px] w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
                     <div className="text-white">
-                      <h1 className="p-2 font-semibold">
+                      <h1 className="p-3 font-semibold">
                         Signed in as <br /> {user?.displayName}
                       </h1>
                       <Link
                         to="/my-profile"
-                        className={`block px-3 py-2 ${getLinkClasses(
+                        className={`block px-3 py-1 ${getLinkClasses(
                           "/my-profile"
                         )}`}
                         onClick={toggleUserMenu}
@@ -109,7 +108,7 @@ const Navbar = () => {
                       </Link>
                       <Link
                         to="/my-blogs"
-                        className={`block px-3 py-2 ${getLinkClasses(
+                        className={`block px-3 py-1 ${getLinkClasses(
                           "/my-blogs"
                         )}`}
                         onClick={toggleUserMenu}
@@ -118,7 +117,7 @@ const Navbar = () => {
                       </Link>
                       <Link
                         to="/my-bookmarks"
-                        className={`block px-3 py-2 ${getLinkClasses(
+                        className={`block px-3 py-1 ${getLinkClasses(
                           "/my-bookmarks"
                         )}`}
                         onClick={toggleUserMenu}
@@ -126,7 +125,7 @@ const Navbar = () => {
                         My Bookmarks
                       </Link>
                       <button
-                        className="w-full text-left px-3 py-2 hover:bg-gray-700"
+                        className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
                         onClick={handleLogout}
                       >
                         Log Out
