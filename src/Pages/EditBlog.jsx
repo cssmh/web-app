@@ -138,13 +138,17 @@ const EditBlog = () => {
             onChange={handleChange}
           >
             <option value="">Select a category</option>
-            <option value="Tech">Tech</option>
-            <option value="Food">Food</option>
-            <option value="Fashion">Fashion</option>
+            <option value="Web-Dev">Web Development</option>
+            <option value="Game-Dev">Game Development</option>
+            <option value="Machine-Learning">Machine Learning</option>
             <option value="Travel">Travel</option>
+            <option value="Artificial-Int">Artificial Intelligence</option>
             <option value="Lifestyle">Lifestyle</option>
-            <option value="Education">Education</option>
-            <option value="Business">Business</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Animation">Animation</option>
+            <option value="Food">Food</option>
+            <option value="Cyber-Security">Cybersecurity</option>
+            <option value="Data Science">Data Science</option>
           </select>
         </div>
         <div className="space-y-1 text-sm">

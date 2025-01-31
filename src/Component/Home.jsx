@@ -1,20 +1,9 @@
 import { useState } from "react";
 import { RightSidebar } from "./RightSidebar/RightSidebar";
+import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
 
 const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortOption, setSortOption] = useState("latest"); // "latest", "random", "all"
-
-  // Dummy categories for the left sidebar
-  const categories = [
-    "Web Development",
-    "Mobile Development",
-    "AI & ML",
-    "Data Science",
-    "DevOps",
-    "UI/UX Design",
-    "Blockchain",
-  ];
 
   // Dummy blogs data
   const blogs = [
@@ -40,11 +29,6 @@ const Home = () => {
     },
   ];
 
-  // Handle category selection
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
-
   // Handle sort option change
   const handleSortChange = (option) => {
     setSortOption(option);
@@ -53,30 +37,9 @@ const Home = () => {
   return (
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 md:px-4 py-4 lg:py-6">
       {/* Left Sidebar */}
-      <aside className="hidden md:block md:col-span-1 lg:col-span-3 lg:p-4">
-        <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold mb-4 text-gray-200">
-            Categories
-          </h2>
-          <ul className="space-y-2">
-            {categories.map((category, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => handleCategorySelect(category)}
-                  className={`w-full text-left p-2 rounded-md ${
-                    selectedCategory === category
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-300 hover:bg-gray-700"
-                  }`}
-                >
-                  {category}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
-
+    <aside className="hidden md:block md:col-span-1 lg:col-span-3 lg:p-4">
+      <LeftSidebar />
+    </aside>
       {/* Main Content */}
       <main className="col-span-1 md:col-span-2 lg:col-span-6 lg:p-4">
         {/* Toggle Buttons */}

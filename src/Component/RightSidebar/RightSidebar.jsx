@@ -13,6 +13,7 @@ export const RightSidebar = () => {
   useEffect(() => {
     // Clock update every second
     const interval = setInterval(() => setClockValue(new Date()), 1000);
+
     // Fetch Dev News from Dev.to
     const fetchNews = async () => {
       try {
@@ -46,46 +47,60 @@ export const RightSidebar = () => {
   }, []);
 
   return (
-    <div>
-      <h2 className="text-xl font-bold text-center mx-auto">Activity bar</h2>
-      <div className="flex flex-col items-center gap-4 mx-auto">
-        {/* Clock */}
-        <Clock
-          renderMinuteMarks={false}
-          className="custom-clock"
-          secondHandOppositeLength={15}
-          secondHandWidth={1}
-          minuteHandWidth={2}
-          hourHandWidth={4}
-          value={clockValue}
-        />
+    <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg">
+      <h2 className="text-xl font-bold text-center text-gray-200 mb-6">
+        Activity Bar
+      </h2>
 
-        {/* devider */}
+      {/* Clock Section */}
+      <div className="flex justify-center mb-6">
+        <div className="relative">
+          <Clock
+            renderMinuteMarks={false}
+            className="custom-clock"
+            secondHandOppositeLength={15}
+            secondHandWidth={1}
+            minuteHandWidth={2}
+            hourHandWidth={4}
+            value={clockValue}
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-4 h-4 bg-[#A3BE8C] rounded-full border-2 border-[#333]"></div>
+          </div>
+        </div>
+      </div>
 
-        {/* Dev News Ticker */}
-        <div className="news-ticker">
-          <h3 className="font-bold text-center mb-2">Dev News</h3>
-          <ul className="list-none">
-            {news.map((article, index) => (
-              <li key={index} className="my-1">
-                <Link
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline "
-                >
-                  {article.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* devider */}
-        {/* Random Developer Quote/Tip */}
-        <div className="random-quote text-center mt-4">
-          <h3 className="font-bold">Quote of the Day</h3>
-          <p className="italic">&quot;{quote}&quot;</p>
-        </div>
+      {/* Divider */}
+      <div className="border-t border-gray-700 my-6"></div>
+
+      {/* Dev News Ticker */}
+      <div className="mb-6">
+        <h3 className="font-bold text-lg text-gray-200 mb-4">Dev News</h3>
+        <ul className="space-y-3">
+          {news.map((article, index) => (
+            <li key={index}>
+              <Link
+                to={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                {article.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-gray-700 my-6"></div>
+
+      {/* Random Developer Quote/Tip */}
+      <div className="text-center">
+        <h3 className="font-bold text-lg text-gray-200 mb-2">
+          Quote of the Day
+        </h3>
+        <p className="text-gray-400 italic">&quot;{quote}&quot;</p>
       </div>
     </div>
   );

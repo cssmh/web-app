@@ -34,7 +34,7 @@
 
 /* Quarter hour marks */
 .custom-clock .react-clock__mark:nth-of-type(3n) .react-clock__mark__body {
-  background-color: #A3BE8C;
+  background-color: #a3be8c;
   width: 3px;
   height: 15px;
 }
@@ -79,12 +79,12 @@
 
 /* Second hand */
 .custom-clock .react-clock__second-hand__body {
-  background-color: #A3BE8C;
+  background-color: #a3be8c;
   width: 1px;
 }
 
 /* Center dot */
 .custom-clock .react-clock__hand__dot {
-  background-color: #A3BE8C;
+  background-color: #a3be8c;
   border: 2px solid #333;
 }
