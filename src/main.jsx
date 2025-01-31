@@ -7,7 +7,7 @@ import Route from "./Shared/Route";
 import AuthProviders from "./Shared/AuthProviders";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import CategoryProvider from "./Shared/CatContext";
+import CategoryProvider from "./Shared/CateContext";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(

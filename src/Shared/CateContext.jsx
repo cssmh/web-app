@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export const CategoryContext = createContext(null);
-const CatContext = ({ children }) => {
+const CateContext = ({ children }) => {
   const [category, setCategory] = useState("");
 
   return (
@@ -11,4 +11,4 @@ const CatContext = ({ children }) => {
   );
 };
 
-export default CatContext;
+export default CateContext;

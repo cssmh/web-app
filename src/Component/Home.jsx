@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { RightSidebar } from "./RightSidebar/RightSidebar";
 import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
 import { homeBlog } from "../api/Blog";
 import { useQuery } from "@tanstack/react-query";
 import BlogCard from "./BlogCard";
 import BlogCardSkeleton from "../Pages/BlogCardSkeleton";
-import { CategoryContext } from "../Shared/CatContext";
+import useCate from "../hooks/useCate";
 
 const Home = () => {
   const [sortOption, setSortOption] = useState("latest");
-  const { category, setCategory } = useContext(CategoryContext);
+  const { category, setCategory } = useCate();
 
   const {
     data = [],
