@@ -42,9 +42,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-4 md:py-8 bg-gray-900">
+    <div className="flex items-center justify-center py-4 md:py-8 bg-[#111111]">
       <BlogHelmet title="Login" />
-      <div className="w-full sm:w-96 bg-gray-800 p-8 rounded-2xl shadow-lg space-y-6">
+      <div className="w-full sm:w-96 p-8 rounded-2xl shadow-lg space-y-6">
         <h1 className="text-2xl font-semibold text-center text-white">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">
