@@ -1,11 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { LuNotepadText } from "react-icons/lu";
 import { toast } from "sonner";
 import { navBlog } from "../api/Blog";
+
+const categories = [
+  { display: "Web Development", value: "Web-Dev" },
+  { display: "Game Development", value: "Game-Dev" },
+  { display: "Machine Learning", value: "Machine-Learning" },
+  { display: "Travel", value: "Travel" },
+  { display: "Artificial Intelligence", value: "Artificial-Int" },
+  { display: "Lifestyle", value: "Lifestyle" },
+  { display: "Graphic Design", value: "Graphic-Design" },
+  { display: "Animation", value: "Animation" },
+  { display: "Food", value: "Food" },
+  { display: "Cybersecurity", value: "Cyber-Security" },
+  { display: "Data Science", value: "Data-Science" },
+];
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -64,7 +78,7 @@ const Navbar = () => {
           </Link>
           <div className="hidden lg:block relative ml-4">
             <input
-              className="h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
+              className="h-10 pl-10 pr-10 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
               placeholder="Search blog..."
               type="text"
               value={searchInput}
@@ -72,6 +86,12 @@ const Navbar = () => {
               style={{ outline: "none" }}
             />
             <FaSearch className="absolute left-3 top-3 text-white" />
+            {searchInput && (
+              <FaTimes
+                className="absolute right-3 top-3 text-white cursor-pointer"
+                onClick={() => setSearchInput("")}
+              />
+            )}
             {searchInput && (
               <div className="absolute bg-[#1a1a1a] w-full mt-2 rounded-md text-gray-200 shadow-lg max-h-60 overflow-auto">
                 {searchData.length > 0 ? (
@@ -177,7 +197,7 @@ const Navbar = () => {
           ></div>
         )}
         <div
-          className={`lg:hidden fixed top-0 left-0 w-64 h-full bg-[#111111] text-gray-200 z-50 transform transition-transform duration-300 ${
+          className={`lg:hidden fixed top-0 left-0 w-72 h-full bg-[#111111] text-gray-200 z-50 transform transition-transform duration-300 ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -193,55 +213,56 @@ const Navbar = () => {
             {/* Search Box */}
             <div className="relative mt-4">
               <input
-                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
+                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none"
                 placeholder="Search blog..."
                 type="text"
                 value={searchInput}
                 onChange={handleSearch}
                 style={{ outline: "none" }}
               />
-              <FaSearch className="absolute left-3 top-3 text-gray-400" />
+              <FaSearch className="absolute left-3 top-3 text-white" />
+              {searchInput && (
+                <FaTimes
+                  className="absolute right-3 top-3 text-white cursor-pointer"
+                  onClick={() => setSearchInput("")}
+                />
+              )}
+              {searchInput && (
+                <div className="absolute bg-[#1a1a1a] w-full mt-2 rounded-md text-gray-200 shadow-lg max-h-60 overflow-auto">
+                  {searchData.length > 0 ? (
+                    searchData.map((blog) => (
+                      <Link
+                        key={blog._id}
+                        to={`/blog/${blog._id}`}
+                        className="block px-4 py-2 hover:bg-[#333333] truncate"
+                      >
+                        {blog.title}
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="p-4 text-sm text-gray-400">No blogs found.</p>
+                  )}
+                </div>
+              )}
             </div>
             {/* Blog Categories */}
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-2">Blog Categories</h2>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    to="/all-blogs"
-                    className="block p-2 hover:bg-gray-700 rounded-md"
-                    onClick={toggleMobileMenu}
-                  >
-                    All Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/web-dev"
-                    className="block p-2 hover:bg-gray-700 rounded-md"
-                    onClick={toggleMobileMenu}
-                  >
-                    Web Development
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/mobile-dev"
-                    className="block p-2 hover:bg-gray-700 rounded-md"
-                    onClick={toggleMobileMenu}
-                  >
-                    Mobile Development
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/ai-ml"
-                    className="block p-2 hover:bg-gray-700 rounded-md"
-                    onClick={toggleMobileMenu}
-                  >
-                    AI & ML
-                  </Link>
-                </li>
+              <ul className="space-y-2 overflow-y-auto">
+                {categories.map((category, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => handleCategorySelect(category.value)}
+                      className={`w-full text-center text-sm p-2 rounded-md ${
+                        category.value === category
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-300 hover:bg-gray-700"
+                      }`}
+                    >
+                      {category.display}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

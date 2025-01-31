@@ -73,7 +73,7 @@ const Home = () => {
         ) : data.length === 0 ? (
           <p className="text-white text-center py-6">No blogs found!</p>
         ) : (
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 mx-2 lg:mx-0">
             {data?.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}
