@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const BlogCard = ({ blog }) => {
   return (
     <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200">
+      {/* #18181b */}
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-2">
           <img

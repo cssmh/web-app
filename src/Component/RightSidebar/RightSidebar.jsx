@@ -26,7 +26,6 @@ export const RightSidebar = () => {
       }
     };
 
-    // Fetch Random Quote
     const fetchQuote = () => {
       const quotes = [
         "Talk is cheap. Show me the code. - Linus Torvalds",
@@ -47,12 +46,11 @@ export const RightSidebar = () => {
   }, []);
 
   return (
+    // #18181b
     <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg">
       <h2 className="text-xl font-bold text-center text-gray-200 mb-6">
         Activity Bar
       </h2>
-
-      {/* Clock Section */}
       <div className="flex justify-center mb-6">
         <div className="relative">
           <Clock
@@ -69,11 +67,7 @@ export const RightSidebar = () => {
           </div>
         </div>
       </div>
-
-      {/* Divider */}
       <div className="border-t border-gray-700 my-6"></div>
-
-      {/* Dev News Ticker */}
       <div className="mb-6">
         <h3 className="font-bold text-lg text-gray-200 mb-4">Dev News</h3>
         <ul className="space-y-3">
@@ -91,11 +85,7 @@ export const RightSidebar = () => {
           ))}
         </ul>
       </div>
-
-      {/* Divider */}
       <div className="border-t border-gray-700 my-6"></div>
-
-      {/* Random Developer Quote/Tip */}
       <div className="text-center">
         <h3 className="font-bold text-lg text-gray-200 mb-2">
           Quote of the Day
