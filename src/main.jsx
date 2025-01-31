@@ -7,6 +7,7 @@ import Route from "./Shared/Route";
 import AuthProviders from "./Shared/AuthProviders";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import CategoryProvider from "./Shared/CatContext";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <AuthProviders>
-          <RouterProvider router={Route} />
+          <CategoryProvider>
+            <RouterProvider router={Route} />
+          </CategoryProvider>
         </AuthProviders>
       </HelmetProvider>
     </QueryClientProvider>

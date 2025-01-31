@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { LuNotepadText } from "react-icons/lu";
 import { toast } from "sonner";
 import { navBlog } from "../api/Blog";
+import { CategoryContext } from "../Shared/CatContext";
 
 const categories = [
   { display: "Web Development", value: "Web-Dev" },
@@ -23,6 +24,7 @@ const categories = [
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const { setCategory } = useContext(CategoryContext);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -252,7 +254,7 @@ const Navbar = () => {
                 {categories.map((category, index) => (
                   <li key={index}>
                     <button
-                      onClick={() => handleCategorySelect(category.value)}
+                      onClick={() => setCategory(category.value)}
                       className={`w-full text-center text-sm p-2 rounded-md ${
                         category.value === category
                           ? "bg-blue-500 text-white"
