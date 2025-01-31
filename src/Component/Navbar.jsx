@@ -5,11 +5,14 @@ import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { LuNotepadText } from "react-icons/lu";
 import { toast } from "sonner";
+import { navBlog } from "../api/Blog";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchData, setSearchData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
 
   const getLinkClasses = (path) => {
@@ -31,6 +34,18 @@ const Navbar = () => {
     toast.success("Logged out successfully");
   };
 
+  const handleSearch = async (e) => {
+    const search = e.target.value.trim();
+    console.log(search);
+    setSearchInput(e.target.value);
+    if (search === "") {
+      setSearchData([]);
+      return;
+    }
+    const res = await navBlog(search);
+    setSearchData(res);
+  };
+
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[2px]">
       <div className="navbar min-h-[59px] py-0 flex justify-between items-center">
@@ -49,12 +64,31 @@ const Navbar = () => {
           </Link>
           <div className="hidden lg:block relative ml-4">
             <input
-              className="h-10 pl-10 pr-4  rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
+              className="h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
               placeholder="Search blog..."
-              type="search"
+              type="text"
+              value={searchInput}
+              onChange={handleSearch}
               style={{ outline: "none" }}
             />
-            <FaSearch className="absolute left-3 top-3 text-gray-400" />
+            <FaSearch className="absolute left-3 top-3 text-white" />
+            {searchInput && (
+              <div className="absolute bg-[#1a1a1a] w-full mt-2 rounded-md text-gray-200 shadow-lg max-h-60 overflow-auto">
+                {searchData.length > 0 ? (
+                  searchData.map((blog) => (
+                    <Link
+                      key={blog._id}
+                      to={`/blog/${blog._id}`}
+                      className="block px-4 py-2 hover:bg-[#333333] truncate"
+                    >
+                      {blog.title}
+                    </Link>
+                  ))
+                ) : (
+                  <p className="p-4 text-sm text-gray-400">No blogs found.</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -159,14 +193,15 @@ const Navbar = () => {
             {/* Search Box */}
             <div className="relative mt-4">
               <input
-                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none"
+                className="w-full h-10 pl-10 pr-4 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                 placeholder="Search blog..."
-                type="search"
+                type="text"
+                value={searchInput}
+                onChange={handleSearch}
                 style={{ outline: "none" }}
               />
               <FaSearch className="absolute left-3 top-3 text-gray-400" />
             </div>
-
             {/* Blog Categories */}
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-2">Blog Categories</h2>
