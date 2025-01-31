@@ -1,0 +1,90 @@
+/* Custom Clock Styling */
+.custom-clock.react-clock {
+  display: block;
+  position: relative;
+  background-color: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 170px !important;
+  height: 170px !important;
+}
+
+.custom-clock .react-clock__face {
+  border: none;
+  background-color: #1a1a1a;
+}
+
+/* Hour Marks */
+.custom-clock .react-clock__mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+}
+
+.custom-clock .react-clock__mark__body {
+  position: absolute;
+  background-color: #666;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+}
+
+/* Quarter hour marks */
+.custom-clock .react-clock__mark:nth-of-type(3n) .react-clock__mark__body {
+  background-color: #A3BE8C;
+  width: 3px;
+  height: 15px;
+}
+
+/* Hour Numbers */
+.custom-clock .react-clock__mark__number {
+  position: absolute;
+  left: -40px;
+  width: 80px;
+  text-align: center;
+  color: #bbb;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+/* Clock Hands */
+.custom-clock .react-clock__hand {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+}
+
+.custom-clock .react-clock__hand__body {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+/* Hour hand */
+.custom-clock .react-clock__hour-hand__body {
+  background-color: #fff;
+  width: 4px;
+}
+
+/* Minute hand */
+.custom-clock .react-clock__minute-hand__body {
+  background-color: #ccc;
+  width: 2px;
+}
+
+/* Second hand */
+.custom-clock .react-clock__second-hand__body {
+  background-color: #A3BE8C;
+  width: 1px;
+}
+
+/* Center dot */
+.custom-clock .react-clock__hand__dot {
+  background-color: #A3BE8C;
+  border: 2px solid #333;
+}

@@ -47,7 +47,7 @@ const Navbar = () => {
         {/* Center: Logo & Title (Mobile and Large Devices) */}
         <div className="flex items-center justify-center lg:justify-start">
           <Link to="/" className="flex items-center gap-2">
-            <h1 className="text-lg md:text-2xl">BlogApp</h1>
+            <h1 className="text-lg font-semibold md:text-2xl">BlogApp</h1>
           </Link>
           <div className="hidden lg:block relative ml-4">
             <input
