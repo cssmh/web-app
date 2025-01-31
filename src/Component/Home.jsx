@@ -18,7 +18,7 @@ const Home = () => {
     queryKey: ["homeBlogs", category],
     queryFn: async () => await homeBlog("", category),
   });
-  
+
   // Handle sort option change
   const handleSortChange = (option) => {
     setSortOption(option);
@@ -34,39 +34,35 @@ const Home = () => {
       {/* Main Content */}
       <main className="col-span-1 md:col-span-2 lg:col-span-6 lg:p-4">
         {/* Toggle Buttons */}
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex justify-center gap-2 mb-6">
           <button
             onClick={() => handleSortChange("latest")}
-            className={`px-4 py-2 rounded-md ${
-              sortOption === "latest"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            className={`px-4 py-2 text-white rounded-md ${
+              sortOption === "latest" ? "bg-[#242427]" : ""
             }`}
           >
             Latest
           </button>
           <button
             onClick={() => handleSortChange("random")}
-            className={`px-4 py-2 rounded-md ${
-              sortOption === "random"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            className={`px-4 py-2 text-white rounded-md ${
+              sortOption === "random" ? "bg-[#242427]" : ""
             }`}
           >
             Random
           </button>
           <button
-            onClick={() => setCategory("")}
-            className={`px-4 py-2 rounded-md ${
-              sortOption === "all"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            onClick={() => {
+              setCategory("");
+              setSortOption("all");
+            }}
+            className={`px-4 py-2 text-white rounded-md ${
+              sortOption === "all" ? "bg-[#242427]" : ""
             }`}
           >
             All
           </button>
         </div>
-
         {/* Blog Cards */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-4">

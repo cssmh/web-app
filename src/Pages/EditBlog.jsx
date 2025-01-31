@@ -260,8 +260,9 @@ const EditBlog = () => {
     <div className="max-w-3xl mx-auto mt-3 mb-8 px-6 py-4 rounded-lg shadow-md">
       <BlogHelmet title={blogData?.title} />
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="space-y-1 flex items-center w-full">
-          <div className="text-sm">
+        {/* Blog Title and Category (Flex on larger screens, Stacked on smaller screens) */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 space-y-1 text-sm">
             <label htmlFor="title" className="block font-medium text-gray-200">
               Blog Title
             </label>
@@ -272,18 +273,18 @@ const EditBlog = () => {
               onChange={handleChange}
               required
               placeholder="Enter blog title"
-              className="px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
             />
           </div>
-          <div className="space-y-1 text-sm">
+          <div className="flex-1 space-y-1 text-sm">
             <label
               htmlFor="category"
-              className="block font-medium text-gray-600 dark:text-gray-200"
+              className="block font-medium text-gray-200"
             >
               Category
             </label>
             <select
-              className="px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
               name="category"
               required
               value={formData.category}
@@ -304,11 +305,40 @@ const EditBlog = () => {
             </select>
           </div>
         </div>
+
+        {/* Tags and Image URL (Flex on larger screens, Stacked on smaller screens) */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 space-y-1 text-sm">
+            <label htmlFor="tags" className="block font-medium text-gray-200">
+              Tags (comma-separated)
+            </label>
+            <input
+              type="text"
+              name="tags"
+              value={formData.tags}
+              onChange={handleChange}
+              placeholder="e.g., javascript, react, tech"
+              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+            />
+          </div>
+          <div className="flex-1 space-y-1 text-sm">
+            <label htmlFor="image" className="block font-medium text-gray-200">
+              Image URL
+            </label>
+            <input
+              type="url"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="Enter image URL"
+              className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
+            />
+          </div>
+        </div>
+
+        {/* Content */}
         <div className="space-y-1 text-sm">
-          <label
-            htmlFor="content"
-            className="block font-medium text-gray-600 dark:text-gray-200"
-          >
+          <label htmlFor="content" className="block font-medium text-gray-200">
             Content
           </label>
           <textarea
@@ -320,38 +350,8 @@ const EditBlog = () => {
             className="w-full h-40 px-4 py-2 rounded-lg border bg-[#27272a] text-white"
           />
         </div>
-        <div className="space-y-1 text-sm">
-          <label
-            htmlFor="tags"
-            className="block font-medium text-gray-600 dark:text-gray-200"
-          >
-            Tags (comma-separated)
-          </label>
-          <input
-            type="text"
-            name="tags"
-            value={formData.tags}
-            onChange={handleChange}
-            placeholder="e.g., javascript, react, tech"
-            className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
-          />
-        </div>
-        <div className="space-y-1 text-sm">
-          <label
-            htmlFor="image"
-            className="block font-medium text-gray-600 dark:text-gray-200"
-          >
-            Image URL
-          </label>
-          <input
-            type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            placeholder="Enter image URL"
-            className="w-full px-4 py-2 rounded-lg border bg-[#27272a] text-white"
-          />
-        </div>
+
+        {/* Image Preview */}
         <div className="space-y-1">
           {formData.image && (
             <img
@@ -361,6 +361,8 @@ const EditBlog = () => {
             />
           )}
         </div>
+
+        {/* Submit Button */}
         <button
           type="submit"
           className="block w-full py-[10px] text-center text-white rounded-lg bg-[#2f342a]"
