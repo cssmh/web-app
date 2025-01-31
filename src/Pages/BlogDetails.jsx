@@ -7,6 +7,7 @@ import { addComment, getBlog, updateComment } from "../Api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
+import { FaBookmark, FaComment } from "react-icons/fa";
 
 const BlogDetails = () => {
   const { user } = useAuth();
@@ -86,14 +87,66 @@ const BlogDetails = () => {
   return (
     <div className="max-w-4xl mx-auto p-4 bg-[#18181b] shadow-lg rounded-lg mb-7">
       <BlogHelmet title={blogData?.title} />
+      <div className="mb-6">
+        <span className="text-sm text-blue-400 font-semibold">
+          {blogData?.category}
+        </span>
+        <h1 className="text-3xl font-bold text-white mt-2">
+          {blogData?.title}
+        </h1>
+        <div className="flex flex-wrap gap-2 mt-2">
+          {blogData?.tags?.split(",").map((tag, index) => (
+            <span
+              key={index}
+              className="text-sm text-gray-400 border border-gray-600 px-2 py-1 rounded-full"
+            >
+              #{tag.trim()}
+            </span>
+          ))}
+        </div>
+      </div>
+      {/* Writer Section */}
+      <div className="flex items-center gap-4 mb-6">
+        <img
+          src={blogData?.writerImage}
+          alt={blogData?.writerName}
+          className="w-10 h-10 rounded-full object-cover"
+        />
+        <div>
+          <p className="text-sm font-semibold text-white">
+            {blogData?.writerName}
+          </p>
+          <p className="text-xs text-gray-400">
+            Posted on {Moment(blogData?.timestamp).format("DD MMM YYYY")}
+          </p>
+        </div>
+      </div>
+      {/* Middle Section */}
+      <div className="flex justify-between items-center mb-6">
+        {/* Comment Count */}
+        <div className="flex items-center gap-2 text-gray-400">
+          <FaComment className="text-sm" />
+          <span className="text-sm">{blogData?.comments?.length} Comments</span>
+        </div>
+        {/* Bookmark Button */}
+        <button className="text-gray-400 hover:text-blue-400">
+          <FaBookmark className="text-xl" />
+        </button>
+      </div>
+
+      {/* Blog Image */}
       <img
         src={blogData?.image}
         alt={blogData?.title}
-        className="w-full h-72 object-cover rounded-md mb-4"
+        className="w-full h-72 object-cover rounded-md mb-6"
       />
-      <h1 className="text-3xl font-bold mb-4 text-white">{blogData?.title}</h1>
-      <p className="text-gray-400 mb-6">{blogData?.content}</p>
 
+      {/* Blog Content */}
+      <p className="text-gray-400 whitespace-pre-line mb-6">
+        {blogData?.content}
+      </p>
+
+      {/* Comments Section */}
       <h3 className="text-xl font-semibold text-white mb-4">Comments</h3>
       {user && (
         <>
