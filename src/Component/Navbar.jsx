@@ -1,167 +1,119 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from "../assets/fav.png";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
+import { LuNotepadText } from "react-icons/lu";
+import { toast } from "sonner";
 
 const Navbar = () => {
-  const { user } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useAuth();
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const location = useLocation();
+  console.log(user);
 
   const getLinkClasses = (path) => {
     return location.pathname === path
-      ? "text-blue-400"
-      : "hover:text-blue-400 text-gray-300";
+      ? "text-white"
+      : "hover:border hover:border-blue-500 rounded-lg";
   };
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logOut();
+    toast.success("Logged out successfully");
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md md:px-12 border-b border-gray-700">
-      <div className="navbar min-h-[59px] py-0">
-        <div className="navbar-start">
-          <button onClick={toggleMenu} className="lg:hidden p-2 text-gray-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md md:px-6 border-b border-gray-700">
+      <div className="navbar min-h-[59px] py-0 flex justify-between items-center">
+        {/* Logo & Title */}
+        <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} className="w-8 md:w-10" alt="Logo" />
-            <h1 className="text-lg md:text-2xl">Blogger</h1>
+            <h1 className="text-lg md:text-2xl">BlogApp</h1>
           </Link>
-          <input
-            classNames={{
-              base: "sm:max-w-full md:min-w-[400px] lg:min-w-[500px] h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="search blog..."
-            size="sm"
-            // startContent={<SearchIcon size={18} />}
-            type="search"
-            // onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <div className="relative ml-4">
+            <input
+              className="h-10 pl-10 pr-4  rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500 sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
+              placeholder="Search blog..."
+              type="search"
+            />
+            <FaSearch className="absolute left-3 top-3 text-gray-400" />
+          </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <Link
-              to="/"
-              className={`flex items-center p-[7px] ${getLinkClasses("/")}`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/all-blogs"
-              className={`flex items-center p-[7px] ${getLinkClasses(
-                "/all-blogs"
-              )}`}
-            >
-              All Blogs
-            </Link>
-            <Link
-              to="/write-blog"
-              className={`flex items-center p-[7px] ${getLinkClasses(
-                "/write-blog"
-              )}`}
-            >
-              Write Blog
-            </Link>
-            <Link
-              to="/my-blogs"
-              className={`flex items-center p-[7px] ${getLinkClasses(
-                "/my-blogs"
-              )}`}
-            >
-              My Blogs
-            </Link>
-            {user && (
-              <Link
-                to="/my-profile"
-                className={`flex items-center p-[7px] ${getLinkClasses(
-                  "/my-profile"
-                )}`}
-              >
-                Profile
-              </Link>
-            )}
-          </ul>
-        </div>
-        <div className="navbar-end">
+        {/* Right Section: Write & User Menu */}
+        <div className="flex items-center gap-4">
           <Link to="/write-blog">
-            <button className="py-1 md:py-2 border border-gray-500 text-gray-200 hover:bg-gray-700 hover:border-gray-400 px-2 md:px-4 rounded-md transition-all duration-200">
-              Get Started
+            <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
+              <IoCreateOutline className="text-xl" />
+              Write
             </button>
           </Link>
+          <Link to="/guide">
+            <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
+              <LuNotepadText className="text-xl" />
+              Guide
+            </button>
+          </Link>
+          <div>
+            {user && (
+              <div className="relative">
+                <button
+                  onClick={toggleUserMenu}
+                  className="text-gray-200 hover:text-blue-400 transition-all"
+                >
+                  {user ? (
+                    <img src={user?.photoURL} alt="user" />
+                  ) : (
+                    <FaUserCircle className="text-4xl pt-2" />
+                  )}
+                </button>
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-4 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
+                    <div className="text-white">
+                      <h1 className="p-2 font-semibold">
+                        Sined in as <br /> {user?.displayName}
+                      </h1>
+                      <Link
+                        to="/my-profile"
+                        className={`block px-3 py-2 ${getLinkClasses(
+                          "/my-profile"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Profile
+                      </Link>
+                      <Link
+                        to="/my-blogs"
+                        className={`block px-3 py-2 ${getLinkClasses(
+                          "/my-blogs"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Blogs
+                      </Link>
+                      <Link
+                        to="/my-bookmarks"
+                        className={`block px-3 py-2 ${getLinkClasses(
+                          "/my-bookmarks"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Bookmarks
+                      </Link>
+                      <button className="px-3 py-2" onClick={handleLogout}>
+                        Log Out
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div
-        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
-          isOpen ? "block" : "hidden"
-        }`}
-        onClick={toggleMenu}
-      ></div>
-
-      <div
-        className={`lg:hidden fixed top-0 left-0 w-64 h-full bg-gray-900 text-gray-200 z-50 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <ul className="p-4 space-y-4">
-          <Link
-            to="/"
-            className={`flex items-center p-1 ${getLinkClasses("/")}`}
-            onClick={toggleMenu}
-          >
-            Home
-          </Link>
-          <Link
-            to="/all-blogs"
-            className={`flex items-center p-1 ${getLinkClasses("/all-blogs")}`}
-            onClick={toggleMenu}
-          >
-            All Blogs
-          </Link>
-          <Link
-            to="/write-blog"
-            className={`flex items-center p-1 ${getLinkClasses("/write-blog")}`}
-            onClick={toggleMenu}
-          >
-            Write a Blog
-          </Link>
-          <Link
-            to="/my-blogs"
-            className={`flex items-center p-1 ${getLinkClasses("/my-blogs")}`}
-            onClick={toggleMenu}
-          >
-            My Blogs
-          </Link>
-          {user && (
-            <Link
-              to="/my-profile"
-              className={`flex items-center p-1 ${getLinkClasses(
-                "/my-profile"
-              )}`}
-              onClick={toggleMenu}
-            >
-              Profile
-            </Link>
-          )}
-        </ul>
       </div>
     </header>
   );

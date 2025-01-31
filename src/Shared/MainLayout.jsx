@@ -15,7 +15,7 @@ const MainLayout = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) return <Spinner size="100" />;
+  // if (isLoading) return <Spinner size="100" />;
 
   return (
     <>
