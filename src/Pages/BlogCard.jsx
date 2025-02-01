@@ -1,36 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaComment, FaShare, FaFlag } from "react-icons/fa";
-import { toast } from "react-toastify";
-import { postBookmark } from "../api/bookmark";
-import useAuth from "../hooks/useAuth";
-import useMyBookmarks from "../hooks/useMyBookmarks";
+import useAddBookmark from "../hooks/useAddBookmark";
 
 const BlogCard = ({ blog }) => {
-  const { user } = useAuth();
-  const { ids, refetch } = useMyBookmarks();
-
-  const handleAddBookmark = async (id, name, blogImage) => {
-    if (!user) return toast.warning("Please login first");
-    if (ids.includes(id)) return toast.error("Already added");
-
-    try {
-      const markInfo = {
-        blogId: id,
-        blogName: name,
-        blogImage: blogImage,
-        email: user?.email,
-        timestamp: new Date().toISOString(),
-      };
-      const res = await postBookmark(markInfo);
-      if (res && res.insertedId) {
-        refetch();
-        toast.success("Added to Bookmark");
-      }
-    } catch (error) {
-      console.error("Error adding bookmark:", error);
-      toast.error("Failed to add bookmark");
-    }
-  };
+  const { handleAddBookmark } = useAddBookmark();
 
   return (
     <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200">

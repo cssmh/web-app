@@ -8,10 +8,12 @@ import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
 import { FaBookmark, FaComment } from "react-icons/fa";
+import useAddBookmark from "../hooks/useAddBookmark";
 
 const BlogDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  const { handleAddBookmark } = useAddBookmark();
 
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -125,7 +127,12 @@ const BlogDetails = () => {
           <FaComment className="text-sm" />
           <span className="text-sm">{blogData?.comments?.length} Comments</span>
         </div>
-        <button className="text-gray-400 hover:text-blue-400">
+        <button
+          onClick={() =>
+            handleAddBookmark(blogData._id, blogData?.title, blogData?.image)
+          }
+          className="text-gray-400 hover:text-blue-400"
+        >
           <FaBookmark className="text-xl" />
         </button>
       </div>
