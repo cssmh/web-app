@@ -10,12 +10,12 @@ const MainLayout = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1300);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // if (isLoading) return <Spinner size="100" />;
+  if (isLoading) return <Spinner size="100" />;
 
   return (
     <>

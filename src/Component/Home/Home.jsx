@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { RightSidebar } from "./RightSidebar/RightSidebar";
 import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
-import { homeBlog } from "../api/Blog";
+import { homeBlog } from "../../api/Blog";
 import { useQuery } from "@tanstack/react-query";
-import BlogCard from "./BlogCard";
-import BlogCardSkeleton from "../Pages/BlogCardSkeleton";
-import useCate from "../hooks/useCate";
+import BlogCard from "../BlogCard";
+import BlogCardSkeleton from "../../Pages/BlogCardSkeleton";
+import useCate from "../../hooks/useCate";
 
 const Home = () => {
   const [sortOption, setSortOption] = useState("latest");
