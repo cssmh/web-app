@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAllBlogs } from "../Api/Blog";
+import { getAllBlogs } from "../api/Blog";
 import BlogCard from "./BlogCard";
 import BlogCardSkeleton from "./BlogCardSkeleton";
 import BlogHelmet from "../Component/BlogHelmet";

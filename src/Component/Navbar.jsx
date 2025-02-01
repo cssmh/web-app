@@ -23,7 +23,7 @@ const categories = [
 ];
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { loading, user, logOut } = useAuth();
   const { setCategory } = useCate();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -113,84 +113,88 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          {user ? (
-            <Link to="/write-blog">
+        {loading ? (
+          "Loading..."
+        ) : (
+          <div className="flex items-center gap-4">
+            {user ? (
+              <Link to="/write-blog">
+                <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
+                  <IoCreateOutline className="text-xl" />
+                  Write
+                </button>
+              </Link>
+            ) : (
+              <Link to="/write-blog">
+                <button className="py-2 text-gray-200 bg-[#2f342a] hover:border-gray-400 px-2 md:px-4 rounded-lg transition-all duration-200">
+                  Get Started
+                </button>
+              </Link>
+            )}
+            <Link to="/guide" className="hidden lg:block">
               <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
-                <IoCreateOutline className="text-xl" />
-                Write
+                <LuNotepadText className="text-xl" />
+                Guide
               </button>
             </Link>
-          ) : (
-            <Link to="/write-blog">
-              <button className="py-2 text-gray-200 bg-[#2f342a] hover:border-gray-400 px-2 md:px-4 rounded-lg transition-all duration-200">
-                Get Started
-              </button>
-            </Link>
-          )}
-          <Link to="/guide" className="hidden lg:block">
-            <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
-              <LuNotepadText className="text-xl" />
-              Guide
-            </button>
-          </Link>
-          {user && (
-            <div className="relative pt-2">
-              <button
-                onClick={toggleUserMenu}
-                className="text-gray-200 hover:text-blue-400 transition-all"
-              >
-                <img
-                  src={user?.photoURL}
-                  alt="user"
-                  className="w-9 h-9 rounded-full"
-                />
-              </button>
-              {isUserMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
-                  <div className="text-white">
-                    <h1 className="p-3 font-semibold">
-                      Signed in as <br /> {user?.displayName}
-                    </h1>
-                    <Link
-                      to="/my-profile"
-                      className={`block px-3 py-1 ${getLinkClasses(
-                        "/my-profile"
-                      )}`}
-                      onClick={toggleUserMenu}
-                    >
-                      My Profile
-                    </Link>
-                    <Link
-                      to="/my-blogs"
-                      className={`block px-3 py-1 ${getLinkClasses(
-                        "/my-blogs"
-                      )}`}
-                      onClick={toggleUserMenu}
-                    >
-                      My Blogs
-                    </Link>
-                    <Link
-                      to="/my-bookmarks"
-                      className={`block px-3 py-1 ${getLinkClasses(
-                        "/my-bookmarks"
-                      )}`}
-                      onClick={toggleUserMenu}
-                    >
-                      My Bookmarks
-                    </Link>
-                    <button
-                      className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
-                      onClick={handleLogout}
-                    >
-                      Log Out
-                    </button>
+            {user && (
+              <div className="relative pt-2">
+                <button
+                  onClick={toggleUserMenu}
+                  className="text-gray-200 hover:text-blue-400 transition-all"
+                >
+                  <img
+                    src={user?.photoURL}
+                    alt="user"
+                    className="w-9 h-9 rounded-full"
+                  />
+                </button>
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
+                    <div className="text-white">
+                      <h1 className="p-3 font-semibold">
+                        Signed in as <br /> {user?.displayName}
+                      </h1>
+                      <Link
+                        to="/my-profile"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-profile"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Profile
+                      </Link>
+                      <Link
+                        to="/my-blogs"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-blogs"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Blogs
+                      </Link>
+                      <Link
+                        to="/my-bookmarks"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-bookmarks"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Bookmarks
+                      </Link>
+                      <button
+                        className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
+                        onClick={handleLogout}
+                      >
+                        Log Out
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div

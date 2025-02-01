@@ -1,6 +1,6 @@
 // import axios from "axios";
 // import { useState } from "react";
-// import { editMyBlog } from "../Api/Blog";
+// import { editMyBlog } from "../api/Blog";
 // import useAuth from "../hooks/useAuth";
 // import { useLoaderData, useNavigate } from "react-router-dom";
 // import BlogHelmet from "../Component/BlogHelmet";
@@ -214,7 +214,7 @@
 // export default EditBlog;
 
 import { useState } from "react";
-import { editMyBlog } from "../Api/Blog";
+import { editMyBlog } from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";

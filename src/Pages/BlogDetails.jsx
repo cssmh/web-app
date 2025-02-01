@@ -3,7 +3,7 @@ import Moment from "moment";
 import { toast } from "sonner";
 import BlogHelmet from "../Component/BlogHelmet";
 import { useState } from "react";
-import { addComment, getBlog, updateComment } from "../Api/Blog";
+import { addComment, getBlog, updateComment } from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";

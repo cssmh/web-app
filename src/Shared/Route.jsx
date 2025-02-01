@@ -9,10 +9,11 @@ import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../Component/MyProfile";
 import MyBlogs from "../Pages/MyBlogs";
 import BlogDetails from "../Pages/BlogDetails";
-import { getBlog } from "../Api/Blog";
+import { getBlog } from "../api/Blog";
 import EditBlog from "../Pages/EditBlog";
 import AllBlogs from "../Pages/AllBlogs";
 import Guide from "../Component/Guide";
+import Bookmarks from "../Pages/Bookmarks";
 
 const Route = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const Route = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-bookmarks",
+        element: (
+          <PrivateRoute>
+            <Bookmarks />
           </PrivateRoute>
         ),
       },
