@@ -7,7 +7,7 @@
 ## Live Demo
 
 - [Blog Application on Firebase](https://blogapp-eaa3d.web.app)
-- [Blog Application on vercel](https://blog-app-dark.vercel.app)
+- [Blog Application on vercel](https://blog-appweb.vercel.app)
 
 ## Table of Contents
 

@@ -11,7 +11,6 @@ import MyBlogs from "../Pages/MyBlogs";
 import BlogDetails from "../Pages/BlogDetails";
 import { getBlog } from "../api/Blog";
 import EditBlog from "../Pages/EditBlog";
-import AllBlogs from "../Pages/AllBlogs";
 import Guide from "../Component/Guide";
 import Bookmarks from "../Pages/Bookmarks";
 
@@ -24,7 +23,6 @@ const Route = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
-      { path: "/all-blogs", element: <AllBlogs /> },
       {
         path: "/write-blog",
         element: (

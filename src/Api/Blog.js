@@ -16,11 +16,6 @@ export const homeBlog = async (searchTerm, category, sortOption = "latest") => {
   return data;
 };
 
-export const getAllBlogs = async (page, limit) => {
-  const { data } = await axiosSecure(`/all-blogs?page=${page}&limit=${limit}`);
-  return data;
-};
-
 export const getBlog = async (id) => {
   const { data } = await axiosSecure(`/blog/${id}`);
   return data;

@@ -26,7 +26,6 @@ const MyBlogs = () => {
     enabled: !loading && !!user?.email,
   });
 
-  // Handle deletion of a blog
   const handleDelete = async (id) => {
     const res = await deleteMyBlog(id);
     if (res.deletedCount > 0) {
@@ -35,7 +34,6 @@ const MyBlogs = () => {
     }
   };
 
-  // Toggle dropdown menu
   const toggleDropdown = (id) => {
     setDropdownOpen(dropdownOpen === id ? null : id);
   };
@@ -43,11 +41,6 @@ const MyBlogs = () => {
   return (
     <div className="max-w-4xl mx-auto mt-2 md:mt-4 mb-10 md:px-4">
       <BlogHelmet title="My Blogs" />
-      {data?.length > 0 && (
-        <h1 className="text-lg md:text-2xl font-semibold text-center mb-2 md:mb-0">
-          My added Blogs
-        </h1>
-      )}
       {isLoading ? (
         <div className="grid grid-cols-1 gap-2 md:gap-5">
           {[...Array(3)].map((_, index) => (
@@ -81,19 +74,19 @@ const MyBlogs = () => {
                     ...
                   </button>
                   {dropdownOpen === blog._id && (
-                    <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-10">
-                      <button
-                        onClick={() => handleDelete(blog._id)}
-                        className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-600"
-                      >
-                        <AiFillDelete className="inline-block mr-2" /> Delete
-                      </button>
+                    <div className="absolute right-0 mt-2 w-40 bg-[#18181b] rounded-lg shadow-lg z-10">
                       <Link
                         to={`/edit-blog/${blog._id}`}
-                        className="block w-full text-left px-4 py-2 text-sm text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-600"
+                        className="block w-full text-left hover:bg-green-600 hover:rounded-lg px-4 py-2 text-sm text-white"
                       >
                         <AiFillEdit className="inline-block mr-2" /> Edit
                       </Link>
+                      <button
+                        onClick={() => handleDelete(blog._id)}
+                        className="block w-full text-left hover:bg-red-600 hover:rounded-lg px-4 py-2 text-sm text-white"
+                      >
+                        <AiFillDelete className="inline-block mr-2" /> Delete
+                      </button>
                     </div>
                   )}
                 </div>
