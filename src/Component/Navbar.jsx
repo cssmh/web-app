@@ -30,6 +30,7 @@ const Navbar = () => {
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
+  const home = location.pathname === "/";
 
   const getLinkClasses = (path) => {
     return location.pathname === path
@@ -203,7 +204,7 @@ const Navbar = () => {
           ></div>
         )}
         <div
-          className={`lg:hidden fixed top-0 left-0 w-72 h-full bg-[#111111] text-gray-200 z-50 transform transition-transform duration-300 ${
+          className={`lg:hidden fixed top-0 left-0 w-64 h-full bg-[#111111] text-gray-200 z-50 transform transition-transform duration-300 ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -259,7 +260,7 @@ const Navbar = () => {
                   <li key={index}>
                     <button
                       onClick={() => setCategory(category.value)}
-                      className={`w-full text-center text-sm p-2 rounded-md ${
+                      className={`w-full text-left text-sm p-2 rounded-md ${
                         category.value === category
                           ? "bg-blue-500 text-white"
                           : "text-gray-300 hover:bg-gray-700"

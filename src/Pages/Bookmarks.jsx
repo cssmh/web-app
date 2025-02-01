@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteBookmark } from "../api/bookmark";
 import Spinner from "../Component/Spinner/Spinner";
+import { FaBookmark } from "react-icons/fa";
 
 const Bookmarks = () => {
   const { bookmarks, isLoading, refetch } = useMyBookmarks();
-
   const handleDeleteBookmark = async (bookmarkId) => {
     try {
       const res = await deleteBookmark(bookmarkId);
       if (res.deletedCount > 0) {
         toast.success("Bookmark removed successfully");
-        refetch(); // Refetch the bookmarks after deletion
+        refetch();
       } else {
         toast.error("Failed to remove bookmark");
       }
@@ -29,7 +29,7 @@ const Bookmarks = () => {
     return (
       <div className="flex flex-col justify-center items-center h-[72vh]">
         <p className="text-lg text-gray-300 mb-2">
-          You haven&apos;t added any bookmark yet...
+          You haven&apos;t added any bookmarks yet...
         </p>
         <Link
           to="/"
@@ -42,27 +42,33 @@ const Bookmarks = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto my-5">
+    <div className="max-w-3xl md:mx-auto my-5 mx-2">
       {bookmarks?.map((bookmark) => (
         <div
           key={bookmark._id}
-          className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200 mb-4"
+          className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-gray-200 mb-5 flex items-start gap-4"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col justify-between flex-grow">
             <Link to={`/blog/${bookmark.blogId}`} className="hover:underline">
-              <h3 className="text-xl font-semibold">{bookmark.blogName}</h3>
+              <h3 className="text-base md:text-2xl font-semibold text-gray-200">
+                {bookmark.blogName}
+              </h3>
             </Link>
-            <img src={bookmark?.blogImage} className="w-28 h-16" alt="" />
+            <p className="text-sm text-gray-400 mt-2">
+              Added on {moment(bookmark?.timestamp).format("DD/MMM/YYYY")}
+            </p>
             <button
               onClick={() => handleDeleteBookmark(bookmark._id)}
-              className="text-red-500 hover:text-red-700"
+              className="mt-3 text-red-500 hover:text-red-700 flex items-center gap-1 text-sm"
             >
-              Delete
+              Remove <FaBookmark className="text-xl" />
             </button>
           </div>
-          <p className="text-xs text-gray-400">
-            {moment(bookmark?.timestamp).format("DD/MMM/YYYY")}
-          </p>
+          <img
+            src={bookmark?.blogImage}
+            className="h-20 object-cover rounded-md shadow-sm"
+            alt={bookmark.blogName}
+          />
         </div>
       ))}
     </div>
