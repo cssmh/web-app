@@ -17,7 +17,7 @@ const Home = () => {
     isLoading,
   } = useQuery({
     queryKey: ["homeBlogs", category, sortOption],
-    queryFn: async () => await homeBlog("", category, sortOption),
+    queryFn: async () => await homeBlog(category, sortOption),
   });
 
   // Handle sort option change

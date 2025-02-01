@@ -1,7 +1,7 @@
 import axiosSecure from ".";
 
-export const postBlog = async (BlogInfo) => {
-  const { data } = await axiosSecure.post("/blog", BlogInfo);
+export const postBlog = async (blogInfo) => {
+  const { data } = await axiosSecure.post("/blog", blogInfo);
   return data;
 };
 
@@ -10,8 +10,8 @@ export const navBlog = async (searchTerm) => {
   return data;
 };
 
-export const homeBlog = async (searchTerm, category, sortOption = "latest") => {
-  const api = `/home-blog?search=${searchTerm}&category=${category}&sort=${sortOption}`;
+export const homeBlog = async (category, sortOption = "latest") => {
+  const api = `/home-blog?category=${category}&sort=${sortOption}`;
   const { data } = await axiosSecure(api);
   return data;
 };

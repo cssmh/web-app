@@ -1,10 +1,39 @@
-import { FaComment, FaShare, FaFlag } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FaComment, FaShare, FaFlag } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { postBookmark } from "../api/bookmark";
+import useAuth from "../hooks/useAuth";
+import useMyBookmarks from "../hooks/useMyBookmarks";
 
 const BlogCard = ({ blog }) => {
+  const { user } = useAuth();
+  const { ids, refetch } = useMyBookmarks();
+
+  const handleAddBookmark = async (id, name, blogImage) => {
+    if (!user) return toast.warning("Please login first");
+    if (ids.includes(id)) return toast.error("Already added");
+
+    try {
+      const markInfo = {
+        blogId: id,
+        blogName: name,
+        blogImage: blogImage,
+        email: user?.email,
+        timestamp: new Date().toISOString(),
+      };
+      const res = await postBookmark(markInfo);
+      if (res && res.insertedId) {
+        refetch();
+        toast.success("Added to Bookmark");
+      }
+    } catch (error) {
+      console.error("Error adding bookmark:", error);
+      toast.error("Failed to add bookmark");
+    }
+  };
+
   return (
     <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200">
-      {/* #18181b */}
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-2">
           <img
@@ -20,7 +49,12 @@ const BlogCard = ({ blog }) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="text-gray-400 hover:text-blue-400">
+          <button
+            onClick={() =>
+              handleAddBookmark(blog._id, blog?.title, blog?.image)
+            }
+            className="text-gray-400 hover:text-blue-400"
+          >
             <FaFlag className="text-sm" />
           </button>
           <button className="text-gray-400 hover:text-blue-400">

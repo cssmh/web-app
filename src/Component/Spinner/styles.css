@@ -7,8 +7,8 @@
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 6px solid rgba(0, 0, 0, 0.1);
   border-top: 6px solid #007acc;
   border-radius: 50%;
@@ -23,7 +23,7 @@
 }
 
 .loading-wave {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   display: flex;
   gap: 2px;
   color: #3798da;
