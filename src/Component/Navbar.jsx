@@ -1,8 +1,8 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LuNotepadText } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { navBlog } from "../api/Blog";
@@ -159,46 +159,48 @@ const Navbar = () => {
                   />
                 </button>
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
-                    <div className="text-white">
-                      <h1 className="p-3 font-semibold">
-                        Signed in as <br /> {user?.displayName}
-                      </h1>
-                      <Link
-                        to="/my-profile"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-profile"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Profile
-                      </Link>
-                      <Link
-                        to="/my-blogs"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-blogs"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Blogs
-                      </Link>
-                      <Link
-                        to="/my-bookmarks"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-bookmarks"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Bookmarks
-                      </Link>
-                      <button
-                        className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
-                        onClick={handleLogout}
-                      >
-                        Log Out
-                      </button>
+                  <div
+                      className="absolute right-0 mt-1 w-44 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden"
+                    >
+                      <div className="text-white">
+                        <h1 className="p-3 font-semibold">
+                          Signed in as <br /> {user?.displayName}
+                        </h1>
+                        <Link
+                          to="/my-profile"
+                          className={`block px-3 py-1 ${getLinkClasses(
+                            "/my-profile"
+                          )}`}
+                          onClick={toggleUserMenu}
+                        >
+                          My Profile
+                        </Link>
+                        <Link
+                          to="/my-blogs"
+                          className={`block px-3 py-1 ${getLinkClasses(
+                            "/my-blogs"
+                          )}`}
+                          onClick={toggleUserMenu}
+                        >
+                          My Blogs
+                        </Link>
+                        <Link
+                          to="/my-bookmarks"
+                          className={`block px-3 py-1 ${getLinkClasses(
+                            "/my-bookmarks"
+                          )}`}
+                          onClick={toggleUserMenu}
+                        >
+                          My Bookmarks
+                        </Link>
+                        <button
+                          className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
+                          onClick={handleLogout}
+                        >
+                          Log Out
+                        </button>
+                      </div>
                     </div>
-                  </div>
                 )}
               </div>
             )}
