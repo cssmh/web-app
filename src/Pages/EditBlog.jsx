@@ -4,7 +4,7 @@
 // import useAuth from "../hooks/useAuth";
 // import { useLoaderData, useNavigate } from "react-router-dom";
 // import BlogHelmet from "../Component/BlogHelmet";
-// import { toast } from "sonner";
+// import { toast } from "react-toastify";
 // import { PiSpinnerGapLight } from "react-icons/pi";
 
 // const EditBlog = () => {
@@ -218,7 +218,7 @@ import { editMyBlog } from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { PiSpinnerGapLight } from "react-icons/pi";
 
 const EditBlog = () => {

@@ -1,4 +1,4 @@
-// import { toast } from "sonner";
+// import { toast } from "react-toastify";
 // import { useState } from "react";
 // import axios from "axios";
 // import useAuth from "../hooks/useAuth";
@@ -201,7 +201,7 @@
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import defaultUser from "../assets/user.png";
 import { PiSpinnerGapLight } from "react-icons/pi";
 import { postBlog } from "../api/Blog";

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Moment from "moment";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import BlogHelmet from "../Component/BlogHelmet";
 import { useState } from "react";
 import { addComment, getBlog, updateComment } from "../api/Blog";
@@ -15,7 +15,7 @@ const BlogDetails = () => {
 
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [editingComment, setEditingComment] = useState(null); 
+  const [editingComment, setEditingComment] = useState(null);
   const [updatedComment, setUpdatedComment] = useState("");
 
   const {
@@ -28,7 +28,7 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
-  
+
   const handleCommentChange = (e) => setComment(e.target.value);
 
   const handleCommentSubmit = async () => {
@@ -214,6 +214,5 @@ const BlogDetails = () => {
     </div>
   );
 };
-
 
 export default BlogDetails;

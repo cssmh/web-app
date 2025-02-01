@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { deleteMyBlog, getMyBlogs } from "../api/Blog";
 import useAuth from "../hooks/useAuth";

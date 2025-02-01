@@ -1,6 +1,6 @@
 import axios from "axios";
 import { clearCookie, userLogout } from "./auth";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_server_URL,

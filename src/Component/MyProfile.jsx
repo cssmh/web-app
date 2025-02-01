@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/tb";
 import BlogHelmet from "./BlogHelmet";
@@ -9,7 +9,6 @@ const MyProfile = () => {
   const [name, setName] = useState(user?.displayName || "");
   const [image, setImage] = useState(user?.photoURL || "");
   const [updating, setUpdating] = useState(false);
-
 
   const handleProfileUpdate = async (e) => {
     e.preventDefault();

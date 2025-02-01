@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";

@@ -4,7 +4,7 @@ import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { LuNotepadText } from "react-icons/lu";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { navBlog } from "../api/Blog";
 import useCate from "../hooks/useCate";
 

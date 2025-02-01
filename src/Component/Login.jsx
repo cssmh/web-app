@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
-import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
 import { PiSpinnerGapLight } from "react-icons/pi";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [view, setView] = useState(true);
