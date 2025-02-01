@@ -26,7 +26,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 md:px-4 py-4 lg:py-6">
+    <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-3 md:px-4 py-4 lg:py-6">
       <aside className="hidden md:block md:col-span-1 lg:col-span-3">
         <LeftSidebar setCategory={setCategory} />
       </aside>
@@ -60,7 +60,6 @@ const Home = () => {
             All
           </button>
         </div>
-        {/* Blog Cards */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-4">
             {[...Array(3)].map((_, index) => (

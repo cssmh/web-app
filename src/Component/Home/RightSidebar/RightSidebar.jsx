@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Clock from "react-clock";
-import "react-clock/dist/Clock.css";
 import "./clock.css";
+import "react-clock/dist/Clock.css";
 import { Link } from "react-router-dom";
+import Clock from "react-clock";
 
 export const RightSidebar = () => {
   const [clockValue, setClockValue] = useState(new Date());
@@ -11,10 +11,8 @@ export const RightSidebar = () => {
   const [quote, setQuote] = useState("");
 
   useEffect(() => {
-    // Clock update every second
     const interval = setInterval(() => setClockValue(new Date()), 1000);
 
-    // Fetch Dev News from Dev.to
     const fetchNews = async () => {
       try {
         const response = await axios.get(
