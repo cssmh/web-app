@@ -1,40 +1,57 @@
+import { FaComment, FaShare, FaFlag } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Moment from "moment";
 
 const BlogCard = ({ blog }) => {
   return (
-    <div className="group bg-gray-800 text-white rounded-lg shadow-xl p-3 flex flex-col transition-all duration-300 hover:bg-gray-700">
-      <img
-        src={blog.image}
-        alt={blog.title}
-        className="w-full md:h-48 2xl:h-56 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105"
-      />
-      <h3 className="text-xl font-semibold">{blog.title}</h3>
-      <p className="text-gray-300 mb-2">
-        {blog.content.substring(0, 100)}
-        {blog.content.length > 100 && "..."}
-      </p>
-      <span className="text-sm text-gray-400 mb-2">
-        {Moment(blog.timestamp).format("DD-MM-YYYY")}
-      </span>
-      <div className="flex justify-between items-center mt-auto">
-        <span className="text-sm text-gray-400">{blog.category}</span>
-        <Link to={`/blog/${blog._id}`} className="text-red-400 hover:underline">
-          Read More
-        </Link>
-      </div>
-      {blog.tags && (
-        <div className="mt-2">
-          <span className="text-sm text-gray-500">
-            Tags:{" "}
-            {blog.tags.split(",").map((tag) => (
-              <span key={tag} className="underline mr-1">
-                {tag.trim()},
-              </span>
-            ))}
-          </span>
+    <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md text-gray-200">
+      {/* #18181b */}
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center gap-2">
+          <img
+            src={blog?.writerImage}
+            alt={blog?.writerName}
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <div>
+            <p className="text-sm font-semibold">{blog?.writerName}</p>
+            <p className="text-xs text-gray-400">
+              {new Date(blog?.timestamp).toLocaleDateString()}
+            </p>
+          </div>
         </div>
-      )}
+        <div className="flex items-center gap-2">
+          <button className="text-gray-400 hover:text-blue-400">
+            <FaFlag className="text-sm" />
+          </button>
+          <button className="text-gray-400 hover:text-blue-400">
+            <FaShare className="text-sm" />
+          </button>
+        </div>
+      </div>
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <Link to={`/blog/${blog?._id}`}>
+            <h3 className="text-2xl font-semibold hover:underline mb-2">
+              {blog?.title}
+            </h3>
+          </Link>
+          <p className="text-sm text-gray-400 line-clamp-4">{blog?.content}</p>
+        </div>
+        <div className="w-28 h-20 flex-shrink-0">
+          <img
+            src={blog?.image}
+            alt={blog?.title}
+            className="w-full h-full rounded-lg object-cover"
+          />
+        </div>
+      </div>
+      <div className="flex justify-between items-center mt-4">
+        <div className="flex items-center gap-2 text-gray-400">
+          <FaComment className="text-sm" />
+          <span className="text-sm">{blog?.comments?.length}</span>
+        </div>
+        <p className="text-sm text-gray-400">1 min read</p>
+      </div>
     </div>
   );
 };

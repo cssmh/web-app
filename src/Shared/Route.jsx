@@ -72,7 +72,7 @@ const Route = createBrowserRouter([
             <EditBlog />
           </PrivateRoute>
         ),
-        loader: async ({ params }) => await getBlog(params.id),
+        loader: async ({ params }) => await getBlog(params?.id),
       },
     ],
   },
