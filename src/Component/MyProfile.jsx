@@ -54,11 +54,15 @@ const MyProfile = () => {
               value={name}
               required
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-700 text-gray-100"
+              className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-[#27272a] text-gray-400"
+              style={{ outline: "none" }}
             />
           </div>
-          <div className="flex-1 space-y-1 text-sm">
-            <label htmlFor="image" className="block font-medium text-gray-200">
+          <div className="space-y-1">
+            <label
+              htmlFor="image"
+              className="text-sm font-medium text-gray-400"
+            >
               Image URL
             </label>
             <input
@@ -67,7 +71,7 @@ const MyProfile = () => {
               value={image}
               onChange={(e) => setImage(e.target.value)}
               placeholder="Enter image URL"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-[#27272a] text-gray-400"
               style={{ outline: "none" }}
             />
           </div>

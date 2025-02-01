@@ -37,7 +37,7 @@ const BlogCard = ({ blog }) => {
           </Link>
           <p className="text-sm text-gray-400 line-clamp-4">{blog?.content}</p>
         </div>
-        <div className="w-24 h-24 flex-shrink-0">
+        <div className="w-28 h-20 flex-shrink-0">
           <img
             src={blog?.image}
             alt={blog?.title}

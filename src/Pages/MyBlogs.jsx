@@ -133,10 +133,16 @@ const MyBlogs = () => {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center items-center h-[72vh]">
-          <p className="text-lg text-red-600 dark:text-red-400">
-            No blogs found.
+        <div className="flex flex-col justify-center items-center h-[72vh]">
+          <p className="text-lg text-gray-300 mb-2">
+            You haven&apos;t posted any blogs yet...
           </p>
+          <Link
+            to="/write-blog"
+            className="text-center text-gray-300 bg-[#2f342a] px-3 py-2 rounded-lg"
+          >
+            Write now?
+          </Link>
         </div>
       )}
     </div>

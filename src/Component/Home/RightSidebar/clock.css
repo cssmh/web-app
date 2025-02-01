@@ -69,22 +69,31 @@
 .custom-clock .react-clock__hour-hand__body {
   background-color: #fff;
   width: 4px;
+  height: 50px;
+  top: 25%;
 }
 
 /* Minute hand */
 .custom-clock .react-clock__minute-hand__body {
   background-color: #ccc;
   width: 2px;
+  height: 70px;
+  top: 15%;
 }
 
 /* Second hand */
 .custom-clock .react-clock__second-hand__body {
   background-color: #a3be8c;
   width: 1px;
+  height: 80px;
+  top: 10%;
 }
 
 /* Center dot */
 .custom-clock .react-clock__hand__dot {
   background-color: #a3be8c;
   border: 2px solid #333;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }

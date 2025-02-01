@@ -24,7 +24,7 @@ createRoot(document.getElementById("root")).render(
     </QueryClientProvider>
     <ToastContainer
       position="bottom-left"
-      autoClose={3500}
+      autoClose={1500}
       hideProgressBar={true}
       closeOnClick={true}
       pauseOnHover={false}
