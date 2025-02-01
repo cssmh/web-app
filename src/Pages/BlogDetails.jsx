@@ -149,7 +149,7 @@ const BlogDetails = () => {
           />
           <button
             onClick={handleCommentSubmit}
-            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-all"
+            className="bg-[#3f3f46] text-white py-2 px-4 rounded-lg transition-all"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Submit Comment"}

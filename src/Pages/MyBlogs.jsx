@@ -60,7 +60,7 @@ const MyBlogs = () => {
                   <img
                     src={blog.writerImage}
                     alt={blog.writerName}
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-9 h-9 rounded-full object-cover"
                   />
                   <span className="ml-2 text-sm font-semibold dark:text-white">
                     {blog.writerName}
@@ -100,14 +100,14 @@ const MyBlogs = () => {
                     </h3>
                   </Link>
                   <p className="text-gray-600 mb-2 dark:text-gray-300">
-                    {blog.content.substring(0, 100)}
-                    {blog.content.length > 100 && "..."}
+                    {blog.content.substring(0, 180)}
+                    {blog.content.length > 180 && "..."}
                   </p>
                 </div>
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-36 h-24 object-cover rounded-lg"
+                  className="w-40 h-24 object-cover rounded-md"
                 />
               </div>
               {/* Bottom Section: Posted Date, Image, and Comment Count */}

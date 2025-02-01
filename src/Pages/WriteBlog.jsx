@@ -105,7 +105,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Enter blog title"
-//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -119,7 +119,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Write your blog content..."
-//             className="w-full h-40 px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full h-40 px-3 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -128,7 +128,7 @@
 //             Category
 //           </label>
 //           <select
-//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             name="category"
 //             required
 //             value={formData.category}
@@ -159,7 +159,7 @@
 //             value={formData.tags}
 //             onChange={handleChange}
 //             placeholder="e.g., javascript, react, tech"
-//             className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-gray-800 text-white"
 //             style={{ outline: "none" }}
 //           />
 //         </div>
@@ -172,7 +172,7 @@
 //             name="image"
 //             id="image"
 //             onChange={handleImageChange}
-//             className="w-full px-4 py-[10px] border border-gray-700 bg-gray-800 text-white rounded-lg"
+//             className="w-full px-3 py-[10px] border border-gray-700 bg-gray-800 text-white rounded-lg"
 //             accept="image/*"
 //             style={{ outline: "none" }}
 //           />
@@ -203,11 +203,12 @@ import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
 import { toast } from "react-toastify";
 import defaultUser from "../assets/user.png";
-import { PiSpinnerGapLight } from "react-icons/pi";
 import { postBlog } from "../api/Blog";
+import { CgSpinnerTwoAlt } from "react-icons/cg";
 
 const WriteBlog = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -226,29 +227,36 @@ const WriteBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.image) {
-      toast.info("Please provide an image URL");
-      return;
-    }
+    try {
+      setLoading(true);
+      if (!formData.image) {
+        toast.info("Please provide an image URL");
+        return;
+      }
 
-    const res = await postBlog({
-      ...formData,
-      email: user?.email,
-      timestamp: new Date().toISOString(),
-    });
-
-    if (res.insertedId) {
-      toast.success("Thank You!, Blog added");
-      setFormData({
-        title: "",
-        content: "",
-        category: "",
-        tags: "",
-        image: "",
-        writerName: user?.displayName || "Anonymous",
+      const res = await postBlog({
+        ...formData,
+        email: user?.email,
+        timestamp: new Date().toISOString(),
       });
-    } else {
-      toast.warning("Error!, Blog submission failed");
+
+      if (res.insertedId) {
+        toast.success("Thank You!, Blog added");
+        setFormData({
+          title: "",
+          content: "",
+          category: "",
+          tags: "",
+          image: "",
+          writerName: user?.displayName || "Anonymous",
+        });
+      } else {
+        toast.warning("Error!, Blog submission failed");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -271,7 +279,7 @@ const WriteBlog = () => {
               onChange={handleChange}
               required
               placeholder="Enter blog title"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -283,7 +291,7 @@ const WriteBlog = () => {
               Category
             </label>
             <select
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
               name="category"
               required
@@ -316,7 +324,7 @@ const WriteBlog = () => {
               value={formData.tags}
               onChange={handleChange}
               placeholder="e.g., javascript, react, tech"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -331,7 +339,7 @@ const WriteBlog = () => {
               onChange={handleChange}
               required
               placeholder="Enter image URL"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -346,7 +354,7 @@ const WriteBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-[10px] rounded-md border border-gray-700 bg-[#27272a] text-white"
+            className="w-full h-40 px-3 py-[10px] rounded-md border border-gray-700 bg-[#27272a] text-white"
             style={{ outline: "none" }}
           />
         </div>
@@ -357,8 +365,8 @@ const WriteBlog = () => {
         >
           {loading ? (
             <div className="flex justify-center gap-3">
-              <PiSpinnerGapLight className="animate-spin text-2xl" />
-              <p className="animate-pulse">Posting...</p>
+              <CgSpinnerTwoAlt className="animate-spin text-2xl" />
+              <p>Posting...</p>
             </div>
           ) : (
             "Post Blog"

@@ -104,7 +104,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Enter blog title"
-//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -120,7 +120,7 @@
 //             onChange={handleChange}
 //             required
 //             placeholder="Write your blog content..."
-//             className="w-full h-40 px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full h-40 px-3 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -131,7 +131,7 @@
 //             Category
 //           </label>
 //           <select
-//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //             name="category"
 //             required
 //             value={formData.category}
@@ -164,7 +164,7 @@
 //             value={formData.tags}
 //             onChange={handleChange}
 //             placeholder="e.g., javascript, react, tech"
-//             className="w-full px-4 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
+//             className="w-full px-3 py-[10px] rounded-lg border dark:bg-gray-700 dark:text-white"
 //           />
 //         </div>
 //         <div className="space-y-1 text-sm">
@@ -179,7 +179,7 @@
 //             name="image"
 //             id="image"
 //             onChange={handleImageChange}
-//             className="w-full px-4 py-[10px] border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white"
+//             className="w-full px-3 py-[10px] border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white"
 //             accept="image/*"
 //           />
 //         </div>
@@ -219,11 +219,12 @@ import useAuth from "../hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import BlogHelmet from "../Component/BlogHelmet";
 import { toast } from "react-toastify";
-import { PiSpinnerGapLight } from "react-icons/pi";
+import { CgSpinnerTwoAlt } from "react-icons/cg";
 
 const EditBlog = () => {
   const blogData = useLoaderData();
-  const { user, loading } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
   const navigateTo = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -242,16 +243,22 @@ const EditBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await editMyBlog(blogData._id, {
+        ...formData,
+      });
 
-    const res = await editMyBlog(blogData._id, {
-      ...formData,
-    });
-
-    if (res?.modifiedCount) {
-      navigateTo(-1);
-      toast.success("Good job!, Blog updated");
-    } else {
-      toast.error("Blog update failed.");
+      if (res?.modifiedCount) {
+        navigateTo(-1);
+        toast.success("Blog updated");
+      } else {
+        toast.error("Blog update failed.");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -271,7 +278,7 @@ const EditBlog = () => {
               onChange={handleChange}
               required
               placeholder="Enter blog title"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -283,7 +290,7 @@ const EditBlog = () => {
               Category
             </label>
             <select
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
               name="category"
               required
@@ -316,7 +323,7 @@ const EditBlog = () => {
               value={formData.tags}
               onChange={handleChange}
               placeholder="e.g., javascript, react, tech"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -330,7 +337,7 @@ const EditBlog = () => {
               value={formData.image}
               onChange={handleChange}
               placeholder="Enter image URL"
-              className="w-full px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+              className="w-full px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
               style={{ outline: "none" }}
             />
           </div>
@@ -345,7 +352,7 @@ const EditBlog = () => {
             onChange={handleChange}
             required
             placeholder="Write your blog content..."
-            className="w-full h-40 px-4 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
+            className="w-full h-40 px-3 py-[10px] rounded-lg border border-gray-700 bg-[#27272a] text-white"
             style={{ outline: "none" }}
           />
         </div>
@@ -364,9 +371,9 @@ const EditBlog = () => {
           disabled={loading}
         >
           {loading ? (
-            <div className="flex justify-center gap-3">
-              <PiSpinnerGapLight className="animate-spin text-2xl" />
-              <p className="animate-pulse">Updating...</p>
+            <div className="flex justify-center gap-2">
+              <CgSpinnerTwoAlt className="animate-spin text-2xl" />
+              <p>Updating...</p>
             </div>
           ) : (
             "Update Blog"
