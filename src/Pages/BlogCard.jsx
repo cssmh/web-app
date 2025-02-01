@@ -28,23 +28,23 @@ const BlogCard = ({ blog }) => {
             }
             className="text-gray-400 hover:text-blue-400"
           >
-            <FaFlag className="text-sm" />
+            <FaFlag className="text-base" />
           </button>
           <button className="text-gray-400 hover:text-blue-400">
-            <FaShare className="text-sm" />
+            <FaShare className="text-base" />
           </button>
         </div>
       </div>
       <div className="flex gap-4">
         <div className="flex-1">
           <Link to={`/blog/${blog?._id}`}>
-            <h3 className="text-2xl font-semibold hover:underline mb-2">
+            <h3 className="text-xl md:text-2xl font-semibold hover:underline mb-2">
               {blog?.title}
             </h3>
           </Link>
           <p className="text-sm text-gray-400 line-clamp-4">{blog?.content}</p>
         </div>
-        <div className="w-28 h-20 flex-shrink-0">
+        <div className="w-[135px] h-20 flex-shrink-0">
           <img
             src={blog?.image}
             alt={blog?.title}
