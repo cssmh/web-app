@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { TbFidgetSpinner } from "react-icons/tb";
 import BlogHelmet from "./BlogHelmet";
 import useAuth from "../hooks/useAuth";
+import { PiSpinnerGapLight } from "react-icons/pi";
 
 const MyProfile = () => {
   const { user, profileUpdate, loading, logOut } = useAuth();
@@ -31,7 +31,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center md:min-h-[68vh] text-white">
+    <div className="flex justify-center items-center md:min-h-[76vh] text-white">
       <div className="w-full max-w-lg border border-gray-600 p-4 md:p-6 rounded-lg shadow-lg">
         <BlogHelmet title="My Profile" />
         <div className="flex items-center justify-center gap-4 mb-6">
@@ -81,8 +81,9 @@ const MyProfile = () => {
               className="w-1/2 bg-[#2f342a] text-white py-[5px] rounded-lg font-semibold transition duration-300"
             >
               {updating || loading ? (
-                <div className="flex justify-center">
-                  <TbFidgetSpinner className="animate-spin text-[24px]" />
+                <div className="flex items-center gap-2 justify-center">
+                  <PiSpinnerGapLight className="animate-spin text-2xl" />{" "}
+                  <span className="text-base text-gray-300">Updating...</span>
                 </div>
               ) : (
                 "Update Profile"

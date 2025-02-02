@@ -86,7 +86,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[2px]">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[6px]">
       <div className="flex justify-between items-center">
         <div className="lg:hidden">
           <button
@@ -144,7 +144,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <Link to="/write-blog">
-                <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
+                <button className="flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200">
                   <IoCreateOutline className="text-xl" />
                   Write
                 </button>
@@ -157,13 +157,13 @@ const Navbar = () => {
               </Link>
             )}
             <Link to="/guide" className="hidden lg:block">
-              <button className="flex items-center gap-1 py-1 md:py-2 text-gray-200 rounded-md transition-all duration-200">
+              <button className="flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200">
                 <LuNotepadText className="text-xl" />
                 Guide
               </button>
             </Link>
             {user && (
-              <div className="relative pt-2" ref={userMenuRef}>
+              <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={toggleUserMenu}
                   className="text-gray-200 hover:text-blue-400 transition-all"
