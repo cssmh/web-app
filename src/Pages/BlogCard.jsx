@@ -12,7 +12,7 @@ const BlogCard = ({ blog }) => {
           <img
             src={blog?.writerImage}
             alt={blog?.writerName}
-            className="w-9 h-9 rounded-full object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div>
             <p className="text-sm font-semibold">{blog?.writerName}</p>

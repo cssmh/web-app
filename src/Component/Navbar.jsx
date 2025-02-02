@@ -87,7 +87,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[6px]">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center h-11">
         <div className="lg:hidden">
           <button
             onClick={toggleMobileMenu}
@@ -142,20 +142,17 @@ const Navbar = () => {
           "Loading..."
         ) : (
           <div className="flex items-center gap-4">
-            {user ? (
-              <Link to="/write-blog">
-                <button className="flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200">
-                  <IoCreateOutline className="text-xl" />
-                  Write
-                </button>
-              </Link>
-            ) : (
-              <Link to="/write-blog">
-                <button className="py-2 text-gray-200 bg-[#2f342a] hover:border-gray-400 px-2 md:px-4 rounded-lg transition-all duration-200">
-                  Get Started
-                </button>
-              </Link>
-            )}
+            <Link to="/write-blog">
+              <button
+                className={`${
+                  !user &&
+                  "py-2 text-gray-200 bg-[#2f342a] hover:border-gray-400 px-2 md:px-4 rounded-lg transition-all duration-200"
+                } flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200`}
+              >
+                <IoCreateOutline className="text-xl" />
+                {user ? "Write" : "Get Started"}
+              </button>
+            </Link>
             <Link to="/guide" className="hidden lg:block">
               <button className="flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200">
                 <LuNotepadText className="text-xl" />
@@ -171,7 +168,7 @@ const Navbar = () => {
                   <img
                     src={user?.photoURL}
                     alt="user"
-                    className="w-9 h-9 rounded-full"
+                    className="w-8 h-8 rounded-full mt-1"
                   />
                 </button>
                 {isUserMenuOpen && (
