@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
@@ -7,6 +7,7 @@ import { LuNotepadText } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { navBlog } from "../api/Blog";
 import useCate from "../hooks/useCate";
+import UserMenu from "./UserMenu";
 
 const categories = [
   { display: "Web Development", value: "Web-Dev" },
@@ -26,12 +27,10 @@ const Navbar = () => {
   const { loading, user, logOut } = useAuth();
   const { setCategory } = useCate();
   const navigate = useNavigate();
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
-  const userMenuRef = useRef(null);
 
   const handleCategoryClick = (categoryValue) => {
     if (location.pathname !== "/") {
@@ -45,10 +44,6 @@ const Navbar = () => {
     return location.pathname === path
       ? "text-white"
       : "hover:border hover:border-blue-500 rounded-lg";
-  };
-
-  const toggleUserMenu = () => {
-    setIsUserMenuOpen(!isUserMenuOpen);
   };
 
   const toggleMobileMenu = () => {
@@ -71,19 +66,6 @@ const Navbar = () => {
     const res = await navBlog(search);
     setSearchData(res);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-        setIsUserMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[6px]">
@@ -160,60 +142,11 @@ const Navbar = () => {
               </button>
             </Link>
             {user && (
-              <div className="relative" ref={userMenuRef}>
-                <button
-                  onClick={toggleUserMenu}
-                  className="text-gray-200 hover:text-blue-400 transition-all"
-                >
-                  <img
-                    src={user?.photoURL}
-                    alt="user"
-                    className="w-8 h-8 rounded-full mt-1"
-                  />
-                </button>
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-1 w-44 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
-                    <div className="text-white">
-                      <h1 className="p-3 font-semibold">
-                        Signed in as <br /> {user?.displayName}
-                      </h1>
-                      <Link
-                        to="/my-profile"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-profile"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Profile
-                      </Link>
-                      <Link
-                        to="/my-blogs"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-blogs"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Blogs
-                      </Link>
-                      <Link
-                        to="/my-bookmarks"
-                        className={`block px-3 py-1 ${getLinkClasses(
-                          "/my-bookmarks"
-                        )}`}
-                        onClick={toggleUserMenu}
-                      >
-                        My Bookmarks
-                      </Link>
-                      <button
-                        className="w-full pb-2 text-left px-3 py-1 hover:text-red-700 hover:bg-[#401423]"
-                        onClick={handleLogout}
-                      >
-                        Log Out
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+            <UserMenu
+              user={user}
+              handleLogout={handleLogout}
+              getLinkClasses={getLinkClasses}
+            />
             )}
           </div>
         )}
