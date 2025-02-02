@@ -28,7 +28,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 2. **Blog Post Management:**
 
    - CRUD operations for blog posts (Create, Read, Update, Delete).
-   - Dashboard for users to manage their own posts.
+   - Users can manage their own posts.
 
 3. **Responsive User Interface:**
 
