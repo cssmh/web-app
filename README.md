@@ -46,7 +46,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 6. **Optimizations:**
    - Performance enhancements through code optimization.
-   - **Efficient state management and caching** using React Query, enabling infinite scrolling and optimized data fetching.
+   - **Efficient state management and caching** using React Query and optimized data fetching.
 
 ## Packages Used
 
