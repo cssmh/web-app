@@ -52,7 +52,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logOut();
-    toast.success("Logged out successfully");
+    toast.success("Logout successfully");
   };
 
   const handleSearch = async (e) => {
