@@ -32,7 +32,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 3. **Responsive User Interface:**
 
-   - Mobile-friendly design with Tailwind CSS for styling.
+   - Mobile-friendly design with Tailwind CSS and Framer motion for styling.
    - Smooth navigation with React Router.
 
 4. **Commenting System:**
