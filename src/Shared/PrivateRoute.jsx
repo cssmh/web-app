@@ -5,7 +5,6 @@ import Spinner from "../Component/Spinner/Spinner";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-
   if (loading) return <Spinner size="88" />
   if (user?.email) return children;
 

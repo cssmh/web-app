@@ -202,7 +202,7 @@ import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import BlogHelmet from "../Component/BlogHelmet";
 import { toast } from "react-toastify";
-import defaultUser from "../assets/user.png";
+import defaultUser from "/user.png";
 import { postBlog } from "../api/Blog";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 

@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import { postBookmark } from "../api/bookmark";
 import useAuth from "./useAuth";
-import useMyBookmarks from "./useMyBookmarks";
+import useBookmarks from "./useBookmarks";
 
 const useAddBookmark = () => {
   const { user } = useAuth();
-  const { ids, refetch } = useMyBookmarks();
+  const { ids, refetch } = useBookmarks();
 
   const handleAddBookmark = async (id, name, blogImage) => {
     if (!user) return toast.warning("Please login first");

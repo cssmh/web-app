@@ -2,7 +2,7 @@ import useAuth from "./useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { getMyBookmarks } from "../api/bookmark";
 
-const useMyBookmarks = () => {
+const useBookmarks = () => {
   const { loading, user } = useAuth();
   const {
     data = {},
@@ -20,4 +20,4 @@ const useMyBookmarks = () => {
   return { bookmarks, ids, isLoading, refetch };
 };
 
-export default useMyBookmarks;
+export default useBookmarks;

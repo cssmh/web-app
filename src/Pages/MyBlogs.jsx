@@ -94,7 +94,11 @@ const MyBlogs = () => {
               {/* Blog Title and Description */}
               <div className="flex justify-between">
                 <div>
-                  <Link to={`/blog/${blog?._id}`}>
+                  <Link
+                    to={`/blog/${blog?.title
+                      .toLowerCase()
+                      .replaceAll(/\s+/g, "_")}/${blog?._id}`}
+                  >
                     <h3 className="text-xl font-semibold hover:underline text-white mb-2">
                       {blog.title}
                     </h3>
@@ -113,7 +117,7 @@ const MyBlogs = () => {
               {/* Bottom Section: Posted Date, Image, and Comment Count */}
               <div className="flex justify-between items-center mt-4">
                 <span className="text-sm text-gray-500 dark:text-gray-400">
-                  Posted on: {Moment(blog.timestamp).format("DD-MM-YYYY")}
+                  Posted on: {Moment(blog.timestamp).format("DD/MMM/YYYY")}
                 </span>
                 <div className="flex items-center">
                   <div className="flex items-center gap-2 text-gray-400">

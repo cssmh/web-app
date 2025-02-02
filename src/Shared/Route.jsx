@@ -32,7 +32,7 @@ const Route = createBrowserRouter([
         ),
       },
       {
-        path: "/blog/:id",
+        path: "/blog/:blog_name/:id",
         element: <BlogDetails />,
       },
       {

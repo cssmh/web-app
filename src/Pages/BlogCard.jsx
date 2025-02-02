@@ -37,7 +37,11 @@ const BlogCard = ({ blog }) => {
       </div>
       <div className="flex gap-4">
         <div className="flex-1">
-          <Link to={`/blog/${blog?._id}`}>
+          <Link
+            to={`/blog/${blog?.title.toLowerCase().replaceAll(/\s+/g, "_")}/${
+              blog?._id
+            }`}
+          >
             <h3 className="text-xl md:text-2xl font-semibold hover:underline mb-2">
               {blog?.title}
             </h3>

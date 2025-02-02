@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
@@ -31,6 +31,7 @@ const Navbar = () => {
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
+  const userMenuRef = useRef(null);
 
   const handleCategoryClick = (categoryValue) => {
     if (location.pathname !== "/") {
@@ -71,6 +72,19 @@ const Navbar = () => {
     setSearchData(res);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[2px]">
       <div className="flex justify-between items-center">
@@ -108,8 +122,10 @@ const Navbar = () => {
                 {searchData.length > 0 ? (
                   searchData.map((blog) => (
                     <Link
-                      key={blog._id}
-                      to={`/blog/${blog._id}`}
+                      key={blog?._id}
+                      to={`/blog/${blog?.title
+                        .toLowerCase()
+                        .replaceAll(/\s+/g, "_")}/${blog?._id}`}
                       className="block px-4 py-2 hover:bg-[#333333] truncate"
                     >
                       {blog.title}
@@ -147,7 +163,7 @@ const Navbar = () => {
               </button>
             </Link>
             {user && (
-              <div className="relative pt-2">
+              <div className="relative pt-2" ref={userMenuRef}>
                 <button
                   onClick={toggleUserMenu}
                   className="text-gray-200 hover:text-blue-400 transition-all"
@@ -159,48 +175,46 @@ const Navbar = () => {
                   />
                 </button>
                 {isUserMenuOpen && (
-                  <div
-                      className="absolute right-0 mt-1 w-44 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden"
-                    >
-                      <div className="text-white">
-                        <h1 className="p-3 font-semibold">
-                          Signed in as <br /> {user?.displayName}
-                        </h1>
-                        <Link
-                          to="/my-profile"
-                          className={`block px-3 py-1 ${getLinkClasses(
-                            "/my-profile"
-                          )}`}
-                          onClick={toggleUserMenu}
-                        >
-                          My Profile
-                        </Link>
-                        <Link
-                          to="/my-blogs"
-                          className={`block px-3 py-1 ${getLinkClasses(
-                            "/my-blogs"
-                          )}`}
-                          onClick={toggleUserMenu}
-                        >
-                          My Blogs
-                        </Link>
-                        <Link
-                          to="/my-bookmarks"
-                          className={`block px-3 py-1 ${getLinkClasses(
-                            "/my-bookmarks"
-                          )}`}
-                          onClick={toggleUserMenu}
-                        >
-                          My Bookmarks
-                        </Link>
-                        <button
-                          className="w-full pb-2 text-left px-3 py-1 hover:bg-gray-700"
-                          onClick={handleLogout}
-                        >
-                          Log Out
-                        </button>
-                      </div>
+                  <div className="absolute right-0 mt-1 w-44 bg-[#111111] shadow-lg border border-gray-700 rounded-md text-sm overflow-hidden">
+                    <div className="text-white">
+                      <h1 className="p-3 font-semibold">
+                        Signed in as <br /> {user?.displayName}
+                      </h1>
+                      <Link
+                        to="/my-profile"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-profile"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Profile
+                      </Link>
+                      <Link
+                        to="/my-blogs"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-blogs"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Blogs
+                      </Link>
+                      <Link
+                        to="/my-bookmarks"
+                        className={`block px-3 py-1 ${getLinkClasses(
+                          "/my-bookmarks"
+                        )}`}
+                        onClick={toggleUserMenu}
+                      >
+                        My Bookmarks
+                      </Link>
+                      <button
+                        className="w-full pb-2 text-left px-3 py-1 hover:text-red-700 hover:bg-[#401423]"
+                        onClick={handleLogout}
+                      >
+                        Log Out
+                      </button>
                     </div>
+                  </div>
                 )}
               </div>
             )}
@@ -249,8 +263,10 @@ const Navbar = () => {
                   {searchData.length > 0 ? (
                     searchData.map((blog) => (
                       <Link
-                        key={blog._id}
-                        to={`/blog/${blog._id}`}
+                        key={blog?._id}
+                        to={`/blog/${blog?.title
+                          .toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${blog?._id}`}
                         className="block px-4 py-2 hover:bg-[#333333] truncate"
                       >
                         {blog.title}

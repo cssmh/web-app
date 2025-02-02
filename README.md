@@ -54,18 +54,17 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 - [axios](https://www.npmjs.com/package/axios)
 - [react](https://www.npmjs.com/package/react)
+- [react-clock](https://www.npmjs.com/package/react-clock)
 - [firebase](https://www.npmjs.com/package/firebase)
 - [react-dom](https://www.npmjs.com/package/react-dom)
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query) - for efficient data fetching and caching
-- [react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component) - for implementing infinite scrolling
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [react-icons](https://www.npmjs.com/package/react-icons)
 - [moment](https://www.npmjs.com/package/moment)
-- [sonner](https://www.npmjs.com/package/sonner)
+- [react-toastify](https://www.npmjs.com/package/react-toastify)
 
 ### Dev Dependencies
 
-- [daisyui](https://daisyui.com/)
 - [tailwindcss](https://tailwindcss.com/docs/guides/vite)
 - [vite](https://www.npmjs.com/package/vite)

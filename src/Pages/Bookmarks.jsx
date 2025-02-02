@@ -1,5 +1,5 @@
 import moment from "moment";
-import useMyBookmarks from "../hooks/useMyBookmarks";
+import useBookmarks from "../hooks/useBookmarks";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteBookmark } from "../api/bookmark";
@@ -7,7 +7,7 @@ import Spinner from "../Component/Spinner/Spinner";
 import { FaBookmark } from "react-icons/fa";
 
 const Bookmarks = () => {
-  const { bookmarks, isLoading, refetch } = useMyBookmarks();
+  const { bookmarks, isLoading, refetch } = useBookmarks();
   const handleDeleteBookmark = async (bookmarkId) => {
     try {
       const res = await deleteBookmark(bookmarkId);
@@ -49,7 +49,12 @@ const Bookmarks = () => {
           className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg text-gray-200 mb-5 flex items-start gap-4"
         >
           <div className="flex flex-col justify-between flex-grow">
-            <Link to={`/blog/${bookmark.blogId}`} className="hover:underline">
+            <Link
+              to={`/blog/${bookmark?.blogName
+                .toLowerCase()
+                .replaceAll(/\s+/g, "_")}/${bookmark?.blogId}`}
+              className="hover:underline"
+            >
               <h3 className="text-base md:text-2xl font-semibold text-gray-200">
                 {bookmark.blogName}
               </h3>

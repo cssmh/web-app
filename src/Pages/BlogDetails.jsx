@@ -118,7 +118,7 @@ const BlogDetails = () => {
             {blogData?.writerName}
           </p>
           <p className="text-xs text-gray-400">
-            Posted on {Moment(blogData?.timestamp).format("DD MMM YYYY")}
+            Posted on {Moment(blogData?.timestamp).format("DD/MMM/YYYY")}
           </p>
         </div>
       </div>
@@ -172,9 +172,9 @@ const BlogDetails = () => {
           blogData?.comments?.map((cmt, index) => (
             <div
               key={index}
-              className="p-4 bg-gray-800 rounded-lg shadow-sm border border-gray-700 mb-4"
+              className="p-4 rounded-lg shadow-sm border border-gray-700 mb-4"
             >
-              <p className="font-semibold text-white">{cmt.user}</p>
+              <p className="font-semibold text-blue-400">{cmt.user}</p>
               {editingComment === cmt ? (
                 <>
                   <textarea
@@ -200,7 +200,7 @@ const BlogDetails = () => {
                 </>
               ) : (
                 <>
-                  <p className="text-gray-400">{cmt.content}</p>
+                  <p className="text-gray-200">{cmt.content}</p>
                   {user?.email === cmt.email && (
                     <button
                       onClick={() => handleEditClick(cmt)}
@@ -212,7 +212,7 @@ const BlogDetails = () => {
                 </>
               )}
               <p className="text-sm text-gray-500 mt-1">
-                {Moment(cmt.timestamp).format("DD-MM-YYYY hh:mm A")}
+                {Moment(cmt.timestamp).format("DD/MMM/YYYY")}
               </p>
             </div>
           ))

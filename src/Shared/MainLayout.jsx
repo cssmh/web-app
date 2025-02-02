@@ -10,7 +10,7 @@ const MainLayout = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 100);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);

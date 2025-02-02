@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <h3 className="text-lg font-semibold">About Our Blog</h3>
+            <h3 className="text-lg font-semibold">About BlogApp</h3>
             <p className="text-sm mt-1">
               Sharing insights and stories to inspire and connect.
             </p>
@@ -39,7 +39,7 @@ const Footer = () => {
               <FaInstagram className="h-6 w-6 hover:text-gray-300 transition-colors duration-300" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/momin01"
               target="_blank"
               rel="noopener noreferrer"
             >
