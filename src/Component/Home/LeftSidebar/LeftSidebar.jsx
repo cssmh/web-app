@@ -1,5 +1,5 @@
 import "./LeftSidebar.css";
-export const LeftSidebar = ({ setCategory }) => {
+export const LeftSidebar = ({ category:cate, setCategory }) => {
   const handleCategorySelect = (categoryValue) => {
     setCategory(categoryValue);
   };
@@ -30,9 +30,9 @@ export const LeftSidebar = ({ setCategory }) => {
               <button
                 onClick={() => handleCategorySelect(category.value)}
                 className={`w-full text-center text-sm p-2 rounded-md ${
-                  category.value === category
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-300 hover:bg-gray-700"
+                  category.value === cate
+                    ? "bg-gray-800 text-white"
+                    : "text-gray-300 hover:bg-gray-800"
                 }`}
               >
                 {category.display}

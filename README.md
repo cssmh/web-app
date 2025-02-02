@@ -57,6 +57,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 - [react-clock](https://www.npmjs.com/package/react-clock)
 - [firebase](https://www.npmjs.com/package/firebase)
 - [react-dom](https://www.npmjs.com/package/react-dom)
+- [@headlessui/react](https://www.npmjs.com/package/@headlessui/react)
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query) - for efficient data fetching and caching
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)

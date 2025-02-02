@@ -25,7 +25,7 @@ const categories = [
 
 const Navbar = () => {
   const { loading, user, logOut } = useAuth();
-  const { setCategory } = useCate();
+  const { category: cate, setCategory } = useCate();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -142,11 +142,11 @@ const Navbar = () => {
               </button>
             </Link>
             {user && (
-            <UserMenu
-              user={user}
-              handleLogout={handleLogout}
-              getLinkClasses={getLinkClasses}
-            />
+              <UserMenu
+                user={user}
+                handleLogout={handleLogout}
+                getLinkClasses={getLinkClasses}
+              />
             )}
           </div>
         )}
@@ -217,9 +217,9 @@ const Navbar = () => {
                     <button
                       onClick={() => handleCategoryClick(category.value)}
                       className={`w-full text-left text-sm p-2 rounded-md ${
-                        category.value === category
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-300 hover:bg-gray-700"
+                        category.value === cate
+                          ? "bg-gray-800 text-white"
+                          : "text-gray-300 hover:bg-gray-800"
                       }`}
                     >
                       {category.display}

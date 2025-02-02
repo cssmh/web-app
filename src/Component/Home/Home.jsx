@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-3 md:px-4 py-4 lg:py-6">
       <aside className="hidden md:block md:col-span-1 lg:col-span-3">
-        <LeftSidebar setCategory={setCategory} />
+        <LeftSidebar category={category} setCategory={setCategory} />
       </aside>
       <main className="col-span-1 md:col-span-2 lg:col-span-6 lg:p-4">
         <div className="flex justify-center gap-2 mb-6">
