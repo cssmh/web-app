@@ -42,7 +42,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 
 5. **Additional Features:**
 
-   - Search functionality to find specific posts.
+   - Search functionality in navbar to find specific posts.
 
 6. **Optimizations:**
    - Performance enhancements through code optimization.
