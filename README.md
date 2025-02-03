@@ -1,3 +1,5 @@
+#
+<!-- 
 # Blog Application (A Content Creation Platform)
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
@@ -68,4 +70,4 @@ The Blog Application is a modern web platform that allows users to create, manag
 ### Dev Dependencies
 
 - [tailwindcss](https://tailwindcss.com/docs/guides/vite)
-- [vite](https://www.npmjs.com/package/vite)
+- [vite](https://www.npmjs.com/package/vite) -->
