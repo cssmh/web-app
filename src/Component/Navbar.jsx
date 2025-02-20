@@ -40,12 +40,6 @@ const Navbar = () => {
     setCategory(categoryValue);
   };
 
-  const getLinkClasses = (path) => {
-    return location.pathname === path
-      ? "text-white"
-      : "hover:border hover:border-blue-500 rounded-lg";
-  };
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -145,7 +139,6 @@ const Navbar = () => {
               <UserMenu
                 user={user}
                 handleLogout={handleLogout}
-                getLinkClasses={getLinkClasses}
               />
             )}
           </div>

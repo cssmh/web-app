@@ -39,7 +39,7 @@ const BlogDetails = () => {
     }
     setIsSubmitting(true);
     const commentData = {
-      user: user?.displayName || "Anonymous",
+      user: user?.displayName || "Anonymous Member",
       email: user?.email || "guest@mail.com",
       content: comment,
       timestamp: new Date(),
@@ -145,24 +145,21 @@ const BlogDetails = () => {
         {blogData?.content}
       </p>
       <h3 className="text-xl font-semibold text-white mb-4">Comments</h3>
-      {user && (
-        <>
-          <textarea
-            className="w-full p-3 bg-gray-900 text-white rounded-lg mb-4"
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Add a comment..."
-            rows="4"
-          />
-          <button
-            onClick={handleCommentSubmit}
-            className="bg-[#3f3f46] text-white py-2 px-4 rounded-lg transition-all"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Submit Comment"}
-          </button>
-        </>
-      )}
+
+      <textarea
+        className="w-full p-3 bg-gray-900 text-white rounded-lg mb-4"
+        value={comment}
+        onChange={handleCommentChange}
+        placeholder="Add a comment..."
+        rows="4"
+      />
+      <button
+        onClick={handleCommentSubmit}
+        className="bg-[#3f3f46] text-white py-2 px-4 rounded-lg transition-all"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit Comment"}
+      </button>
       <div className="mt-4">
         {blogData?.comments && blogData?.comments.length === 0 ? (
           <p className="text-gray-400">
