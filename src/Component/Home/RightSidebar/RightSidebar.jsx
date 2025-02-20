@@ -16,7 +16,7 @@ export const RightSidebar = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "https://dev.to/api/articles?per_page=5"
+          "https://dev.to/api/articles?per_page=6"
         );
         setNews(response.data);
       } catch (error) {
@@ -68,7 +68,7 @@ export const RightSidebar = () => {
       <div className="border-t border-gray-700 my-6"></div>
       <div className="mb-6">
         <h3 className="font-bold text-lg text-gray-200 mb-4">Dev News</h3>
-        <ul className="space-y-3">
+        <ul className="space-y-2 2xl:space-y-3">
           {news.map((article, index) => (
             <li key={index}>
               <Link
@@ -83,7 +83,7 @@ export const RightSidebar = () => {
           ))}
         </ul>
       </div>
-      <div className="border-t border-gray-700 my-6"></div>
+      <div className="border-t border-gray-700 my-5"></div>
       <div className="text-center">
         <h3 className="font-bold text-lg text-gray-200 mb-2">
           Quote of the Day

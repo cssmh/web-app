@@ -4,10 +4,9 @@ import useAddBookmark from "../hooks/useAddBookmark";
 
 const BlogCard = ({ blog }) => {
   const { handleAddBookmark } = useAddBookmark();
-
   return (
     <div className="bg-[#1e1e1e] p-3 lg:p-4 rounded-lg shadow-md text-gray-200">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-3">
         <div className="flex items-center gap-2">
           <img
             src={blog?.writerImage}

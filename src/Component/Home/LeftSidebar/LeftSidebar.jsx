@@ -21,15 +21,15 @@ export const LeftSidebar = ({ category:cate, setCategory }) => {
   return (
     <div className="sticky top-16 h-screen overflow-y-auto leftsidebar-scrollbar pb-16">
       <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md">
-        <h2 className="text-lg font-semibold mb-4 text-center text-gray-200">
+        <h2 className="text-lg 2xl:text-xl font-semibold mb-4 text-center text-gray-200">
           Blog Categories
         </h2>
-        <ul className="space-y-2">
+        <ul className="space-y-2 2xl:space-y-4">
           {categories.map((category, index) => (
             <li key={index}>
               <button
                 onClick={() => handleCategorySelect(category.value)}
-                className={`w-full text-center text-sm p-2 rounded-md ${
+                className={`w-full text-center text-sm 2xl:text-base p-2 rounded-md ${
                   category.value === cate
                     ? "bg-gray-800 text-white"
                     : "text-gray-300 hover:bg-gray-800"

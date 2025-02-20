@@ -53,7 +53,7 @@ const Guide = () => {
 
   return (
     <div className="max-w-4xl mx-auto text-white p-2 md:p-6 shadow-md rounded-2xl">
-      <h2 className="text-xl md:text-2xl font-bold text-center mb-6">
+      <h2 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-center mb-6">
         Guide to Using BlogApp
       </h2>
       <div className="space-y-6">
@@ -62,11 +62,11 @@ const Guide = () => {
             key={index}
             className="p-4 border-l-4 border-blue-500 rounded-lg shadow-sm"
           >
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl 2xl:text-2xl font-semibold text-white mb-2">
               {index + 1}. {step.title}
             </h3>
             <p className="text-gray-300 mb-2">{step.description}</p>
-            <ul className="list-disc list-inside space-y-2 text-gray-300">
+            <ul className="list-disc 2xl:text-lg list-inside space-y-2 text-gray-300">
               {step.points.map((point, i) => (
                 <li key={i}>{point}</li>
               ))}
