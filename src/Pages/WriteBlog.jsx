@@ -261,7 +261,7 @@ const WriteBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[70%] mx-auto md:mt-3 mb-8 px-3 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-[65%] mx-auto md:my-8 px-4 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
       <BlogHelmet title="Write a Blog" />
       {/* <h2 className="text-xl md:text-2xl font-semibold text-center mb-3">
         Write a New Blog
