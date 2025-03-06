@@ -5,6 +5,7 @@ export const LeftSidebar = ({ category:cate, setCategory }) => {
   };
 
   const categories = [
+    { display: "All Categories", value: "" },
     { display: "Web Development", value: "Web-Dev" },
     { display: "Game Development", value: "Game-Dev" },
     { display: "Machine Learning", value: "Machine-Learning" },
@@ -24,7 +25,7 @@ export const LeftSidebar = ({ category:cate, setCategory }) => {
         <h2 className="text-lg 2xl:text-xl font-semibold mb-4 text-center text-gray-200">
           Blog Categories
         </h2>
-        <ul className="space-y-2 2xl:space-y-4">
+        <ul className="space-y-1 2xl:space-y-4">
           {categories.map((category, index) => (
             <li key={index}>
               <button

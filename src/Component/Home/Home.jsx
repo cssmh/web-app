@@ -49,15 +49,12 @@ const Home = () => {
             Random
           </button>
           <button
-            onClick={() => {
-              setCategory("");
-              setSortOption("all");
-            }}
+            onClick={() => setSortOption("Popular")}
             className={`px-4 py-2 text-white rounded-md ${
-              sortOption === "all" ? "bg-[#242427]" : ""
+              sortOption === "Popular" ? "bg-[#242427]" : ""
             }`}
           >
-            All
+            Popular
           </button>
         </div>
         {isLoading ? (
