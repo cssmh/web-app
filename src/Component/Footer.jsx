@@ -8,7 +8,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-[#1f1f23] text-white py-6">
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-4">
+      <div className="max-w-[1210px] 2xl:max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <h3 className="text-lg font-semibold">About BlogApp</h3>

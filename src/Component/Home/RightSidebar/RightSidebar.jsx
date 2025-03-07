@@ -25,14 +25,14 @@ export const RightSidebar = () => {
     };
 
     const fetchQuote = () => {
-      const quotes = [
-        "Talk is cheap. Show me the code. - Linus Torvalds",
-        "Programs must be written for people to read, and only incidentally for machines to execute. - Harold Abelson",
-        "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
-        "First, solve the problem. Then, write the code. - John Johnson",
-        "In order to be irreplaceable, one must always be different. - Coco Chanel",
+      const facts = [
+        "The first computer virus was called 'Creeper' and was created in 1971.",
+        "Python is named after Monty Python, not the snake.",
+        "The first 1GB hard drive was introduced in 1980 and weighed over 500 pounds.",
+        "The world's first website is still online at info.cern.ch.",
+        "There are over 700 programming languages in existence today.",
       ];
-      setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+      setQuote(facts[Math.floor(Math.random() * facts.length)]);
     };
 
     fetchNews();
@@ -67,7 +67,7 @@ export const RightSidebar = () => {
       </div>
       <div className="border-t border-gray-700 my-6"></div>
       <div className="mb-6">
-        <h3 className="font-bold text-lg text-gray-200 mb-4">Dev News</h3>
+        <h3 className="font-bold text-lg text-gray-200 mb-4">Trending News</h3>
         <ul className="space-y-2 2xl:space-y-3">
           {news.map((article, index) => (
             <li key={index}>
@@ -86,7 +86,7 @@ export const RightSidebar = () => {
       <div className="border-t border-gray-700 my-5"></div>
       <div className="text-center">
         <h3 className="font-bold text-lg text-gray-200 mb-2">
-          Quote of the Day
+          Tech Fact of the Day
         </h3>
         <p className="text-gray-400 italic">&quot;{quote}&quot;</p>
       </div>

@@ -63,7 +63,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-[#111111] text-gray-200 shadow-md px-4 md:px-6 border-b border-gray-700 py-[6px]">
-      <div className="flex justify-between items-center h-11 max-w-[1180px] 2xl:max-w-[94%] mx-auto">
+      <div className="flex justify-between items-center h-11 2xl:h-14 max-w-[1200px] 2xl:max-w-[94%] mx-auto">
         <div className="lg:hidden">
           <button
             onClick={toggleMobileMenu}

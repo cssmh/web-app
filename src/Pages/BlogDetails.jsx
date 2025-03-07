@@ -87,7 +87,7 @@ const BlogDetails = () => {
   if (isLoading) return <Spinner size="87" />;
 
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-[#18181b] shadow-lg rounded-lg mb-7">
+    <div className="max-w-4xl 2xl:max-w-7xl mx-auto p-4 bg-[#18181b] shadow-lg rounded-lg mb-7">
       <BlogHelmet title={blogData?.title} />
       <div className="mb-6">
         <span className="text-sm uppercase text-blue-400 font-semibold">
@@ -118,7 +118,8 @@ const BlogDetails = () => {
             {blogData?.writerName}
           </p>
           <p className="text-xs text-gray-400">
-            Posted on {Moment(blogData?.timestamp).format("DD/MMM/YYYY")}
+            Posted on{" "}
+            {Moment(blogData?.timestamp).format("DD/MMM/YYYY, h:mm A")}
           </p>
         </div>
       </div>
@@ -139,13 +140,14 @@ const BlogDetails = () => {
       <img
         src={blogData?.image}
         alt={blogData?.title}
-        className="w-full lg:h-72 object-cover rounded-md mb-6"
+        className="w-full lg:h-72 2xl:h-96 object-cover rounded-md mb-6"
       />
-      <p className="text-gray-100 whitespace-pre-line mb-6">
+      <p className="text-gray-100 2xl:text-xl whitespace-pre-line mb-6">
         {blogData?.content}
       </p>
-      <h3 className="text-xl font-semibold text-white mb-4">Comments</h3>
-
+      <h3 className="text-xl 2xl:text-xl font-semibold text-white mb-4">
+        Comments
+      </h3>
       <textarea
         className="w-full p-3 bg-gray-900 text-white rounded-lg mb-4"
         value={comment}
@@ -160,7 +162,7 @@ const BlogDetails = () => {
       >
         {isSubmitting ? "Submitting..." : "Submit Comment"}
       </button>
-      <div className="mt-4">
+      <div className="mt-4 2xl:text-xl">
         {blogData?.comments && blogData?.comments.length === 0 ? (
           <p className="text-gray-400">
             No comments yet. Be the first to comment!
@@ -172,6 +174,9 @@ const BlogDetails = () => {
               className="p-4 rounded-lg shadow-sm border border-gray-700 mb-4"
             >
               <p className="font-semibold text-blue-400">{cmt.user}</p>
+              <p className="text-sm text-gray-500 mb-1">
+                {Moment(cmt.timestamp).format("DD/MMM/YYYY, h:mm A")}
+              </p>
               {editingComment === cmt ? (
                 <>
                   <textarea
@@ -208,9 +213,6 @@ const BlogDetails = () => {
                   )}
                 </>
               )}
-              <p className="text-sm text-gray-500 mt-1">
-                {Moment(cmt.timestamp).format("DD/MMM/YYYY")}
-              </p>
             </div>
           ))
         )}

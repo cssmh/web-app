@@ -39,7 +39,7 @@ const MyBlogs = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-2 md:mt-4 mb-10 md:px-4">
+    <div className="max-w-4xl 2xl:max-w-5xl mx-auto mt-2 md:mt-4 mb-10 md:px-4">
       <BlogHelmet title="My Blogs" />
       {isLoading ? (
         <div className="grid grid-cols-1 gap-2 md:gap-5">
@@ -91,7 +91,6 @@ const MyBlogs = () => {
                   )}
                 </div>
               </div>
-              {/* Blog Title and Description */}
               <div className="flex justify-between">
                 <div>
                   <Link

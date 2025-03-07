@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { FaComment, FaShare, FaFlag } from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
@@ -16,7 +17,7 @@ const BlogCard = ({ blog }) => {
           <div>
             <p className="text-sm font-semibold">{blog?.writerName}</p>
             <p className="text-xs text-gray-400">
-              {new Date(blog?.timestamp).toLocaleDateString()}
+              {moment(blog?.timestamp).format("DD/MMM/YYYY, h:mm A")}
             </p>
           </div>
         </div>
