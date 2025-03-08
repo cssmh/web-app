@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import Moment from "moment";
 import { toast } from "react-toastify";
 import BlogHelmet from "../Component/BlogHelmet";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { addComment, getBlog, updateComment } from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
 import { FaBookmark, FaComment } from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
+import EmojiPicker from "emoji-picker-react";
 
 const BlogDetails = () => {
   const { user } = useAuth();
@@ -19,6 +20,9 @@ const BlogDetails = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [editingComment, setEditingComment] = useState(null);
   const [updatedComment, setUpdatedComment] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  const emojiPickerRef = useRef(null); // Ref for the emoji picker container
 
   const {
     data: blogData = {},
@@ -30,6 +34,26 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
+
+  // Handle clicks outside the emoji picker
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        emojiPickerRef.current &&
+        !emojiPickerRef.current.contains(event.target)
+      ) {
+        setShowEmojiPicker(false); // Close the emoji picker
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleCommentChange = (e) => setComment(e.target.value);
 
@@ -82,6 +106,15 @@ const BlogDetails = () => {
   const handleCancelEdit = () => {
     setEditingComment(null);
     setUpdatedComment("");
+  };
+
+  const handleEmojiClick = (emojiObject) => {
+    setComment((prevComment) => prevComment + emojiObject.emoji);
+    // Don't close the emoji picker after selecting an emoji
+  };
+
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker((prev) => !prev);
   };
 
   if (isLoading) return <Spinner size="87" />;
@@ -148,13 +181,26 @@ const BlogDetails = () => {
       <h3 className="text-xl 2xl:text-xl font-semibold text-white mb-4">
         Comments
       </h3>
-      <textarea
-        className="w-full p-3 bg-gray-900 text-white rounded-lg mb-4"
-        value={comment}
-        onChange={handleCommentChange}
-        placeholder="Add a comment..."
-        rows="4"
-      />
+      <div className="relative">
+        <textarea
+          className="w-full p-3 bg-gray-900 text-white rounded-lg mb-4"
+          value={comment}
+          onChange={handleCommentChange}
+          placeholder="Add a comment..."
+          rows="4"
+        />
+        <button
+          onClick={toggleEmojiPicker}
+          className="absolute right-2 bottom-8 text-gray-400 hover:text-blue-400"
+        >
+          😀
+        </button>
+        {showEmojiPicker && (
+          <div className="absolute right-0 bottom-16" ref={emojiPickerRef}>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
+      </div>
       <button
         onClick={handleCommentSubmit}
         className="bg-[#3f3f46] text-white py-2 px-4 rounded-lg transition-all"

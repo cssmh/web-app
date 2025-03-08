@@ -1,5 +1,6 @@
 #
-<!-- 
+
+<!--
 # Blog Application (A Content Creation Platform)
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
@@ -40,6 +41,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 4. **Commenting System:**
 
    - All users, even without logging in, can leave comments on blog posts.
+   Also used emoji-picker-react to comment using emoji.
    - Logged-in users’ names appear on comments, while non-logged-in users post as "Anonymous."
 
 5. **Additional Features:**
@@ -61,6 +63,7 @@ The Blog Application is a modern web platform that allows users to create, manag
 - [react-dom](https://www.npmjs.com/package/react-dom)
 - [@headlessui/react](https://www.npmjs.com/package/@headlessui/react)
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
+- [emoji-picker-react](https://www.npmjs.com/package/emoji-picker-react)
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query) - for efficient data fetching and caching
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [react-icons](https://www.npmjs.com/package/react-icons)
