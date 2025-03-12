@@ -1,6 +1,6 @@
 const BlogCardSkeleton = () => {
   return (
-    <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md">
+    <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md mx-2 md:mx-0">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gray-700 rounded-full animate-pulse"></div>

@@ -45,7 +45,7 @@ export const RightSidebar = () => {
 
   return (
     // #18181b
-    <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg">
+    <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg mx-2 md:mx-0">
       <h2 className="text-xl font-bold text-center text-gray-200 mb-6">
         Activity Bar
       </h2>

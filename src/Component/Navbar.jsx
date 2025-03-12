@@ -4,9 +4,9 @@ import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LuNotepadText } from "react-icons/lu";
+import useCategory from "../hooks/useCategory";
 import { toast } from "react-toastify";
 import { navBlog } from "../api/Blog";
-import useCate from "../hooks/useCate";
 import UserMenu from "./UserMenu";
 
 const categories = [
@@ -25,7 +25,7 @@ const categories = [
 
 const Navbar = () => {
   const { loading, user, logOut } = useAuth();
-  const { category: cate, setCategory } = useCate();
+  const { category: cate, setCategory } = useCategory();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchData, setSearchData] = useState([]);
