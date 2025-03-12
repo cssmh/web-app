@@ -15,6 +15,7 @@ const Home = () => {
     data = [],
     isError,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ["homeBlogs", category, sortOption],
     queryFn: async () => await homeBlog(category, sortOption),
@@ -72,7 +73,7 @@ const Home = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4 mx-2 lg:mx-0">
             {data?.map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
+              <BlogCard key={blog._id} blog={blog} refetch={refetch} />
             ))}
           </div>
         )}

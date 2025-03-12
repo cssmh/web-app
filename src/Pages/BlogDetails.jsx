@@ -45,6 +45,7 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
+  
   useEffect(() => {
     if (blogData?.likes && user?.email) {
       setIsLiked(blogData.likes.includes(user.email));
@@ -60,8 +61,7 @@ const BlogDetails = () => {
       toast.success("Blog liked!");
       refetch();
     } catch (error) {
-      console.error("Error liking blog:", error);
-      toast.error("Failed to like blog");
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -74,8 +74,7 @@ const BlogDetails = () => {
       toast.success("Blog unliked!");
       refetch();
     } catch (error) {
-      console.error("Error unliking blog:", error);
-      toast.error("Failed to unlike blog");
+      toast.error(error?.response?.data?.message);
     }
   };
 
