@@ -13,11 +13,7 @@ import {
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
-import {
-  FaBookmark,
-  FaComment,
-  FaRegThumbsUp,
-} from "react-icons/fa";
+import { FaBookmark, FaComment, FaRegThumbsUp } from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
 import EmojiPicker from "emoji-picker-react";
 
