@@ -75,7 +75,7 @@ const UserMenu = ({ user, handleLogout }) => {
               <button
                 onClick={handleLogout}
                 className={`flex items-center text-[15px] gap-3 w-full px-5 py-2 text-red-500 ${
-                  active ? "bg-red-800 text-white" : ""
+                  active ? "bg-red-600 text-white" : ""
                 }`}
               >
                 <FiLogOut /> Log Out

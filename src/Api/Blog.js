@@ -48,3 +48,13 @@ export const updateComment = async (id, comment, updatedContent) => {
   });
   return data;
 };
+
+export const addLike = async (id, email) => {
+  const { data } = await axiosSecure.patch(`/like-blog/${id}`, { email });
+  return data;
+};
+
+export const addUnlike = async (id, email) => {
+  const { data } = await axiosSecure.patch(`/unlike-blog/${id}`, { email });
+  return data;
+};

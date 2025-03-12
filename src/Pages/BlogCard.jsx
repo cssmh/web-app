@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { FaComment, FaShare, FaFlag } from "react-icons/fa";
+import { FaComment, FaShare, FaFlag, FaThumbsUp } from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
 
 const BlogCard = ({ blog }) => {
@@ -61,7 +61,10 @@ const BlogCard = ({ blog }) => {
           <FaComment className="text-sm" />
           <span className="text-sm">{blog?.comments?.length}</span>
         </div>
-        <p className="text-sm text-gray-400">1 min read</p>
+        <p className="text-gray-400 flex items-center gap-2">
+          <FaThumbsUp />
+          {blog?.likes?.length}
+        </p>
       </div>
     </div>
   );

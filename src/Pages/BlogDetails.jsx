@@ -3,17 +3,25 @@ import Moment from "moment";
 import { toast } from "react-toastify";
 import BlogHelmet from "../Component/BlogHelmet";
 import { useState, useRef, useEffect } from "react";
-import { addComment, getBlog, updateComment } from "../api/Blog";
+import {
+  addComment,
+  addLike,
+  addUnlike,
+  getBlog,
+  updateComment,
+} from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
 import { FaBookmark, FaComment } from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
 import EmojiPicker from "emoji-picker-react";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 const BlogDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  const [isLiked, setIsLiked] = useState(false);
   const { handleAddBookmark } = useAddBookmark();
 
   const [comment, setComment] = useState("");
@@ -34,6 +42,45 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
+  console.log(blogData);
+
+  useEffect(() => {
+    if (blogData?.likes && user?.email) {
+      setIsLiked(blogData.likes.includes(user.email));
+    }
+  }, [blogData, user]);
+
+ const handleLike = async () => {
+   if (!user) {
+     return toast.warning("You must be logged in to like this blog");
+   }
+
+   try {
+     console.log("Liking blog with ID:", id, "and email:", user.email);
+     await addLike(id, user.email);
+     toast.success("Blog liked!");
+     refetch();
+   } catch (error) {
+     console.error("Error liking blog:", error);
+     toast.error("Failed to like blog");
+   }
+ };
+
+ const handleUnlike = async () => {
+   if (!user) {
+     return toast.warning("You must be logged in to unlike this blog");
+   }
+
+   try {
+     console.log("Unliking blog with ID:", id, "and email:", user.email);
+     await addUnlike(id, user.email);
+     toast.success("Blog unliked!");
+     refetch();
+   } catch (error) {
+     console.error("Error unliking blog:", error);
+     toast.error("Failed to unlike blog");
+   }
+ };
 
   // Handle clicks outside the emoji picker
   useEffect(() => {
@@ -156,7 +203,7 @@ const BlogDetails = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-between items-center mb-6">
+      {/* <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2 text-gray-400">
           <FaComment className="text-sm" />
           <span className="text-sm">{blogData?.comments?.length} Comments</span>
@@ -169,6 +216,35 @@ const BlogDetails = () => {
         >
           <FaBookmark className="text-xl" />
         </button>
+      </div> */}
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center gap-2 text-gray-400">
+          <FaComment className="text-sm" />
+          <span className="text-sm">{blogData?.comments?.length} Comments</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={isLiked ? handleUnlike : handleLike}
+            className="text-gray-400 hover:text-blue-400"
+          >
+            {isLiked ? (
+              <FaThumbsDown className="text-xl" />
+            ) : (
+              <FaThumbsUp className="text-xl" />
+            )}
+          </button>
+          <span className="text-sm text-gray-400">
+            {blogData?.likes?.length || 0} Likes
+          </span>
+          <button
+            onClick={() =>
+              handleAddBookmark(blogData._id, blogData?.title, blogData?.image)
+            }
+            className="text-gray-400 hover:text-blue-400"
+          >
+            <FaBookmark className="text-xl" />
+          </button>
+        </div>
       </div>
       <img
         src={blogData?.image}
