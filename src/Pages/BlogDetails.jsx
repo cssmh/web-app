@@ -53,9 +53,7 @@ const BlogDetails = () => {
     if (!user) {
       return toast.warning("You must be logged in to like this blog");
     }
-
     try {
-      console.log("Liking blog with ID:", id, "and email:", user.email);
       await addLike(id, user.email);
       toast.success("Blog liked!");
       refetch();
@@ -69,9 +67,7 @@ const BlogDetails = () => {
     if (!user) {
       return toast.warning("You must be logged in to unlike this blog");
     }
-
     try {
-      console.log("Unliking blog with ID:", id, "and email:", user.email);
       await addUnlike(id, user.email);
       toast.success("Blog unliked!");
       refetch();
