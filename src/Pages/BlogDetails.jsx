@@ -13,7 +13,11 @@ import {
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Component/Spinner/Spinner";
-import { FaBookmark, FaComment, FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaComment,
+  FaRegThumbsUp,
+} from "react-icons/fa";
 import useAddBookmark from "../hooks/useAddBookmark";
 import EmojiPicker from "emoji-picker-react";
 
@@ -41,8 +45,6 @@ const BlogDetails = () => {
       return await getBlog(id);
     },
   });
-  console.log(blogData);
-
   useEffect(() => {
     if (blogData?.likes && user?.email) {
       setIsLiked(blogData.likes.includes(user.email));
@@ -206,17 +208,18 @@ const BlogDetails = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={isLiked ? handleUnlike : handleLike}
-            className="text-gray-400 hover:text-blue-400"
+            className="flex items-center space-x-2 text-gray-400 hover:text-blue-400"
+            title={isLiked ? "Click to unlike" : "Click to like"}
           >
-            {isLiked ? (
-              <FaRegThumbsDown className="text-xl" />
-            ) : (
-              <FaRegThumbsUp className="text-xl" />
-            )}
+            <FaRegThumbsUp
+              className={`${
+                isLiked ? "text-blue-500" : "text-gray-400"
+              } text-xl`}
+            />
+            <span className="text-sm">
+              {blogData?.likes?.length || 0} Likes
+            </span>
           </button>
-          <span className="text-sm text-gray-400">
-            {blogData?.likes?.length || 0} Likes
-          </span>
           <button
             onClick={() =>
               handleAddBookmark(blogData._id, blogData?.title, blogData?.image)
