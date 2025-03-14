@@ -78,20 +78,20 @@ const BlogCard = ({ blog, refetch }) => {
           </button>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
           <Link
             to={`/blog/${blog?.title.toLowerCase().replaceAll(/\s+/g, "_")}/${
               blog?._id
             }`}
           >
-            <h3 className="text-xl md:text-2xl font-semibold hover:underline mb-2">
+            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold hover:underline mb-2">
               {blog?.title}
             </h3>
           </Link>
           <p className="text-sm text-gray-400 line-clamp-3">{blog?.content}</p>
         </div>
-        <div className="md:w-[135px] h-20 flex-shrink-0">
+        <div className="w-full md:w-[135px] h-40 md:h-20 flex-shrink-0">
           <img
             src={blog?.image}
             alt={blog?.title}
