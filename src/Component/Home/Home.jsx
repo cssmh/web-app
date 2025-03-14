@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useCategory from "../../hooks/useCategory";
 import BlogCard from "../../Pages/BlogCard";
 import BlogCardSkeleton from "../../Pages/BlogCardSkeleton";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [sortOption, setSortOption] = useState("latest");
@@ -18,7 +19,7 @@ const Home = () => {
     refetch,
   } = useQuery({
     queryKey: ["homeBlogs", category, sortOption],
-    queryFn: async () => await homeBlog(category, sortOption),
+    queryFn: () => homeBlog(category, sortOption),
   });
 
   // Handle sort option change
@@ -28,6 +29,9 @@ const Home = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-3 md:px-4 py-4 lg:py-6">
+      <Helmet>
+        <title>BlogApp | Home </title>
+      </Helmet>
       <aside className="hidden md:block md:col-span-1 lg:col-span-3">
         <LeftSidebar category={category} setCategory={setCategory} />
       </aside>
@@ -35,7 +39,7 @@ const Home = () => {
         <div className="flex justify-center gap-2 mb-4">
           <button
             onClick={() => handleSortChange("latest")}
-            className={`px-4 py-2 text-white rounded-md ${
+            className={`px-4 py-2 2xl:text-lg text-white rounded-md ${
               sortOption === "latest" ? "bg-[#242427]" : ""
             }`}
           >
@@ -43,7 +47,7 @@ const Home = () => {
           </button>
           <button
             onClick={() => handleSortChange("random")}
-            className={`px-4 py-2 text-white rounded-md ${
+            className={`px-4 py-2 2xl:text-lg text-white rounded-md ${
               sortOption === "random" ? "bg-[#242427]" : ""
             }`}
           >
@@ -51,7 +55,7 @@ const Home = () => {
           </button>
           <button
             onClick={() => setSortOption("Popular")}
-            className={`px-4 py-2 text-white rounded-md ${
+            className={`px-4 py-2 2xl:text-lg text-white rounded-md ${
               sortOption === "Popular" ? "bg-[#242427]" : ""
             }`}
           >

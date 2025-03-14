@@ -1,3 +1,5 @@
+import BlogHelmet from "./BlogHelmet";
+
 const Guide = () => {
   const steps = [
     {
@@ -53,6 +55,7 @@ const Guide = () => {
 
   return (
     <div className="max-w-4xl 2xl:max-w-5xl mx-auto text-white p-2 md:p-6 shadow-md rounded-2xl">
+      <BlogHelmet title={"Guidance"} />
       <h2 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-center mb-6">
         Guide to Using BlogApp
       </h2>

@@ -10,9 +10,7 @@ const useBookmarks = () => {
     refetch,
   } = useQuery({
     queryKey: ["myBookmark", user?.email],
-    queryFn: async () => {
-      return await getMyBookmarks(user?.email);
-    },
+    queryFn: () => getMyBookmarks(user?.email),
     enabled: !loading && !!user?.email,
   });
   const bookmarks = data?.result;

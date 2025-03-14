@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { deleteBookmark } from "../api/bookmark";
 import Spinner from "../Component/Spinner/Spinner";
 import { FaBookmark } from "react-icons/fa";
+import BlogHelmet from "../Component/BlogHelmet";
 
 const Bookmarks = () => {
   const { bookmarks, isLoading, refetch } = useBookmarks();
@@ -43,6 +44,7 @@ const Bookmarks = () => {
 
   return (
     <div className="max-w-3xl md:mx-auto my-5 mx-2">
+      <BlogHelmet title={"Bookmarks"} />
       {bookmarks?.map((bookmark) => (
         <div
           key={bookmark._id}

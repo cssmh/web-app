@@ -78,19 +78,27 @@ const BlogCard = ({ blog, refetch }) => {
           </button>
         </div>
       </div>
-      <Link
-        to={`/blog/${blog?.title.toLowerCase().replaceAll(/\s+/g, "_")}/${
-          blog?._id
-        }`}
-        className="block"
-      >
-        <h3 className="text-xl 2xl:text-2xl font-semibold text-white mb-2">
-          {blog?.title}
-        </h3>
-        <p className="text-gray-400 text-sm 2xl:text-base">
-          {blog?.content.slice(0, 250)}.....
-        </p>
-      </Link>
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <Link
+            to={`/blog/${blog?.title.toLowerCase().replaceAll(/\s+/g, "_")}/${
+              blog?._id
+            }`}
+          >
+            <h3 className="text-xl md:text-2xl font-semibold hover:underline mb-2">
+              {blog?.title}
+            </h3>
+          </Link>
+          <p className="text-sm text-gray-400 line-clamp-3">{blog?.content}</p>
+        </div>
+        <div className="md:w-[135px] h-20 flex-shrink-0">
+          <img
+            src={blog?.image}
+            alt={blog?.title}
+            className="w-full h-full rounded-sm object-cover"
+          />
+        </div>
+      </div>
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center gap-2 text-gray-400">
           <FaComment className="text-sm 2xl:text-base" />

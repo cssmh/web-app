@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes, FaHome } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -74,19 +74,22 @@ const Navbar = () => {
         </div>
         {/* Center: Logo & Title (Mobile and Large Devices) */}
         <div className="flex items-center justify-center lg:justify-start">
-          <Link to="/" className="flex items-center gap-2">
-            <h1 className="text-lg font-semibold md:text-2xl">BlogApp</h1>
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-lg font-semibold md:text-2xl 2xl:text-[27px]"
+          >
+            BlogApp
           </Link>
           <div className="hidden lg:block relative ml-4">
             <input
-              className="h-10 pl-10 pr-10 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px]"
+              className="h-[38px] 2xl:h-11 pl-10 pr-10 rounded-md bg-[#2e2e30] text-gray-200 placeholder-gray-400 focus:outline-none sm:min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[500px]"
               placeholder="Search blog..."
               type="text"
               value={searchInput}
               onChange={handleSearch}
               style={{ outline: "none" }}
             />
-            <FaSearch className="absolute left-3 top-3 text-white" />
+            <FaSearch className="absolute left-3 top-3 2xl:top-[14px] text-white" />
             {searchInput && (
               <FaTimes
                 className="absolute right-3 top-3 text-white cursor-pointer"
@@ -99,6 +102,7 @@ const Navbar = () => {
                   searchData.map((blog) => (
                     <Link
                       key={blog?._id}
+                      onClick={() => setSearchInput("")}
                       to={`/blog/${blog?.title
                         .toLowerCase()
                         .replaceAll(/\s+/g, "_")}/${blog?._id}`}
@@ -123,14 +127,14 @@ const Navbar = () => {
                 className={`${
                   !user &&
                   "py-2 text-gray-200 bg-[#2f342a] hover:border-gray-400 px-2 md:px-4 rounded-lg transition-all duration-200"
-                } flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200`}
+                } flex 2xl:text-lg items-center gap-1 text-gray-200 rounded-md transition-all duration-200`}
               >
                 <IoCreateOutline className="text-xl" />
                 {user ? "Write" : "Get Started"}
               </button>
             </Link>
             <Link to="/guide" className="hidden lg:block">
-              <button className="flex items-center gap-1 text-gray-200 rounded-md transition-all duration-200">
+              <button className="flex items-center gap-1 2xl:text-lg text-gray-200 rounded-md transition-all duration-200">
                 <LuNotepadText className="text-xl" />
                 Guide
               </button>
@@ -151,14 +155,24 @@ const Navbar = () => {
           }`}
         >
           <div className="p-4">
-            <Link
-              to="/guide"
-              className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded-md"
-              onClick={toggleMobileMenu}
-            >
-              <LuNotepadText className="text-xl" />
-              Guide
-            </Link>
+            <div className="flex items-center gap-1">
+              <Link
+                to="/guide"
+                className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded-md"
+                onClick={toggleMobileMenu}
+              >
+                <LuNotepadText className="text-xl" />
+                Guide
+              </Link>
+              <Link
+                to="/"
+                className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded-md"
+                onClick={toggleMobileMenu}
+              >
+                <FaHome className="text-xl" />
+                Home
+              </Link>
+            </div>
             {/* Search Box */}
             <div className="relative mt-4">
               <input

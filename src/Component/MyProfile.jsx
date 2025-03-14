@@ -33,7 +33,7 @@ const MyProfile = () => {
   return (
     <div className="flex justify-center items-center md:min-h-[76vh] text-white">
       <div className="w-full max-w-lg border border-gray-600 p-4 md:p-6 rounded-lg shadow-lg">
-        <BlogHelmet title="My Profile" />
+        <BlogHelmet title={`Profile of ${user?.displayName}`} />
         <div className="flex items-center justify-center gap-4 mb-6">
           <div className="relative">
             <img

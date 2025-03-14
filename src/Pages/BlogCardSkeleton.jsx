@@ -17,19 +17,20 @@ const BlogCardSkeleton = () => {
       <div className="flex gap-4">
         <div className="flex-1">
           <div className="w-3/4 h-5 bg-gray-700 rounded mb-2 animate-pulse"></div>
-          <div className="w-[95%] h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
-          <div className="w-[95%] h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
-          <div className="w-[95%] h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
-          <div className="w-[95%] h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
+          <div className="w-5/6 h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
+          <div className="w-5/6 h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
+          <div className="w-5/6 h-3 bg-gray-700 rounded mb-2 animate-pulse"></div>
         </div>
         <div className="w-32 h-20 bg-gray-700 rounded-lg animate-pulse"></div>
       </div>
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gray-700 rounded-full animate-pulse"></div>
-          <div className="w-8 h-4 bg-gray-700 rounded animate-pulse"></div>
+          <div className="w-12 h-3 bg-gray-700 rounded animate-pulse"></div>
         </div>
-        <div className="w-12 h-4 bg-gray-700 rounded animate-pulse"></div>
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-4 bg-gray-700 rounded animate-pulse"></div>
+        </div>
       </div>
     </div>
   );

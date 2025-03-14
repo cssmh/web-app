@@ -12,7 +12,7 @@ const UserMenu = ({ user, handleLogout }) => {
         <img
           src={user?.photoURL}
           alt="user"
-          className="w-8 h-8 rounded-full mt-1 cursor-pointer hover:scale-105 transition-all duration-300"
+          className="w-8 2xl:w-10 h-8 2xl:h-10 rounded-full mt-1 cursor-pointer hover:scale-105 transition-all duration-300"
         />
       </Menu.Button>
       <Transition

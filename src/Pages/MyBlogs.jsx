@@ -1,11 +1,11 @@
 import { useState } from "react";
+import moment from "moment";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { deleteMyBlog, getMyBlogs } from "../api/Blog";
 import useAuth from "../hooks/useAuth";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import Moment from "moment";
 import BlogCardSkeleton from "./BlogCardSkeleton";
 import BlogHelmet from "../Component/BlogHelmet";
 import { FaComment } from "react-icons/fa";
@@ -20,9 +20,7 @@ const MyBlogs = () => {
     refetch,
   } = useQuery({
     queryKey: ["myBlogs", user?.email],
-    queryFn: async () => {
-      return await getMyBlogs(user?.email);
-    },
+    queryFn: () => getMyBlogs(user?.email),
     enabled: !loading && !!user?.email,
   });
 
@@ -39,11 +37,11 @@ const MyBlogs = () => {
   };
 
   return (
-    <div className="max-w-4xl 2xl:max-w-5xl mx-auto mt-2 md:mt-4 mb-10 md:px-4">
-      <BlogHelmet title="My Blogs" />
+    <div className="max-w-4xl 2xl:max-w-[76%] mx-auto mt-2 md:mt-4 mb-10 md:px-4">
+      <BlogHelmet title="My Added Blogs" />
       {isLoading ? (
         <div className="grid grid-cols-1 gap-2 md:gap-5">
-          {[...Array(3)].map((_, index) => (
+          {[...Array(1)].map((_, index) => (
             <BlogCardSkeleton key={index} />
           ))}
         </div>
@@ -60,9 +58,9 @@ const MyBlogs = () => {
                   <img
                     src={blog.writerImage}
                     alt={blog.writerName}
-                    className="w-9 h-9 rounded-full object-cover"
+                    className="w-8 2xl:w-10 h-8 2xl:h-10 rounded-full object-cover"
                   />
-                  <span className="ml-2 text-sm font-semibold dark:text-white">
+                  <span className="ml-2 text-sm 2xl:text-base font-semibold dark:text-white">
                     {blog.writerName}
                   </span>
                 </div>
@@ -103,7 +101,7 @@ const MyBlogs = () => {
                     </h3>
                   </Link>
                   <p className="text-gray-600 mb-2 dark:text-gray-300">
-                    {blog.content.substring(0, 180)}
+                    {blog.content.substring(0, 220)}
                     {blog.content.length > 180 && "..."}
                   </p>
                 </div>
@@ -116,7 +114,8 @@ const MyBlogs = () => {
               {/* Bottom Section: Posted Date, Image, and Comment Count */}
               <div className="flex justify-between items-center mt-4">
                 <span className="text-sm text-gray-500 dark:text-gray-400">
-                  Posted on: {Moment(blog.timestamp).format("DD/MMM/YYYY")}
+                  Posted on:{" "}
+                  {moment(blog?.timestamp).format("DD/MMM/YYYY, h:mm A")}
                 </span>
                 <div className="flex items-center">
                   <div className="flex items-center gap-2 text-gray-400">

@@ -37,11 +37,9 @@ const BlogDetails = () => {
     refetch,
   } = useQuery({
     queryKey: ["blogs", id],
-    queryFn: async () => {
-      return await getBlog(id);
-    },
+    queryFn: () => getBlog(id),
   });
-  
+
   useEffect(() => {
     if (blogData?.likes && user?.email) {
       setIsLiked(blogData.likes.includes(user.email));
