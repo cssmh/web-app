@@ -16,9 +16,9 @@ const Footer = () => {
               Sharing insights and stories to inspire and connect.
             </p>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
             <a
-              href="https://facebook.com"
+              href="https://facebook.com/touristmomen"
               target="_blank"
               rel="noopener noreferrer"
             >
