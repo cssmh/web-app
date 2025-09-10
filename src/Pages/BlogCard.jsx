@@ -47,7 +47,7 @@ const BlogCard = ({ blog, refetch }) => {
   };
 
   return (
-    <div className="bg-[#1e1e1e] p-3 lg:p-4 rounded-lg shadow-md text-gray-200">
+    <div className="bg-[#1e1e1e] p-4 lg:p-4 rounded-lg shadow-lg text-gray-200">
       <div className="flex justify-between items-start mb-3">
         <div className="flex items-center gap-2">
           <img
@@ -78,7 +78,7 @@ const BlogCard = ({ blog, refetch }) => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-3 sm:gap-4">
         <div className="flex-1">
           <Link
             to={`/blog/${blog?.title.toLowerCase().replaceAll(/\s+/g, "_")}/${
@@ -95,7 +95,7 @@ const BlogCard = ({ blog, refetch }) => {
           <img
             src={blog?.image}
             alt={blog?.title}
-            className="w-full h-full rounded-sm object-cover"
+            className="w-full h-full rounded-md object-cover"
           />
         </div>
       </div>

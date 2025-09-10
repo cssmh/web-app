@@ -263,7 +263,7 @@ const EditBlog = () => {
   };
 
   return (
-    <div className="max-w-3xl 2xl:max-w-[75%] mx-auto md:my-8 px-4 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
+    <div className="max-w-3xl 2xl:max-w-4xl mx-auto md:my-8 px-4 md:px-6 py-4 bg-[#18181b] text-white rounded-lg shadow-md">
       <BlogHelmet title={blogData?.title} />
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="flex flex-col md:flex-row gap-4">
