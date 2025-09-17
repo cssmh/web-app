@@ -1,5 +1,4 @@
 #
-
 <!--
 # Blog Application (A Content Creation Platform)
 
